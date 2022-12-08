@@ -4,60 +4,37 @@ export default function App() {
     const canvasRef = useRef(null);
 
 	useEffect(() => {
-		resizeCanvas(canvasRef.current);
-		window.addEventListener("resize", () => resizeCanvas(canvasRef.current));
+		const startTime = new Date().getTime();
+		/** @type {CanvasRenderingContext2D} */
 		let ctx = canvasRef.current.getContext("2d");
 
-		// π * 2 * radian === 360deg
-		// c.arc(x, y, radius, startAngle, endRadian, counterClockwise)
-		// endRadian parameter multiplies the passed value by 1 radian (57.296...)
-		// c.arc(100, 100, 30, 0, Math.PI * 2) would be a full circle at x: 100 and y: 100 with a radius of 30
-		// c.arc(100, 100, 30, 0, Math.PI) would be half of a circle at x: 100 and y: 100 with a radius of 30
-		// startAngle must look something like Math.PI * 0.1; Math.PI * 0.5; Math.PI * 1.2...
+		const colorArray = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6', 
+		  '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D',
+		  '#80B300', '#809900', '#E6B3B3', '#6680B3', '#66991A', 
+		  '#FF99E6', '#CCFF1A', '#FF1A66', '#E6331A', '#33FFCC',
+		  '#66994D', '#B366CC', '#4D8000', '#B33300', '#CC80CC', 
+		  '#66664D', '#991AFF', '#E666FF', '#4DB3FF', '#1AB399',
+		  '#E666B3', '#33991A', '#CC9999', '#B3B31A', '#00E680', 
+		  '#4D8066', '#809980', '#E6FF80', '#1AFF33', '#999933',
+		  '#FF3380', '#CCCC00', '#66E64D', '#4D80CC', '#9900B3', 
+		  '#E64D66', '#4DB380', '#FF4D4D', '#99E6E6', '#6666FF'];
 
-		// 2 rectangles
-		ctx.fillStyle = "green";
-		ctx.fillRect(30, 30, 300, 100);
-		ctx.fillRect(340, 30, 300, 100);
-
-		// triangle
-		ctx.beginPath();
-		ctx.strokeStyle = "blue"
-		ctx.lineWidth = 4;
-		ctx.moveTo(30, 300);
-		ctx.lineTo(600, 300);
-		ctx.lineTo(30, 400);
-		ctx.lineTo(30, 298);
-		ctx.stroke();
-
-		ctx.lineWidth = 2.5;
-		ctx.strokeStyle = "#000";
-		ctx.strokeRect(30, 550, 400, 200);
-		
-		ctx.beginPath();
-		ctx.fillStyle = "red";
-		ctx.arc(230, 650, 75, 0, Math.PI * 2);
-		ctx.fill();
-
-
-
-		
-
-		function resizeCanvas(canvas) {
-			canvas.style.width = "100%";
-			canvas.style.height = "100%";
-			canvas.width = canvas.offsetWidth;
-			canvas.height = canvas.offsetHeight;
+		for (let i = 0; i < 10000; i++) {
+			ctx.beginPath();
+			ctx.strokeStyle = colorArray[Math.floor(Math.random() * colorArray.length)];
+			ctx.lineWidth = Math.floor(Math.random() * 4) + 1;
+			ctx.arc(Math.random() * 880 + 20, Math.random() * 880 + 20, 20, 0, Math.PI * 2);
+			ctx.stroke();
 		}
-		
-		return () => {
-			window.removeEventListener("resize", () => resizeCanvas(canvasRef.current));
-		}
+
+		console.log(new Date().getTime() - startTime);
 	}, [])
-	
+
+
+
     return (
 		<main className="container p-3">
-			<canvas ref={canvasRef} className="border border-primary rounded" />
+			<canvas ref={canvasRef} width="920" height="920" className="border border-primary rounded" />
 		</main>
   	)
 }
