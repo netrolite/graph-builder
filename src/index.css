@@ -4,6 +4,6 @@
     box-sizing: border-box;
 }
 
-html, body, #root, .container {
+html, body, #root, .container-fluid {
     height: 100%;
 }
