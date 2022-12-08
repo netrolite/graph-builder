@@ -4,10 +4,6 @@
     box-sizing: border-box;
 }
 
-#root {
-    min-height: 100vh;
-}
-
-.hgt-600 {
-    height: 500px;
+html, body, #root, .container {
+    height: 100%;
 }
