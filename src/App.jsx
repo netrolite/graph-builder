@@ -23,9 +23,10 @@ export default function App() {
 		
 
 		function paint() {
-			generateCircles(canvasRef.current, 100000, 20, ["darkblue", "darkgreen"], 1);
+			generateCircles(canvasRef.current, 100000, 20, ["darkblue", "green"], 1); 
 
 			function generateCircles(canvas, amount, radius, colors, lineWidth) {
+				const startTime = new Date().getTime();
 				ctx.lineWidth = lineWidth;
 
 				for (let i = 0; i < amount; i++) {
@@ -33,15 +34,31 @@ export default function App() {
 					ctx.strokeStyle = colors[Math.floor(Math.random() * colors.length)];
 
 					ctx.arc(
-							Math.random() * (canvas.width - radius * 2) + radius,
-							Math.random() * (canvas.height - radius * 2) + radius,
-							radius,
-							0,
-							Math.PI * 2
+						Math.random() * (canvas.width - radius * 2) + radius,
+						Math.random() * (canvas.height - radius * 2) + radius,
+						radius,
+						0,
+						Math.PI * 2
 					);
 					ctx.stroke();
 				}
+				console.log(new Date().getTime() - startTime)
 			}
+
+
+
+
+			// ctx.arc(60, 60, 50, 0, Math.PI * 2);
+			// ctx.fillStyle = "darkblue";
+			// ctx.fill();
+
+			// function animate() {
+			// 	requestAnimationFrame(animate);
+			// 	console.log("frame")
+			// }
+
+			// animate();
+
 		}
 
 		
