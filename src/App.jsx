@@ -25,6 +25,21 @@ export default function App() {
 				this.vx = (Math.random() - 0.5) * velocity;
 				this.vy = (Math.random() - 0.5) * velocity;
 			}
+		}
+
+		class Circle extends Shape {
+			constructor(radius, ...args) {
+				super(...args);
+				this.x = Math.random() * (canvas.width - radius * 2) + radius;
+				this.y = Math.random() * (canvas.height - radius * 2) + radius;
+				this.radius = radius;
+			}
+
+			draw() {
+				c.beginPath();
+				c.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+				c.fill();
+			}
 
 			update() {
 				if (this.x < this.radius || this.x > canvas.width - this.radius) {
@@ -41,25 +56,38 @@ export default function App() {
 			}
 		}
 
-		class Circle extends Shape {
-			constructor(radius, ...args) {
+		class Rectangle extends Shape {
+			constructor(width, height, ...args) {
 				super(...args);
-				this.x = Math.random() * (canvas.width - radius * 2) + radius;
-				this.y = Math.random() * (canvas.height - radius * 2) + radius;
-				this.radius = radius;
+				this.x = Math.random() * canvas.width - width;
+				this.y = Math.random() * canvas.height - height;
+				this.width = width;
+				this.height = height;
 			}
-
 
 			draw() {
 				c.beginPath();
-				c.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-				c.fill();
+				c.strokeRect(this.x, this.y, this.width, this.height);
+			}
+
+			update() {
+				if (this.x < this.width || this.x > canvas.width - this.width) {
+					this.vx = -this.vx;
+				}
+
+				if (this.y < this.height || this.y > canvas.height - this.height) {
+					this.vy = -this.vy;
+				}
+
+				this.x += this.vx;
+				this.y += this.vy;
+				this.draw();
 			}
 		}
 
 		if (!circles.length) {
 			for (let i = 0; i < 1; i++) {
-				circles.push(new Circle(20, 6));
+				circles.push(new Rectangle(200, 100, 100));
 			}
 		}
 
