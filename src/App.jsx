@@ -1,81 +1,81 @@
-import { createContext, useEffect, useRef } from "react"
+import { useEffect, useRef } from "react"
 
 export default function App() {
 	const canvasRef = useRef();
-	
-    useEffect(() => {
-		window.addEventListener("resize", update);
-		update();
+	useEffect(() => {
+		window.addEventListener("resize", resize);
+		console.log("useeffect")
+		resize();
+		draw();
 		return () => {
-			window.removeEventListener("resize", update);
+			window.removeEventListener("resize", resize);
 		}
 	}, [])
 	
-	class Circle {
-		constructor(canvas, c, radius, velocity) {
-			this.canvas = canvas;
-			this.c = c;
-			this.radius = radius;
-			this.velocity = velocity;
-			this.x = Math.trunc(Math.random() * (this.canvas.width - radius * 2) + radius);
-			this.y = Math.trunc(Math.random() * (this.canvas.height - radius * 2) + radius);
-			this.dx = Math.trunc((Math.random() - 0.5) * this.velocity);
-			this.dy = Math.trunc((Math.random() - 0.5) * this.velocity);
+	let circles = [];
+
+	function draw() {
+		const canvas = canvasRef.current;
+		/** @type {CanvasRenderingContext2D} */ const c = canvas.getContext("2d");
+
+		class Circle {
+			constructor(radius, minVel, maxVel) {
+				this.x = Math.random() * (canvas.width - radius * 2) + radius;
+				this.y = Math.random() * (canvas.height - radius * 2) + radius;
+				this.vx = Math.random() * (maxVel - minVel) + minVel;
+				this.vy = Math.random() * (maxVel - minVel) + minVel;
+				this.radius = radius;
+			}
+
+			draw() {
+				c.beginPath();
+				c.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+				c.fillStyle = "purple";
+				c.fill();
+				c.strokeStyle = "blue"
+				c.lineWidth = 3;
+				c.stroke();
+			}
+
+			update() {
+				if (this.x < this.radius || this.x > canvas.width - this.radius) {
+					this.vx = -this.vx;
+				}
+				if (this.y < this.radius || this.y > canvas.height - this.radius) {
+					this.vy = -this.vy;
+				}
+
+				this.x += this.vx;
+				this.y += this.vy;
+				this.draw();
+			}
 		}
 
-		draw() {
-			this.c.fillStyle = "darkblue";
-			this.c.beginPath();
-			this.c.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-			this.c.fill();
+		if (!circles.length) {
+			for (let i = 0; i < 10; i++) {
+				circles.push(new Circle(20, 2, 5))
+			}
 		}
 
-		update() {
-			if (this.x < this.radius || this.x > this.canvas.offsetWidth - this.radius) {
-				this.dx = -this.dx;
-			}
-			
-			if (this.y < this.radius || this.y > this.canvas.offsetHeight - this.radius) {
-				this.dy = -this.dy;
-			}
-			
-			this.x += this.dx;
-			this.y += this.dy;
-		}
-	}
-	
-	function draw(canvas) {
-		let circle = new Circle(canvas, canvas.getContext("2d"), 30, 10);
-		circle.draw();
-		
-		// BUG: changing x or y doesn't re-draw the circle
 		function animate() {
-			console.log("animate");
 			requestAnimationFrame(animate);
-			circle.update();
+			c.clearRect(0, 0, canvas.width, canvas.height);
+			circles.forEach(item => {
+
+				item.update();
+			});
 		}
 		animate();
 	}
-	
-	function resizeCanvas(canvas) {
-		canvas.style.width = "100%";
-		canvas.style.height = "100%";
-		canvas.width = canvas.offsetWidth;
-		canvas.height = canvas.offsetHeight;
+
+	function resize() {
+		canvasRef.current.width = canvasRef.current.offsetWidth;
+		canvasRef.current.height = canvasRef.current.offsetHeight;
 	}
-	
-	function update() {
-		resizeCanvas(canvasRef.current);
-		draw(canvasRef.current);
-	}
-	
-    return (
-		<main className="container-fluid p-3">
-            <canvas
-				ref={canvasRef}
-				onClick={() => paint(canvasRef.current, canvasRef.current.getContext("2d"))}
-				className="border border-primary rounded"
-			/>
+
+	return (
+		<main className="container-fluid p-2">
+			<canvas ref={canvasRef} className="border border-2 border-primary rounded" />
 		</main>
-    )
+	)
 }
