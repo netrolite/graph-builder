@@ -19,12 +19,13 @@ export default function App() {
 		/** @type {CanvasRenderingContext2D} */ const c = canvas.getContext("2d");
 
 		class Circle {
-			constructor(radius, minVel, maxVel) {
+			constructor(radius, velocity) {
 				this.x = Math.random() * (canvas.width - radius * 2) + radius;
 				this.y = Math.random() * (canvas.height - radius * 2) + radius;
-				this.vx = Math.random() * (maxVel - minVel) + minVel;
-				this.vy = Math.random() * (maxVel - minVel) + minVel;
+				this.vx = (Math.random() - 0.5) * velocity;
+				this.vy = (Math.random() - 0.5) * velocity;
 				this.radius = radius;
+
 			}
 
 			draw() {
@@ -52,8 +53,8 @@ export default function App() {
 		}
 
 		if (!circles.length) {
-			for (let i = 0; i < 10; i++) {
-				circles.push(new Circle(20, 2, 5))
+			for (let i = 0; i < 100; i++) {
+				circles.push(new Circle(1, 5))
 			}
 		}
 
@@ -61,7 +62,6 @@ export default function App() {
 			requestAnimationFrame(animate);
 			c.clearRect(0, 0, canvas.width, canvas.height);
 			circles.forEach(item => {
-
 				item.update();
 			});
 		}
