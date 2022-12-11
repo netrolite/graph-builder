@@ -28,7 +28,6 @@ export default function App() {
 		})
 
 		window.addEventListener("mouseout", () => {
-			console.log("mouseout");
 			mousePos.x = undefined;
 			mousePos.y = undefined;
 		})
