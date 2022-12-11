@@ -30,7 +30,8 @@ export default function App() {
 		// this is a super class for other classes. Do not call it directly
 		class Shape {
 			constructor(colors, velocity) {
-				this.strokeStyle = colors[Math.floor(Math.random() * colors.length)];
+				this.strokeStyle = "white";
+				this.fillStyle = colors[Math.floor(Math.random() * colors.length)];
 				this.lineWidth = 3;
 				
 				const randVx = Math.random() - 0.5;
@@ -53,39 +54,40 @@ export default function App() {
 				this.initNegativeVx = -Math.abs(this.vx);
 				this.initNegativeVy = -Math.abs(this.vy);
 			}
+
+			diff(mousePos, shapePos) {
+				return Math.abs(mousePos - shapePos);
+			}
 		}
 
 		class Rectangle extends Shape {
-			constructor(width, height, cornerRadius, ...args) {
+			constructor(width, height, maxWidth, cornerRadius, expansionRange, ...args) {
 				super(...args);
 				this.x = Math.random() * (canvas.width - width);
 				this.y = Math.random() * (canvas.height - height);
 				this.width = width;
 				this.height = height;
 				this.minWidth = width;
-				this.minHeight = height;
-				this.maxWidth = width + 50;
-				this.maxHeight = height + 50;
+				this.maxWidth = maxWidth;
 				this.cornerRadius = cornerRadius;
-			}
-
-			diff(mousePos, shapePos) {
-				return Math.abs(mousePos - shapePos);
+				this.expansionRange = expansionRange;
 			}
 
 			draw() {
 				c.beginPath();
+				c.fillStyle = this.fillStyle;
 				c.strokeStyle = this.strokeStyle;
 				c.lineWidth = this.lineWidth;
 				c.roundRect(this.x, this.y, this.width, this.height, this.cornerRadius);
 				c.stroke();
+				c.fill();
 			}
 			
 			update() {
 				// grow if cursor is within 100px range from the rectangle's center
 				if (
-					this.diff(mousePos.x, this.x + this.width / 2) <= 100
-					&& this.diff(mousePos.y, this.y + this.height / 2) <= 100
+					this.diff(mousePos.x, this.x + this.width / 2) <= this.expansionRange
+					&& this.diff(mousePos.y, this.y + this.height / 2) <= this.expansionRange
 					&& this.width <= this.maxWidth
 				) {
 					this.x -= 1;
@@ -101,7 +103,7 @@ export default function App() {
 				}
 
 
-				// if rectangle is outside of canvas dimensions, reverse its direction
+				// reverse rectangles's direction if it's outside of canvas dimensions
 				// positive velocity turns to negative and vice versa
 				if (this.x < 0) {
 					this.vx = this.initPositiveVx;
@@ -124,22 +126,41 @@ export default function App() {
 		}
 
 		class Circle extends Shape {
-			constructor(radius, ...args) {
+			constructor(radius, maxRadius, expansionRange, ...args) {
 				super(...args);
 				this.x = Math.random() * (canvas.width - radius * 2) + radius;
 				this.y = Math.random() * (canvas.height - radius * 2) + radius;
 				this.radius = radius;
+				this.minRadius = radius;
+				this.maxRadius = maxRadius;
+				this.expansionRange = expansionRange;
 			}
 
 			draw() {
 				c.beginPath();
+				c.fillStyle = this.fillStyle;
 				c.strokeStyle = this.strokeStyle;
 				c.lineWidth = this.lineWidth;
 				c.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
 				c.stroke();
+				c.fill();
 			}
 
 			update() {
+				// grow if cursor is within 100px range from the circles's center
+				if (
+					this.diff(mousePos.x, this.x) <= this.expansionRange
+					&& this.diff(mousePos.y, this.y) <= this.expansionRange
+					&& this.radius <= this.maxRadius
+				) {
+					this.radius += 1;
+				}
+				else if (this.radius > this.minRadius) {
+					this.radius -= 1;
+				}
+
+				// reverse circles's direction if it's outside of canvas dimensions
+				// positive velocity turns to negative and vice versa
 				if (this.x < this.radius) {
 					this.vx = this.initPositiveVx;
 				}
@@ -162,9 +183,11 @@ export default function App() {
 
 		if (!shapes.length) {
 			for (let i = 0; i < 100; i++) {
-				// new Rectangle(width, height, borderRadius, colors, velocity);
-				shapes.push(new Circle(40, ["darkblue"], 8))
-				// new Cirlce(radius, colors, velocity);
+				// new Cirlce(radius, maxRadius, expansionRange, colors, velocity);
+				// new Rectangle(width, height, maxWidth, cornerRadius, expansionRange, colors, velocity);
+				Math.random() > 0.5
+				? shapes.push(new Circle(20, 40, 100, ["darkblue", "darkgreen"], 1))
+				: shapes.push(new Rectangle(40, 40, 80, [4], 100, ["darkgreen", "darkblue"], 1))
 			}
 		}
 
