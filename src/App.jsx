@@ -19,8 +19,8 @@ export default function App() {
 		/** @type {CanvasRenderingContext2D} */ const c = canvas.getContext("2d");
 		c.lineWidth = 3;
 		let mousePos = {
-			x: 0,
-			y: 0
+			x: undefined,
+			y: undefined
 		}
 
 		window.addEventListener("mousemove", e => {
@@ -48,6 +48,8 @@ export default function App() {
 					this.vx = randVx >= 0 ? randVx * velocity + velocity : randVx * velocity - velocity;
 					this.vy = randVy * velocity;
 				}
+				this.initVx = this.vx;
+				this.initVy = this.vy;
 			}
 		}
 
@@ -68,11 +70,11 @@ export default function App() {
 
 			update() {
 				if (this.x < this.radius || this.x > canvas.width - this.radius) {
-					this.vx = -this.vx;
+					this.vx = -this.initVx;
 				}
 
 				if (this.y < this.radius || this.y > canvas.height - this.radius) {
-					this.vy = -this.vy;
+					this.vy = -this.initVy;
 				}
 
 				this.x += this.vx;
@@ -113,24 +115,29 @@ export default function App() {
 					&& this.diff(mousePos.y, this.y + this.height / 2) <= 100
 					&& this.width <= this.maxWidth
 				) {
+					console.log("grow");
 					this.x -= 1;
 					this.y -= 1;
 					this.width += 2;
 					this.height += 2;
 				}
 				else if (this.width > this.minWidth) {
+					console.log("shrink");
 					this.x += 1;
 					this.y += 1;
 					this.width -= 2;
 					this.height -= 2;
 				}
 
+				// BUG: this code does not accound for cases when this.initVx or this.initVy is negative
 				// if is further than canvas's dimensions, reverse direction
 				if (this.x < 0 || this.x > canvas.width - this.width) {
-					this.vx = -this.vx;
+					if (this.vx > 0 && this.initVx > 0) this.vx = -this.initVx;
+					else this.vx = this.initVx;
 				}
 				if (this.y < 0 || this.y > canvas.height - this.height) {
-					this.vy = -this.vy;
+					if (this.vy > 0) this.vy = -this.initVy;
+					else this.vy = this.initVy;
 				}
 
 				this.x += this.vx;
@@ -140,7 +147,7 @@ export default function App() {
 		}
 
 		if (!shapes.length) {
-			for (let i = 0; i < 1; i++) {
+			for (let i = 0; i < 50; i++) {
 				// new Rectangle(width, height, borderRadius, velocity);
 				shapes.push(new Rectangle(40, 40, [5], ["darkblue"], 1))
 				// new Cirlce(radius, velocity);
