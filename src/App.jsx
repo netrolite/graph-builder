@@ -12,7 +12,7 @@ export default function App() {
 		}
 	}, [])
 	
-	let circles = [];
+	let shapes = [];
 
 	function draw() {
 		const canvas = canvasRef.current;
@@ -22,8 +22,10 @@ export default function App() {
 		// this is a super class for other classes. Do not call it directly
 		class Shape {
 			constructor(velocity) {
-				this.vx = (Math.random() - 0.5) * velocity;
-				this.vy = (Math.random() - 0.5) * velocity;
+				const randVx = Math.random() - 0.5;
+				const randVy = Math.random() - 0.5;
+				this.vx = randVx >= 0 ? randVx * velocity + velocity : randVx * velocity - velocity;
+				this.vy = randVy >= 0 ? randVy * velocity + velocity : randVy * velocity - velocity;
 			}
 		}
 
@@ -59,8 +61,8 @@ export default function App() {
 		class Rectangle extends Shape {
 			constructor(width, height, ...args) {
 				super(...args);
-				this.x = Math.random() * canvas.width - width;
-				this.y = Math.random() * canvas.height - height;
+				this.x = Math.random() * (canvas.width - width);
+				this.y = Math.random() * (canvas.height - height);
 				this.width = width;
 				this.height = height;
 			}
@@ -71,11 +73,11 @@ export default function App() {
 			}
 
 			update() {
-				if (this.x < this.width || this.x > canvas.width - this.width) {
+				if (this.x < 0 || this.x > canvas.width - this.width) {
 					this.vx = -this.vx;
 				}
 
-				if (this.y < this.height || this.y > canvas.height - this.height) {
+				if (this.y < 0 || this.y > canvas.height - this.height) {
 					this.vy = -this.vy;
 				}
 
@@ -85,16 +87,16 @@ export default function App() {
 			}
 		}
 
-		if (!circles.length) {
+		if (!shapes.length) {
 			for (let i = 0; i < 1; i++) {
-				circles.push(new Rectangle(200, 100, 100));
+				shapes.push(new Rectangle(200, 100, 2))
 			}
 		}
 
 		function animate() {
 			requestAnimationFrame(animate);
 			c.clearRect(0, 0, canvas.width, canvas.height);
-			circles.forEach(item => item.update());
+			shapes.forEach(item => item.draw());
 		}
 		animate();
 	}
