@@ -26,6 +26,12 @@ export default function App() {
 			mousePos.x = e.clientX;
 			mousePos.y = e.clientY;
 		})
+
+		window.addEventListener("mouseout", () => {
+			console.log("mouseout");
+			mousePos.x = undefined;
+			mousePos.y = undefined;
+		})
 		
 		// this is a super class for other classes. Do not call it directly
 		class Shape {
