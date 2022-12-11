@@ -17,11 +17,12 @@ export default function App() {
 	function draw() {
 		const canvas = canvasRef.current;
 		/** @type {CanvasRenderingContext2D} */ const c = canvas.getContext("2d");
-		c.strokeStyle = "red"
 
 		// this is a super class for other classes. Do not call it directly
 		class Shape {
-			constructor(velocity) {
+			constructor(colors, velocity) {
+				this.strokeStyle = colors[Math.floor(Math.random() * colors.length)];
+
 				const randVx = Math.random() - 0.5;
 				const randVy = Math.random() - 0.5;
 				const rand = Math.random();
@@ -50,8 +51,8 @@ export default function App() {
 
 			draw() {
 				c.beginPath();
-				c.strokeStyle = "yellow";
-				c.lineWidth = 3
+				c.lineWidth = 3;
+				c.strokeStyle = this.strokeStyle;
 				c.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
 				c.stroke();
 			}
@@ -72,19 +73,19 @@ export default function App() {
 		}
 
 		class Rectangle extends Shape {
-			constructor(width, height, radii, ...args) {
+			constructor(width, height, cornerRadius, ...args) {
 				super(...args);
 				this.x = Math.random() * (canvas.width - width);
 				this.y = Math.random() * (canvas.height - height);
 				this.width = width;
 				this.height = height;
-				this.radii = radii;
+				this.cornerRadius = cornerRadius;
 			}
 
 			draw() {
 				c.beginPath();
-				c.strokeStyle = "darkblue";
-				c.roundRect(this.x, this.y, this.width, this.height, this.radii);
+				c.strokeStyle = this.strokeStyle;
+				c.roundRect(this.x, this.y, this.width, this.height, this.cornerRadius);
 				c.stroke();
 			}
 
@@ -107,9 +108,9 @@ export default function App() {
 			for (let i = 0; i < 1000; i++) {
 				Math.random() > 0.5
 				// new Rectangle(width, height, borderRadius, velocity);
-				? shapes.push(new Rectangle(40, 40, [5], 1))
+				? shapes.push(new Rectangle(40, 40, [5], ["red", "green", "blue"], 1))
 				// new Cirlce(radius, velocity);
-				: shapes.push(new Circle(20, 1));
+				: shapes.push(new Circle(20, ["darkblue", "darkgreen"], 1));
 			}
 		}
 
