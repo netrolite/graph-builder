@@ -24,8 +24,19 @@ export default function App() {
 			constructor(velocity) {
 				const randVx = Math.random() - 0.5;
 				const randVy = Math.random() - 0.5;
-				this.vx = randVx >= 0 ? randVx * velocity + velocity : randVx * velocity - velocity;
-				this.vy = randVy >= 0 ? randVy * velocity + velocity : randVy * velocity - velocity;
+				const rand = Math.random();
+				if (rand >= 0.66) {
+					this.vx = randVx >= 0 ? randVx * velocity + velocity : randVx * velocity - velocity;
+					this.vy = randVy >= 0 ? randVy * velocity + velocity : randVy * velocity - velocity;
+				}
+				else if (rand >= 0.33) {
+					this.vx = randVx * velocity;
+					this.vy = randVy >= 0 ? randVy * velocity + velocity : randVy * velocity - velocity;
+				}
+				else {
+					this.vx = randVx >= 0 ? randVx * velocity + velocity : randVx * velocity - velocity;
+					this.vy = randVy * velocity;
+				}
 			}
 		}
 
@@ -39,8 +50,10 @@ export default function App() {
 
 			draw() {
 				c.beginPath();
+				c.strokeStyle = "yellow";
+				c.lineWidth = 3
 				c.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-				c.fill();
+				c.stroke();
 			}
 
 			update() {
@@ -69,6 +82,7 @@ export default function App() {
 
 			draw() {
 				c.beginPath();
+				c.strokeStyle = "darkblue";
 				c.strokeRect(this.x, this.y, this.width, this.height);
 			}
 
@@ -88,15 +102,17 @@ export default function App() {
 		}
 
 		if (!shapes.length) {
-			for (let i = 0; i < 1; i++) {
-				shapes.push(new Rectangle(200, 100, 2))
+			for (let i = 0; i < 1000; i++) {
+				Math.random() > 0.5
+				? shapes.push(new Rectangle(40, 40, 3))
+				: shapes.push(new Circle(20, 3));
 			}
 		}
 
 		function animate() {
 			requestAnimationFrame(animate);
 			c.clearRect(0, 0, canvas.width, canvas.height);
-			shapes.forEach(item => item.draw());
+			shapes.forEach(item => item.update());
 		}
 		animate();
 	}
