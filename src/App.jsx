@@ -13,16 +13,26 @@ export default function App() {
 	}, [])
 	
 	let shapes = [];
-
+	
 	function draw() {
 		const canvas = canvasRef.current;
 		/** @type {CanvasRenderingContext2D} */ const c = canvas.getContext("2d");
+		c.lineWidth = 3;
+		let mousePos = {
+			x: 0,
+			y: 0
+		}
 
+		window.addEventListener("mousemove", e => {
+			mousePos.x = e.clientX;
+			mousePos.y = e.clientY;
+		})
+		
 		// this is a super class for other classes. Do not call it directly
 		class Shape {
 			constructor(colors, velocity) {
 				this.strokeStyle = colors[Math.floor(Math.random() * colors.length)];
-
+				
 				const randVx = Math.random() - 0.5;
 				const randVy = Math.random() - 0.5;
 				const rand = Math.random();
@@ -51,7 +61,6 @@ export default function App() {
 
 			draw() {
 				c.beginPath();
-				c.lineWidth = 3;
 				c.strokeStyle = this.strokeStyle;
 				c.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
 				c.stroke();
@@ -79,7 +88,15 @@ export default function App() {
 				this.y = Math.random() * (canvas.height - height);
 				this.width = width;
 				this.height = height;
+				this.minWidth = width;
+				this.minHeight = height;
+				this.maxWidth = width + 50;
+				this.maxHeight = height + 50;
 				this.cornerRadius = cornerRadius;
+			}
+
+			diff(mousePos, elemPos) {
+				return Math.abs(mousePos - elemPos);
 			}
 
 			draw() {
@@ -88,12 +105,30 @@ export default function App() {
 				c.roundRect(this.x, this.y, this.width, this.height, this.cornerRadius);
 				c.stroke();
 			}
-
+			
 			update() {
+				// grow if cursor is within 50px range
+				if (
+					this.diff(mousePos.x, this.x + this.width / 2) <= 100
+					&& this.diff(mousePos.y, this.y + this.height / 2) <= 100
+					&& this.width <= this.maxWidth
+				) {
+					this.x -= 1;
+					this.y -= 1;
+					this.width += 2;
+					this.height += 2;
+				}
+				else if (this.width > this.minWidth) {
+					this.x += 1;
+					this.y += 1;
+					this.width -= 2;
+					this.height -= 2;
+				}
+
+				// if is further than canvas's dimensions, reverse direction
 				if (this.x < 0 || this.x > canvas.width - this.width) {
 					this.vx = -this.vx;
 				}
-
 				if (this.y < 0 || this.y > canvas.height - this.height) {
 					this.vy = -this.vy;
 				}
@@ -105,12 +140,10 @@ export default function App() {
 		}
 
 		if (!shapes.length) {
-			for (let i = 0; i < 1000; i++) {
-				Math.random() > 0.5
+			for (let i = 0; i < 1; i++) {
 				// new Rectangle(width, height, borderRadius, velocity);
-				? shapes.push(new Rectangle(40, 40, [5], ["red", "green", "blue"], 1))
+				shapes.push(new Rectangle(40, 40, [5], ["darkblue"], 1))
 				// new Cirlce(radius, velocity);
-				: shapes.push(new Circle(20, ["darkblue", "darkgreen"], 1));
 			}
 		}
 
