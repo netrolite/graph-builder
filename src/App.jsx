@@ -72,18 +72,20 @@ export default function App() {
 		}
 
 		class Rectangle extends Shape {
-			constructor(width, height, ...args) {
+			constructor(width, height, radii, ...args) {
 				super(...args);
 				this.x = Math.random() * (canvas.width - width);
 				this.y = Math.random() * (canvas.height - height);
 				this.width = width;
 				this.height = height;
+				this.radii = radii;
 			}
 
 			draw() {
 				c.beginPath();
 				c.strokeStyle = "darkblue";
-				c.strokeRect(this.x, this.y, this.width, this.height);
+				c.roundRect(this.x, this.y, this.width, this.height, this.radii);
+				c.stroke();
 			}
 
 			update() {
@@ -104,8 +106,10 @@ export default function App() {
 		if (!shapes.length) {
 			for (let i = 0; i < 1000; i++) {
 				Math.random() > 0.5
-				? shapes.push(new Rectangle(40, 40, 3))
-				: shapes.push(new Circle(20, 3));
+				// new Rectangle(width, height, borderRadius, velocity);
+				? shapes.push(new Rectangle(40, 40, [5], 1))
+				// new Cirlce(radius, velocity);
+				: shapes.push(new Circle(20, 1));
 			}
 		}
 
