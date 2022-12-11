@@ -4,7 +4,6 @@ export default function App() {
 	const canvasRef = useRef();
 	useEffect(() => {
 		window.addEventListener("resize", resize);
-		console.log("useeffect")
 		resize();
 		draw();
 		return () => {
@@ -17,7 +16,7 @@ export default function App() {
 	function draw() {
 		const canvas = canvasRef.current;
 		/** @type {CanvasRenderingContext2D} */ const c = canvas.getContext("2d");
-		c.lineWidth = 3;
+
 		let mousePos = {
 			x: undefined,
 			y: undefined
@@ -141,12 +140,18 @@ export default function App() {
 			}
 
 			update() {
-				if (this.x < this.radius || this.x > canvas.width - this.radius) {
-					this.vx = -this.initVx;
+				if (this.x < this.radius) {
+					this.vx = this.initPositiveVx;
+				}
+				else if (this.x > canvas.width - this.radius) {
+					this.vx = this.initNegativeVx;
 				}
 
-				if (this.y < this.radius || this.y > canvas.height - this.radius) {
-					this.vy = -this.initVy;
+				if (this.y < this.radius) {
+					this.vy = this.initPositiveVy;
+				}
+				else if (this.y > canvas.height - this.radius) {
+					this.vy = this.initNegativeVy;
 				}
 
 				this.x += this.vx;
@@ -156,9 +161,9 @@ export default function App() {
 		}
 
 		if (!shapes.length) {
-			for (let i = 0; i < 10; i++) {
+			for (let i = 0; i < 100; i++) {
 				// new Rectangle(width, height, borderRadius, colors, velocity);
-				shapes.push(new Rectangle(40, 40, [5], ["darkblue"], 8))
+				shapes.push(new Circle(40, ["darkblue"], 8))
 				// new Cirlce(radius, colors, velocity);
 			}
 		}
