@@ -191,8 +191,8 @@ export default function App() {
 				// new Cirlce(radius, maxRadius, expansionRange, colors, velocity);
 				// new Rectangle(width, height, maxWidth, cornerRadius, expansionRange, colors, velocity);
 				Math.random() > 0.5
-				? shapes.push(new Circle(20, 40, 100, ["darkblue", "darkgreen"], 1))
-				: shapes.push(new Rectangle(40, 40, 80, [4], 100, ["darkgreen", "darkblue"], 1))
+				? shapes.push(new Circle(10, 40, 100, ["darkblue", "darkgreen"], 1))
+				: shapes.push(new Rectangle(20, 40, 80, [4], 100, ["darkgreen", "darkblue"], 1))
 			}
 		}
 
