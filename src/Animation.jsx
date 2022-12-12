@@ -1,10 +1,6 @@
-import { useState } from "react"
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom"
-import Input from "./Input"
-import Animation from "./Animation"
+import { useEffect, useRef } from "react"
 
-export default function App() {
-<<<<<<< HEAD
+export default function Animation(props) {
 	const canvasRef = useRef();
 	useEffect(() => {
 		window.addEventListener("resize", resize);
@@ -195,8 +191,8 @@ export default function App() {
 				// new Cirlce(radius, maxRadius, expansionRange, colors, velocity);
 				// new Rectangle(width, height, maxWidth, cornerRadius, expansionRange, colors, velocity);
 				Math.random() > 0.5
-				? shapes.push(new Circle(10, 40, 100, ["darkblue", "darkgreen"], 1))
-				: shapes.push(new Rectangle(20, 20, 80, [4], 100, ["darkgreen", "darkblue"], 1))
+				? shapes.push(new Circle(20, 40, 100, ["darkblue", "darkgreen"], 1))
+				: shapes.push(new Rectangle(40, 40, 80, [4], 100, ["darkgreen", "darkblue"], 1))
 			}
 		}
 
@@ -212,23 +208,10 @@ export default function App() {
 		canvasRef.current.width = window.innerWidth;
 		canvasRef.current.height = window.innerHeight;
 	}
-=======
-	const [animData, setAnimData] = useState({
-		amount: 10,
-		shapeTypes: ["circle", "rectangle"],
-		velocity: 4,
-		fillColors: ["green", "darkblue"]
-	})
->>>>>>> c02cf5c (add input screen)
 
 	return (
-		<main className="container">
-			<BrowserRouter>
-				<Routes>
-					<Route path="/" element={<Input setAnimData={setAnimData} />} />
-					<Route path="/animation" element={<Animation animData={animData} />} />
-				</Routes>
-			</BrowserRouter>
+		<main className="container-fluid p-0">
+			<canvas ref={canvasRef} />
 		</main>
 	)
 }
