@@ -5,21 +5,21 @@ import Animation from "./Animation"
 
 export default function App() {
 	const [animData, setAnimData] = useState({
-		amount: 10,
+		shapesAmount: "10",
 		shapeTypes: [
 			{
-				type: "rectangle",
-				width: 80,
-				height: 50,
-				cornerRadius: 0,
-				filled: false,
-				borderColor: "#000"
+				type: "rectangles",
+				checked: false,
+				width: "60",
+				height: "40",
+				cornerRadius: "0",
+				filled: false
 			},
 			{
-				type: "circle",
-				radius: 30,
-				filled: false,
-				borderColor: "#000"
+				type: "circles",
+				checked: false,
+				radius: "20",
+				filled: false
 			}
 		],
 		velocity: 4,
