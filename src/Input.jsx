@@ -86,6 +86,7 @@ export default function Input({animData, setAnimData}) {
             </div>
 
             <div className="mt-4">
+                <input type="color" />
                 <Link to="/animation">
                     <button
                         type="submit"
