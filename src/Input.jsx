@@ -1,63 +1,60 @@
 import { useEffect } from "react"
-import { Link } from "react-router-dom"
+import { Link, RouterProvider } from "react-router-dom"
 
 export default function Input({animData, setAnimData}) {
     const rectangles = animData.shapeTypes.find(item => item.type === "rectangles");
     const circles = animData.shapeTypes.find(item => item.type === "circles");
 
-    function handleChange(e) {
-        // if e.target.name matches animData.shapeTypes.type, returns shapeTypes with updated value (width, height...)
-        // if not, leaves array untouched
-        // e.target.name can be "rectangles", "circles"...
-        const shapeTypesUpdated = animData.shapeTypes.map(item => {
-            if (item.type === e.target.name) {
-                // item[e.target.id] is item.width, item.height...
-                item[e.target.id] = e.target.value;
-            }
-            return item;
-        })
 
+    function changeAmount(e) {
+        setAnimData(prevState => ({
+            ...prevState,
+            shapesAmount: e.target.value
+        }))
+    }
+    
+    
+    // toggle "checked" prop
+    function changeShapeTypesChecked(e) {
         setAnimData(prevState => {
-            console.log(prevState.shapeTypes[0]);
-            
+            const newShapeTypes = prevState.shapeTypes.map(item => {
+                // e.target.name can be "rectangles", "circles"...
+                if (item.type === e.target.name) {
+                    item.checked = e.target.checked
+                }
+                return item;
+            })
+
             return {
                 ...prevState,
-                shapeTypes: shapeTypesUpdated
+                shapeTypes: newShapeTypes
             }
         })
     }
 
-    // only for handling checkboxes
-    function handleChangeCheckbox(e) {
-        // if checkbox is related to "Types of Shapes" (Rectangles, Circles...)
-        if (e.target.classList.contains("type")) {
-            const updatedShapeTypes = animData.shapeTypes.map(item => {
-                // change item's checked property to e.target.checked (true or false)
+
+    // change a property of a shape. e.g "width", "height", "radius"...
+    function changeShapeProp(e) {
+        setAnimData(prevState => {
+            const newShapeTypes = prevState.shapeTypes.map(item => {
+                // e.target.name can be "rectanges", "circles"...
                 if (item.type === e.target.name) {
-                    item.checked = e.target.checked;
+                    item[e.target.id] = e.target.value;
                 }
-                return item
+                return item;
             })
-            setAnimData(prevState => ({
+
+            return {
                 ...prevState,
-                shapeTypes: updatedShapeTypes
-            }))
-        }
+                shapeTypes: newShapeTypes
+            }
+        })
     }
 
     useEffect(() => {
-
+        console.log(animData.shapeTypes[0]);
     }, [animData])
 
-    const rectanglesChecked = animData.shapeTypes.some(item => {
-        if (item.type === "rectangles" && item.checked) return true;
-        return false;
-    })
-
-    const circlesChecked = animData.shapeTypes.some(item => {
-        if (item.type === "circles" && item.checked) return true;
-        return false;
-    })
 
     let rectangleSettingsNode;
     let circleSettingsNode;
@@ -77,7 +74,7 @@ export default function Input({animData, setAnimData}) {
                             type="number"
                             id="width"
                             name="rectangles"
-                            onChange={e => handleChange(e)}
+                            onChange={e => changeShapeProp(e)}
                             value={rectangles.width}
                         />
                     </div>
@@ -89,7 +86,7 @@ export default function Input({animData, setAnimData}) {
                             type="number"
                             id="height"
                             name="rectangles"
-                            onChange={e => handleChange(e)}
+                            onChange={e => changeShapeProp(e)}
                             value={rectangles.height}
                         />
                     </div>
@@ -111,7 +108,7 @@ export default function Input({animData, setAnimData}) {
                     name="shapesAmount"
                     className="form-control"
                     value={animData.shapesAmount}
-                    onChange={e => handleChange(e)}
+                    onChange={e => changeAmount(e)}
                 />
             </div>
 
@@ -124,8 +121,7 @@ export default function Input({animData, setAnimData}) {
                         type="checkbox"
                         id="rectangles"
                         name="rectangles"
-                        onChange={e => handleChangeCheckbox(e)}
-                        value={rectanglesChecked}
+                        onChange={e => changeShapeTypesChecked(e)}
                     />
                     <label htmlFor="rectangles" className="text">Rectangles</label>
                 </div>
@@ -136,8 +132,7 @@ export default function Input({animData, setAnimData}) {
                         type="checkbox"
                         id="circles"
                         name="circles"
-                        onChange={e => handleChangeCheckbox(e)}
-                        value={circlesChecked}
+                        onChange={e => changeShapeTypesChecked(e)}
                     />
                     <label htmlFor="circles" className="text">Circles</label>
                 </div>
