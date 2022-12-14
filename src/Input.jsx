@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { Link, RouterProvider } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 export default function Input({animData, setAnimData}) {
     const rectangles = animData.shapeTypes.find(item => item.type === "rectangles");
@@ -12,6 +12,13 @@ export default function Input({animData, setAnimData}) {
             shapesAmount: e.target.value
         }))
     }
+
+    function changeVelocity(e) {
+        setAnimData(prevState => ({
+            ...prevState,
+            velocity: e.target.value
+        }))
+    }
     
     
     // toggle "checked" prop
@@ -20,7 +27,6 @@ export default function Input({animData, setAnimData}) {
             const newShapeTypes = prevState.shapeTypes.map(item => {
                 // e.target.name can be "rectanges", "circles"...
                 if (item.type === e.target.name) {
-                    console.log(item.type, e.target.name);
                     item[e.target.id] = e.target.checked;
                 }
                 return item;
@@ -53,7 +59,7 @@ export default function Input({animData, setAnimData}) {
     }
 
     useEffect(() => {
-        console.log(animData.shapeTypes);
+        console.log(animData);
     }, [animData])
 
 
@@ -146,6 +152,7 @@ export default function Input({animData, setAnimData}) {
         <div className="container mt-4">
             <h1 className="mb-4 fw-semibold">Animation</h1>
 
+            {/* Amount of Shapes */}
             <label htmlFor="shapes-amount" className="form-label heading fw-semibold">Amount of Shapes</label>
             <div className="input-group mb-4">
                 <input
@@ -158,6 +165,21 @@ export default function Input({animData, setAnimData}) {
                     onChange={e => changeAmount(e)}
                 />
             </div>
+
+            {/* Velocity */}
+            <label htmlFor="shapes-amount" className="form-label heading fw-semibold">Velocity</label>
+            <div className="input-group mb-4">
+                <input
+                    type="number"
+                    min={1}
+                    id="velocity"
+                    name="velocity"
+                    className="form-control"
+                    value={animData.velocity}
+                    onChange={e => changeVelocity(e)}
+                />
+            </div>
+
 
             {/* Types of shapes */}
             <p className="heading mb-2 fw-semibold">Types of Shapes</p>
@@ -189,7 +211,7 @@ export default function Input({animData, setAnimData}) {
             {rectanglesSettingsNode}
             {circlesSettingsNode}
 
-            <div className="mt-4">
+            <div className="mt-5">
                 <Link to="/animation">
                     <button
                         type="submit"
