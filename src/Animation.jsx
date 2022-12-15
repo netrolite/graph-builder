@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react"
 
-export default function Animation(props) {
+export default function Animation({animData}) {
 	const canvasRef = useRef();
 	useEffect(() => {
 		window.addEventListener("resize", resize);
@@ -187,7 +187,7 @@ export default function Animation(props) {
 		}
 
 		if (!shapes.length) {
-			for (let i = 0; i < 100; i++) {
+			for (let i = 0; i < animData.shapesAmount; i++) {
 				// new Cirlce(radius, maxRadius, expansionRange, colors, velocity);
 				// new Rectangle(width, height, maxWidth, cornerRadius, expansionRange, colors, velocity);
 				Math.random() > 0.5
