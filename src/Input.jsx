@@ -6,7 +6,7 @@ export default function Input({animData, setAnimData}) {
     function changeProp(e) {
         setAnimData(prevState => ({
             ...prevState,
-            shapesAmount: e.target.value
+            [e.target.name]: e.target.value
         }))
     }
     
@@ -17,6 +17,8 @@ export default function Input({animData, setAnimData}) {
         // e.target.name === "rectangles"
         // e.target.dataset.shapeProp === "height"
         // if isBoolean, use "checked" attribute insead of "value" because value for checkboxes is always "on"
+        console.log(e.target.name);
+        console.log(e.target.shapeProp);
         setAnimData(prevState => {
             const prop = e.target.dataset.shapeProp;
             return {
@@ -31,7 +33,7 @@ export default function Input({animData, setAnimData}) {
 
 
     useEffect(() => {
-        console.log(animData.circles);
+        console.log(animData.rectangles);
     }, [animData])
 
 
@@ -139,12 +141,12 @@ export default function Input({animData, setAnimData}) {
                     name="shapesAmount"
                     className="form-control"
                     value={animData.shapesAmount}
-                    onChange={e => changeAmount(e)}
+                    onChange={e => changeProp(e)}
                 />
             </div>
 
             {/* Velocity */}
-            <label htmlFor="shapes-amount" className="form-label heading fw-semibold">Velocity</label>
+            <label htmlFor="velocity" className="form-label heading fw-semibold">Velocity</label>
             <div className="input-group mb-4">
                 <input
                     type="number"
@@ -153,7 +155,7 @@ export default function Input({animData, setAnimData}) {
                     name="velocity"
                     className="form-control"
                     value={animData.velocity}
-                    onChange={e => changeVelocity(e)}
+                    onChange={e => changeProp(e)}
                 />
             </div>
 
@@ -166,23 +168,26 @@ export default function Input({animData, setAnimData}) {
                     <input
                         className="input-checkbox type"
                         type="checkbox"
-                        id="checked"
+                        id="rect-checked"
                         name="rectangles"
-                        onChange={e => changeShapeProp(e)}
-                        checked={animData}
+                        data-shape-prop="checked"
+                        onChange={e => changeShapeProp(e, true)}
+                        checked={animData.rectangles.checked}
                     />
-                    <label htmlFor="checked" className="text">Rectangles</label>
+                    <label htmlFor="rect-checked" className="text">Rectangles</label>
                 </div>
 
                 <div className="d-flex align-items-center gap-2 mb-3">
                     <input
                         className="input-checkbox type"
                         type="checkbox"
-                        id="checked"
+                        id="circ-checked"
                         name="circles"
-                        onChange={e => changeShapeProp(e)}
+                        data-shape-prop="checked"
+                        onChange={e => changeShapeProp(e, true)}
+                        checked={animData.circles.checked}
                     />
-                    <label htmlFor="checked" className="text">Circles</label>
+                    <label htmlFor="circ-checked" className="text">Circles</label>
                 </div>
             </div>
 
