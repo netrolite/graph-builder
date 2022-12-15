@@ -2,151 +2,117 @@ import { useEffect } from "react"
 import { Link } from "react-router-dom"
 
 export default function Input({animData, setAnimData}) {
-    const rectangles = animData.shapeTypes.find(item => item.type === "rectangles");
-    const circles = animData.shapeTypes.find(item => item.type === "circles");
-
-
-    function changeAmount(e) {
+    // changes "Amount of Shapes", "Velocity"...
+    function changeProp(e) {
         setAnimData(prevState => ({
             ...prevState,
             shapesAmount: e.target.value
         }))
     }
+    
 
-    function changeVelocity(e) {
+    // changes rect width, rect height, circle radius...
+    function changeShapeProp(e, isBoolean) {
+        // example:
+        // e.target.name === "rectangles"
+        // e.target.id === "height"
+        // if isBoolean, use checked attribute insead of value
         setAnimData(prevState => ({
             ...prevState,
-            velocity: e.target.value
+            [e.target.name]: {
+                ...prevState.rectangles,
+                [e.target.id]: isBoolean ? e.target.checked : e.target.value
+            }
         }))
     }
-    
-    
-    // toggle "checked" prop
-    function changeShapePropBoolean(e) {
-        setAnimData(prevState => {
-            const newShapeTypes = prevState.shapeTypes.map(item => {
-                // e.target.name can be "rectanges", "circles"...
-                if (item.type === e.target.name) {
-                    item[e.target.id] = e.target.checked;
-                }
-                return item;
-            })
 
-            return {
-                ...prevState,
-                shapeTypes: newShapeTypes
-            }
-        })
-    }
-
-
-    // change a property of a shape. e.g "width", "height", "radius"...
-    function changeShapeProp(e) {
-        setAnimData(prevState => {
-            const newShapeTypes = prevState.shapeTypes.map(item => {
-                // e.target.name can be "rectanges", "circles"...
-                if (item.type === e.target.name) {
-                    item[e.target.id] = e.target.value;
-                }
-                return item;
-            })
-
-            return {
-                ...prevState,
-                shapeTypes: newShapeTypes
-            }
-        })
-    }
 
     useEffect(() => {
-        console.log(animData);
+        console.log(animData.rectangles);
     }, [animData])
+
 
 
     let rectanglesSettingsNode;
     let circlesSettingsNode;
 
-    animData.shapeTypes.forEach(item => {
-        if (!item.checked) return;
+    if (animData.rectangles.checked) {
+        rectanglesSettingsNode = (
+            <div className="shape-settings">
+                <p className="heading mb-2 fw-semibold">Rectangles Settings</p>
 
-        if (item.type === "rectangles") {
-            rectanglesSettingsNode = (
-                <>
-                    <p className="heading mb-2 fw-semibold">Rectangles Settings</p>
+                <label htmlFor="width" className="form-label text">Width</label>
+                <div className="input-group mb-3">
+                    <input
+                        className="form-control"
+                        type="number"
+                        id="width"
+                        name="rectangles"
+                        onChange={e => changeShapeProp(e)}
+                        value={animData.rectangles.width}
+                    />
+                </div>
 
-                    <label htmlFor="width" className="form-label text">Width</label>
-                    <div className="input-group mb-3">
+                <label htmlFor="height" className="form-label text">Height</label>
+                <div className="input-group mb-3">
+                    <input
+                        className="form-control"
+                        type="number"
+                        id="height"
+                        name="rectangles"
+                        onChange={e => changeShapeProp(e)}
+                        value={animData.rectangles.height}
+                    />
+                </div>
+
+                <div className="mb-4">
+                    <div className="d-flex align-items-center gap-2 mb-0">
                         <input
-                            className="form-control"
-                            type="number"
-                            id="width"
+                            className="input-checkbox type"
+                            type="checkbox"
+                            id="filled"
                             name="rectangles"
-                            onChange={e => changeShapeProp(e)}
-                            value={rectangles.width}
+                            onChange={e => changeShapeProp(e, true)}
                         />
+                        <label htmlFor="filled" className="text">Filled</label>
                     </div>
+                </div>
+            </div>
+        )
+    }
 
-                    <label htmlFor="height" className="form-label text">Height</label>
-                    <div className="input-group mb-3">
+    else if (animData.circles.checked) {
+        circlesSettingsNode = (
+            <div className="shape-settings">
+                <p className="heading mb-2 fw-semibold">Circles Settings</p>
+
+                <label htmlFor="radius" className="form-label text">Radius</label>
+                <div className="input-group mb-3">
+                    <input
+                        className="form-control"
+                        type="number"
+                        id="radius"
+                        name="circles"
+                        onChange={e => changeShapeProp(e)}
+                        value={animData.circles.radius}
+                    />
+                </div>
+
+                <div className="mb-4">
+                    <div className="d-flex align-items-center gap-2 mb-0">
                         <input
-                            className="form-control"
-                            type="number"
-                            id="height"
-                            name="rectangles"
-                            onChange={e => changeShapeProp(e)}
-                            value={rectangles.height}
-                        />
-                    </div>
-
-                    <div className="mb-4">
-                        <div className="d-flex align-items-center gap-2 mb-0">
-                            <input
-                                className="input-checkbox type"
-                                type="checkbox"
-                                id="filled"
-                                name="rectangles"
-                                onChange={e => changeShapePropBoolean(e)}
-                            />
-                            <label htmlFor="filled" className="text">Filled</label>
-                        </div>
-                    </div>
-                </>
-            )
-        }
-
-        else if (item.type === "circles") {
-            circlesSettingsNode = (
-                <>
-                    <p className="heading mb-2 fw-semibold">Circles Settings</p>
-
-                    <label htmlFor="radius" className="form-label text">Radius</label>
-                    <div className="input-group mb-3">
-                        <input
-                            className="form-control"
-                            type="number"
-                            id="radius"
+                            className="input-checkbox type"
+                            type="checkbox"
+                            id="filled"
                             name="circles"
-                            onChange={e => changeShapeProp(e)}
-                            value={circles.radius}
+                            onChange={e => changeShapePropBoolean(e)}
                         />
+                        <label htmlFor="filled" className="text">Filled</label>
                     </div>
-
-                    <div className="mb-4">
-                        <div className="d-flex align-items-center gap-2 mb-0">
-                            <input
-                                className="input-checkbox type"
-                                type="checkbox"
-                                id="filled"
-                                name="circles"
-                                onChange={e => changeShapePropBoolean(e)}
-                            />
-                            <label htmlFor="filled" className="text">Filled</label>
-                        </div>
-                    </div>
-                </>
-            )
-        }
-    })
+                </div>
+            </div>
+        )
+    }
 
     return (
         <div className="container py-4">
@@ -191,9 +157,10 @@ export default function Input({animData, setAnimData}) {
                         type="checkbox"
                         id="checked"
                         name="rectangles"
-                        onChange={e => changeShapePropBoolean(e)}
+                        onChange={e => changeShapeProp(e)}
+                        checked={animData}
                     />
-                    <label htmlFor="rectangles" className="text">Rectangles</label>
+                    <label htmlFor="checked" className="text">Rectangles</label>
                 </div>
 
                 <div className="d-flex align-items-center gap-2 mb-3">
@@ -202,9 +169,9 @@ export default function Input({animData, setAnimData}) {
                         type="checkbox"
                         id="checked"
                         name="circles"
-                        onChange={e => changeShapePropBoolean(e)}
+                        onChange={e => changeShapeProp(e)}
                     />
-                    <label htmlFor="circles" className="text">Circles</label>
+                    <label htmlFor="checked" className="text">Circles</label>
                 </div>
             </div>
 

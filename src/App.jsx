@@ -6,22 +6,18 @@ import Animation from "./Animation"
 export default function App() {
 	const [animData, setAnimData] = useState({
 		shapesAmount: "10",
-		shapeTypes: [
-			{
-				type: "rectangles",
-				checked: false,
+		rectangles: {
+				checked: true,
 				width: "60",
 				height: "40",
 				cornerRadius: "0",
 				filled: false
-			},
-			{
-				type: "circles",
-				checked: false,
-				radius: "20",
-				filled: false
-			}
-		],
+		},
+		circles: {
+			checked: false,
+			radius: "20",
+			filled: false
+		},
 		velocity: "5",
 		colors: ["#A1A2A6", "#024959", "#F2C12E", "#F2AE30", "#593E25"]
 	})
