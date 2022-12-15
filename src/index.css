@@ -1,7 +1,7 @@
 :root {
     --bg: #004643;
     --heading: #fffffe;
-    --paragraph: #c0dcd4;
+    --text: #c0dcd4;
     --button: #f9bc60;
     --button-text: #001e1d;
     --stroke: #001e1d;
@@ -23,7 +23,7 @@ body, #root, .container-fluid {
 
 body {
     background-color: #004643;
-    color: var(--paragraph);
+    color: var(--text);
 }
 
 canvas {
