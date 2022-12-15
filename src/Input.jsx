@@ -17,8 +17,6 @@ export default function Input({animData, setAnimData}) {
         // e.target.name === "rectangles"
         // e.target.dataset.shapeProp === "height"
         // if isBoolean, use "checked" attribute insead of "value" because value for checkboxes is always "on"
-        console.log(e.target.name);
-        console.log(e.target.shapeProp);
         setAnimData(prevState => {
             const prop = e.target.dataset.shapeProp;
             return {
@@ -33,7 +31,7 @@ export default function Input({animData, setAnimData}) {
 
 
     useEffect(() => {
-        console.log(animData.rectangles);
+        console.log(animData);
     }, [animData])
 
 
@@ -83,6 +81,7 @@ export default function Input({animData, setAnimData}) {
                             id="rect-filled"
                             name="rectangles"
                             data-shape-prop="filled"
+                            checked={animData.rectangles.filled}
                             onChange={e => changeShapeProp(e, true)}
                         />
                         <label htmlFor="rect-filled" className="text">Filled</label>
@@ -118,6 +117,7 @@ export default function Input({animData, setAnimData}) {
                             id="circ-filled"
                             name="circles"
                             data-shape-prop="filled"
+                            checked={animData.circles.filled}
                             onChange={e => changeShapeProp(e, true)}
                         />
                         <label htmlFor="circ-filled" className="text">Filled</label>
