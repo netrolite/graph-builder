@@ -15,20 +15,23 @@ export default function Input({animData, setAnimData}) {
     function changeShapeProp(e, isBoolean) {
         // example:
         // e.target.name === "rectangles"
-        // e.target.id === "height"
-        // if isBoolean, use checked attribute insead of value
-        setAnimData(prevState => ({
-            ...prevState,
-            [e.target.name]: {
-                ...prevState.rectangles,
-                [e.target.id]: isBoolean ? e.target.checked : e.target.value
-            }
-        }))
+        // e.target.dataset.shapeProp === "height"
+        // if isBoolean, use "checked" attribute insead of "value" because value for checkboxes is always "on"
+        setAnimData(prevState => {
+            const prop = e.target.dataset.shapeProp;
+            return {
+                ...prevState,
+                [e.target.name]: {
+                    ...prevState[e.target.name],
+                    [prop]: isBoolean ? e.target.checked : e.target.value
+                }
+            }   
+        })
     }
 
 
     useEffect(() => {
-        console.log(animData.rectangles);
+        console.log(animData.circles);
     }, [animData])
 
 
@@ -41,58 +44,65 @@ export default function Input({animData, setAnimData}) {
             <div className="shape-settings">
                 <p className="heading mb-2 fw-semibold">Rectangles Settings</p>
 
-                <label htmlFor="width" className="form-label text">Width</label>
+                {/* name attribute is for identifying the shape */}
+                {/* id attribute is for label working correctly */}
+                {/* data attribute is for identifying the shape prop (width, height, radius...) */}
+                <label htmlFor="rect-width" className="form-label text">Width</label>
                 <div className="input-group mb-3">
                     <input
                         className="form-control"
                         type="number"
-                        id="width"
+                        id="rect-width"
                         name="rectangles"
+                        data-shape-prop="width"
                         onChange={e => changeShapeProp(e)}
                         value={animData.rectangles.width}
                     />
                 </div>
 
-                <label htmlFor="height" className="form-label text">Height</label>
+                <label htmlFor="rect-height" className="form-label text">Height</label>
                 <div className="input-group mb-3">
                     <input
                         className="form-control"
                         type="number"
-                        id="height"
+                        id="rect-height"
                         name="rectangles"
+                        data-shape-prop="height"
                         onChange={e => changeShapeProp(e)}
                         value={animData.rectangles.height}
                     />
                 </div>
 
-                <div className="mb-4">
+                <div className="input-group-checkboxes">
                     <div className="d-flex align-items-center gap-2 mb-0">
                         <input
                             className="input-checkbox type"
                             type="checkbox"
-                            id="filled"
+                            id="rect-filled"
                             name="rectangles"
+                            data-shape-prop="filled"
                             onChange={e => changeShapeProp(e, true)}
                         />
-                        <label htmlFor="filled" className="text">Filled</label>
+                        <label htmlFor="rect-filled" className="text">Filled</label>
                     </div>
                 </div>
             </div>
         )
     }
 
-    else if (animData.circles.checked) {
+    if (animData.circles.checked) {
         circlesSettingsNode = (
             <div className="shape-settings">
                 <p className="heading mb-2 fw-semibold">Circles Settings</p>
 
-                <label htmlFor="radius" className="form-label text">Radius</label>
+                <label htmlFor="circ-radius" className="form-label text">Radius</label>
                 <div className="input-group mb-3">
                     <input
                         className="form-control"
                         type="number"
-                        id="radius"
+                        id="circ-radius"
                         name="circles"
+                        data-shape-prop="radius"
                         onChange={e => changeShapeProp(e)}
                         value={animData.circles.radius}
                     />
@@ -103,11 +113,12 @@ export default function Input({animData, setAnimData}) {
                         <input
                             className="input-checkbox type"
                             type="checkbox"
-                            id="filled"
+                            id="circ-filled"
                             name="circles"
-                            onChange={e => changeShapePropBoolean(e)}
+                            data-shape-prop="filled"
+                            onChange={e => changeShapeProp(e, true)}
                         />
-                        <label htmlFor="filled" className="text">Filled</label>
+                        <label htmlFor="circ-filled" className="text">Filled</label>
                     </div>
                 </div>
             </div>

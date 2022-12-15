@@ -14,7 +14,7 @@ export default function App() {
 				filled: false
 		},
 		circles: {
-			checked: false,
+			checked: true,
 			radius: "20",
 			filled: false
 		},
