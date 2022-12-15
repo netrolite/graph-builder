@@ -1,12 +1,12 @@
 :root {
     --bg: #004643;
-    --headline: #fffffe;
+    --heading: #fffffe;
     --paragraph: #c0dcd4;
     --button: #f9bc60;
     --button-text: #001e1d;
     --stroke: #001e1d;
     --main: #e8e4e6;
-    --secondary: #abd1c6;
+    --secondary: #3f6564;
     --highlight: #f9bc60;
     --tertiary: #e16162;
 }
@@ -23,6 +23,7 @@ body, #root, .container-fluid {
 
 body {
     background-color: #004643;
+    color: var(--paragraph);
 }
 
 canvas {
@@ -46,21 +47,33 @@ canvas {
 }
 
 h1, h2, h3, h4, h5, h6, .heading {
-    color: var(--headline);
+    color: var(--heading);
 }
 
 .heading {
     font-size: 1.25rem;
+    font-weight: 500;
 }
 
 .form-control {
     background-color: var(--main);
 }
 
-.text {
-    color: var(--paragraph);
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.8rem;
+    border-bottom: 1px solid var(--secondary);
 }
 
-.input-group-checkboxes {
-    margin-bottom: 1rem;
+.input-group:last-child {
+    border-bottom: none;
+}
+
+.input-subgroup {
+    padding-bottom: 1rem;
+}
+
+.checkbox-group label {
+    margin-left: 0.5rem;
 }
