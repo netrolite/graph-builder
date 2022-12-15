@@ -149,7 +149,7 @@ export default function Input({animData, setAnimData}) {
     })
 
     return (
-        <div className="container my-4">
+        <div className="container py-4">
             <h1 className="mb-4 fw-semibold">Animation</h1>
 
             {/* Amount of Shapes */}
