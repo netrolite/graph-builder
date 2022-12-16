@@ -1,4 +1,3 @@
-import { useEffect } from "react"
 import { Link } from "react-router-dom"
 
 export default function Input({animData, setAnimData}) {
@@ -30,8 +29,40 @@ export default function Input({animData, setAnimData}) {
     }
 
 
+    function changeColor(e) {
+        
+        setAnimData(prevState => {
+            let newFillColors = [...prevState.fillColors]
+            newFillColors[e.target.id] = e.target.value;
+
+            return {
+                ...prevState,
+                fillColors: newFillColors
+            }
+        })
+    }
+
+
     let rectanglesSettingsNode;
     let circlesSettingsNode;
+
+    const fillColorsNode = animData.fillColors.map((item, index) => {
+        return (
+            <div className="input-subgroup input-color-wrapper" key={index}>
+                <input
+                    type="color"
+                    className="form-control form-control-color"
+                    value={item}
+                    id={index}
+                    onChange={changeColor}
+                />
+
+                <div className="color-hex">
+                    {item}
+                </div>
+            </div>
+        )
+    })
 
     if (animData.rectangles.checked) {
         rectanglesSettingsNode = (
@@ -146,6 +177,7 @@ export default function Input({animData, setAnimData}) {
             <h1 className="mb-4 fw-semibold">Animation</h1>
 
             <div className="inputs">
+
                 {/* Amount of Shapes */}
                 <div className="input-group">
                     <div className="input-subgroup">
@@ -213,6 +245,14 @@ export default function Input({animData, setAnimData}) {
                             />
                             <label htmlFor="circ-checked">Circles</label>
                         </div>
+                    </div>
+                </div>
+
+                {/* Colors */}
+                <div className="input-group">
+                    <label className="form-label heading">Fill Colors</label>
+                    <div className="input-color-list">
+                        {fillColorsNode}
                     </div>
                 </div>
 

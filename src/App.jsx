@@ -19,7 +19,7 @@ export default function App() {
 			filled: false
 		},
 		velocity: "5",
-		fillColors: ["#A1A2A6", "#024959", "#F2C12E", "#F2AE30", "#593E25"],
+		fillColors: ["#a1a2a6", "#024959", "#f2C12e", "#f2ae30", "#593e25"],
 		strokeColor: "fff"
 	})
 

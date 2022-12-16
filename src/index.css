@@ -71,9 +71,20 @@ h1, h2, h3, h4, h5, h6, .heading {
 }
 
 .input-subgroup {
-    padding-bottom: 1rem;
+    margin-bottom: 1rem;
 }
 
 .checkbox-group label {
     margin-left: 0.5rem;
+}
+
+.input-color-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.input-color-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }

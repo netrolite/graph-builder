@@ -4,7 +4,7 @@ import Circle from "./shapes/circle"
 
 
 export default function Animation({animData}) {
-	const { rectangles, circles } = animData;
+	const { rectangles, circles, fillColors } = animData;
 	const canvasRef = useRef();
 
 	useEffect(() => {
@@ -69,7 +69,7 @@ export default function Animation({animData}) {
 								circRadius,
 								circRadius + 20,
 								100,
-								["darkblue", "darkgreen"],
+								fillColors,
 								velocity,
 								canvas,
 								c,
@@ -83,7 +83,7 @@ export default function Animation({animData}) {
 								rectWidth + 20, // maxWidth
 								[rectCornerRadius], // cornerRadius
 								100, // expansionRadius
-								["darkgreen", "darkblue"],
+								fillColors,
 								velocity,
 								canvas,
 								c,
