@@ -28,13 +28,7 @@ export default function Input({animData, setAnimData}) {
             }   
         })
     }
-
-
-    useEffect(() => {
-        console.log(animData);
-    }, [animData])
-
-
+    
 
     let rectanglesSettingsNode;
     let circlesSettingsNode;

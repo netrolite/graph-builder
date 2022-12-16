@@ -1,7 +1,9 @@
 import { useEffect, useRef } from "react"
 
 export default function Animation({animData}) {
+	const { rectangles, circles } = animData;
 	const canvasRef = useRef();
+
 	useEffect(() => {
 		window.addEventListener("resize", resize);
 		resize();
@@ -11,8 +13,10 @@ export default function Animation({animData}) {
 		}
 	}, [])
 	
+
 	let shapes = [];
 	
+
 	function draw() {
 		const canvas = canvasRef.current;
 		/** @type {CanvasRenderingContext2D} */ const c = canvas.getContext("2d");
@@ -32,6 +36,7 @@ export default function Animation({animData}) {
 			mousePos.y = undefined;
 		})
 		
+
 		// this is a super class for other classes. Do not call it directly
 		class Shape {
 			constructor(colors, velocity) {
@@ -64,6 +69,7 @@ export default function Animation({animData}) {
 				return Math.abs(mousePos - shapePos);
 			}
 		}
+
 
 		class Rectangle extends Shape {
 			constructor(width, height, maxWidth, cornerRadius, expansionRange, ...args) {
@@ -130,6 +136,7 @@ export default function Animation({animData}) {
 			}
 		}
 
+
 		class Circle extends Shape {
 			constructor(radius, maxRadius, expansionRange, ...args) {
 				super(...args);
@@ -186,13 +193,42 @@ export default function Animation({animData}) {
 			}
 		}
 
+
 		if (!shapes.length) {
-			for (let i = 0; i < animData.shapesAmount; i++) {
-				// new Cirlce(radius, maxRadius, expansionRange, colors, velocity);
-				// new Rectangle(width, height, maxWidth, cornerRadius, expansionRange, colors, velocity);
-				Math.random() > 0.5
-				? shapes.push(new Circle(20, 40, 100, ["darkblue", "darkgreen"], 1))
-				: shapes.push(new Rectangle(40, 40, 80, [4], 100, ["darkgreen", "darkblue"], 1))
+			if (rectangles.checked && circles.checked) {
+				for (let i = 0; i < animData.shapesAmount; i++) {
+					const vel = parseInt(animData.velocity)
+
+					const circRadius = parseInt(circles.radius);
+					
+					const rectWidth = parseInt(rectangles.width);
+					const rectHeight = parseInt(rectangles.height);
+					console.log(vel);
+					
+					// new Cirlce(radius, maxRadius, expansionRange, colors, velocity);
+					// new Rectangle(width, height, maxWidth, cornerRadius, expansionRange, colors, velocity);
+					Math.random() > 0.5
+					? shapes.push(
+						new Circle(
+								circRadius,
+								circRadius + 20,
+								100,
+								["darkblue", "darkgreen"],
+								vel
+							)
+						)
+					: shapes.push(
+						new Rectangle(
+								rectWidth,
+								rectHeight,
+								rectWidth + 20, // maxWidth
+								[4], // cornerRadius
+								100, // expansionRadius
+								["darkgreen", "darkblue"],
+								vel
+							)
+						)
+				}
 			}
 		}
 
