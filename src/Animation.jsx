@@ -197,13 +197,13 @@ export default function Animation({animData}) {
 		if (!shapes.length) {
 			if (rectangles.checked && circles.checked) {
 				for (let i = 0; i < animData.shapesAmount; i++) {
-					const vel = parseInt(animData.velocity)
+					const velocity = parseInt(animData.velocity)
 
 					const circRadius = parseInt(circles.radius);
 					
 					const rectWidth = parseInt(rectangles.width);
 					const rectHeight = parseInt(rectangles.height);
-					console.log(vel);
+					const rectCornerRadius = parseInt(rectangles.cornerRadius);
 					
 					// new Cirlce(radius, maxRadius, expansionRange, colors, velocity);
 					// new Rectangle(width, height, maxWidth, cornerRadius, expansionRange, colors, velocity);
@@ -214,7 +214,7 @@ export default function Animation({animData}) {
 								circRadius + 20,
 								100,
 								["darkblue", "darkgreen"],
-								vel
+								velocity
 							)
 						)
 					: shapes.push(
@@ -222,10 +222,10 @@ export default function Animation({animData}) {
 								rectWidth,
 								rectHeight,
 								rectWidth + 20, // maxWidth
-								[4], // cornerRadius
+								[rectCornerRadius], // cornerRadius
 								100, // expansionRadius
 								["darkgreen", "darkblue"],
-								vel
+								velocity
 							)
 						)
 				}

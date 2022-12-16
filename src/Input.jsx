@@ -28,7 +28,7 @@ export default function Input({animData, setAnimData}) {
             }   
         })
     }
-    
+
 
     let rectanglesSettingsNode;
     let circlesSettingsNode;
@@ -66,6 +66,21 @@ export default function Input({animData, setAnimData}) {
                             data-shape-prop="height"
                             onChange={e => changeShapeProp(e)}
                             value={animData.rectangles.height}
+                        />
+                    </div>
+                </div>
+
+                <div className="input-subgroup">
+                    <label htmlFor="rect-corner-radius" className="form-label">Corner Radius</label>
+                    <div className="input-elem">
+                        <input
+                            className="form-control"
+                            type="number"
+                            id="rect-corner-radius"
+                            name="rectangles"
+                            data-shape-prop="cornerRadius"
+                            onChange={e => changeShapeProp(e)}
+                            value={animData.rectangles.cornerRadius}
                         />
                     </div>
                 </div>

@@ -41,7 +41,7 @@ canvas {
     color: var(--button-text);
 }
 
-.btn:hover {
+.btn:hover, .btn:active {
     background-color: var(--button);
     color: var(--button-text);
 }
