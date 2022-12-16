@@ -38,58 +38,54 @@ export default function Animation({animData}) {
 			mousePos.x = undefined;
 			mousePos.y = undefined;
 		})
+	
 		
-
-		// this is a super class for other classes. Do not call it directly
-		
-
-
-		
-
-
-		
-
-
 		if (!shapes.length) {
-			if (rectangles.checked && circles.checked) {
-				for (let i = 0; i < animData.shapesAmount; i++) {
-					const velocity = parseInt(animData.velocity)
+			const velocity = parseInt(animData.velocity)
+			const circRadius = parseInt(circles.radius);
+			const rectWidth = parseInt(rectangles.width);
+			const rectHeight = parseInt(rectangles.height);
+			const rectCornerRadius = parseInt(rectangles.cornerRadius);
 
-					const circRadius = parseInt(circles.radius);
-					
-					const rectWidth = parseInt(rectangles.width);
-					const rectHeight = parseInt(rectangles.height);
-					const rectCornerRadius = parseInt(rectangles.cornerRadius);
-					
-					// new Cirlce(radius, maxRadius, expansionRange, colors, velocity, canvas, c, mousePos);
-					// new Rectangle(width, height, maxWidth, cornerRadius, expansionRange, colors, velocity, canvas, c, mousePos);
-					Math.random() > 0.5
-					? shapes.push(
-						new Circle(
-								circRadius,
-								circRadius + 20,
-								100,
-								fillColors,
-								velocity,
-								canvas,
-								c,
-								mousePos
-							)
-						)
-					: shapes.push(
+			// ["circles", "rectangles"]
+			let availableShapes = [];
+			if (rectangles.checked) availableShapes.push("rectangle");
+			if (circles.checked) availableShapes.push("circle");
+
+			for (let i = 0; i < animData.shapesAmount; i++) {
+				// new Cirlce(radius, maxRadius, expansionRange, colors, velocity, canvas, c, mousePos);
+				// new Rectangle(width, height, maxWidth, cornerRadius, expansionRange, colors, velocity, canvas, c, mousePos);
+				const newShape = availableShapes[Math.floor(Math.random() * availableShapes.length)]
+
+				if (newShape === "rectangle") {
+					shapes.push(
 						new Rectangle(
-								rectWidth,
-								rectHeight,
-								rectWidth + 20, // maxWidth
-								[rectCornerRadius], // cornerRadius
-								100, // expansionRadius
-								fillColors,
-								velocity,
-								canvas,
-								c,
-								mousePos
-							)
+							rectWidth,
+							rectHeight,
+							rectWidth + 20, // maxWidth
+							[rectCornerRadius], // cornerRadius
+							100, // expansionRadius
+							fillColors,
+							velocity,
+							canvas,
+							c,
+							mousePos
 						)
+					)
+				}
+				else if (newShape === "circle") {
+					shapes.push(
+						new Circle(
+							circRadius,
+							circRadius + 20, // maxRadius
+							100, // expansionRadius
+							fillColors,
+							velocity,
+							canvas,
+							c,
+							mousePos
+						)
+					)
 				}
 			}
 		}
