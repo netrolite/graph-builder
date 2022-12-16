@@ -64,7 +64,7 @@ export default function Animation({animData}) {
 							rectHeight,
 							rectWidth + 20, // maxWidth
 							[rectCornerRadius], // cornerRadius
-							100, // expansionRadius
+							100, // expansionRange
 							fillColors,
 							velocity,
 							canvas,
@@ -78,7 +78,7 @@ export default function Animation({animData}) {
 						new Circle(
 							circRadius,
 							circRadius + 20, // maxRadius
-							100, // expansionRadius
+							100, // expansionRange
 							fillColors,
 							velocity,
 							canvas,

@@ -251,8 +251,11 @@ export default function Input({animData, setAnimData}) {
                 {/* Colors */}
                 <div className="input-group">
                     <label className="form-label heading">Fill Colors</label>
-                    <div className="input-color-list">
-                        {fillColorsNode}
+                    {/* input-color-list-wrapper fixes safari bug when rows are too large */}
+                    <div className="input-color-list-wrapper" style={{display: "grid"}}>
+                        <div className="input-color-list">
+                            {fillColorsNode}
+                        </div>
                     </div>
                 </div>
 
