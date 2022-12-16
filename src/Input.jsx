@@ -251,11 +251,8 @@ export default function Input({animData, setAnimData}) {
                 {/* Colors */}
                 <div className="input-group">
                     <label className="form-label heading">Fill Colors</label>
-                    {/* input-color-list-wrapper fixes safari bug when rows are too large */}
-                    <div className="input-color-list-wrapper">
-                        <div className="input-color-list">
-                            {fillColorsNode}
-                        </div>
+                    <div className="input-color-list">
+                        {fillColorsNode}
                     </div>
                 </div>
 

@@ -22,7 +22,7 @@ body, #root, .container-fluid {
 }
 
 body {
-    background-color: #004643;
+    background-color: var(--bg);
     color: var(--text);
 }
 
@@ -79,15 +79,12 @@ h1, h2, h3, h4, h5, h6, .heading {
 }
 
 .input-color-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-
-.input-color-list-wrapper {
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .input-color-wrapper {
+    width: 50%;
     display: flex;
     align-items: center;
     gap: 0.5rem;
