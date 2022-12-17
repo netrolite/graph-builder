@@ -77,6 +77,7 @@ export default function Input({animData, setAnimData}) {
     let rectanglesSettingsNode;
     let circlesSettingsNode;
 
+
     const fillColorsNode = animData.fillColors.map((item, index) => {
         return (
             <div className="input-subgroup input-color-wrapper" key={index}>

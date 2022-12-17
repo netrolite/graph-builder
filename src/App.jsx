@@ -4,6 +4,16 @@ import Input from "./Input"
 import Animation from "./Animation"
 
 export default function App() {
+	const palettes = [
+		["#a1a2a6", "#024959", "#f2C12e", "#f2ae30", "#593e25"],
+		["#8C1F28", "#591C21", "#044040", "#D92525", "#F2F2F2"],
+		["#363432", "#196774", "#90A19D", "#F0941F", "#EF6024"],
+		["#FF4858", "#1B7F79", "#00CCC0", "#72F2EB", "#747F7F"],
+		["#BD2A2E", "#3B3936", "#B2BEBF", "#889C9B", "#486966"],
+	]
+	const randomPalette = palettes[Math.floor(Math.random() * palettes.length)]
+	console.log(randomPalette);
+
 	const [animData, setAnimData] = useState({
 		shapesAmount: "10",
 		rectangles: {
@@ -19,7 +29,7 @@ export default function App() {
 			filled: false
 		},
 		velocity: "5",
-		fillColors: ["#a1a2a6", "#024959", "#f2C12e", "#f2ae30", "#593e25"],
+		fillColors: randomPalette,
 		strokeColor: "fff"
 	})
 
