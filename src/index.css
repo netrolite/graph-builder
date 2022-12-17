@@ -39,6 +39,11 @@ canvas {
     max-width: 500px;
 }
 
+.container.main {
+    position: relative;
+    padding: 0
+}
+
 .button {
     background-color: var(--button);
     border: 0;
@@ -108,4 +113,44 @@ h1, h2, h3, h4, h5, h6, .heading {
 .icon {
     font-size: 1.25rem;
     cursor: pointer;
+}
+
+.popup-window {
+    top: 50%;
+    left: 50%;
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -70%);
+}
+
+.bg-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    z-index: 1;
+    opacity: 0;
+}
+
+.popup.active .popup-window {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+}
+
+.popup.active .bg-overlay {
+    opacity: 0.5;
+}
+
+.popup-window, .bg-overlay {
+    transition: 200ms;
+}
+
+.browse-palettes-color {
+    height: 30px;
+    border-radius: 0.25rem;
 }

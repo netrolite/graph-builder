@@ -77,8 +77,24 @@ export default function Input({animData, setAnimData}) {
     let rectanglesSettingsNode;
     let circlesSettingsNode;
 
+    // used in "Browse Palettes"
+    const palettes = animData.palettes.map((item, index) => {
+        const rowColors = item.map((item, index) => {
+            return (
+                <div
+                    className="col browse-palettes-color"
+                    style={{backgroundColor: item}}
+                    key={index}
+                ></div>
+            )
+        })
 
-    const fillColorsNode = animData.fillColors.map((item, index) => {
+        return (
+            <div className="row" key={index}>{rowColors}</div>
+        )
+    })
+
+    const fillColorsNodes = animData.fillColors.map((item, index) => {
         return (
             <div className="input-subgroup input-color-wrapper" key={index}>
                 <input
@@ -210,7 +226,14 @@ export default function Input({animData, setAnimData}) {
     }
 
     return (
-        <div className="container py-4">
+        <div className="container py-4 main">
+            <div className="popup">
+                <div className="bg-overlay"></div>
+                <div className="popup-window container">
+                    {palettes}
+                </div>
+            </div>
+
             <h1 className="mb-4 fw-semibold">Animation</h1>
 
             <div className="inputs">
@@ -290,11 +313,11 @@ export default function Input({animData, setAnimData}) {
                     <label className="form-label heading">Fill Colors</label>
                     <div>
                         <div className="grid-2-cols">
-                            {fillColorsNode}
+                            {fillColorsNodes}
                         </div>
                     </div>
 
-                    {/* "Add New" and "Browse Palletes" buttons */}
+                    {/* "Add New" and "Browse Palettes" buttons */}
                     {/* Wrapping in a div to fix safari grid row height bug */}
                     {/* Also adding "height: min-content;" in CSS */}
                     <div className="input-subgroup grid-2-cols">
@@ -308,7 +331,7 @@ export default function Input({animData, setAnimData}) {
                             className="button w-100"
                             onClick={togglePalettesWindow}
                         >
-                            Browse Palletes
+                            Browse Palettes
                         </button>
                     </div>
                 </div>

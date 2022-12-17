@@ -12,7 +12,6 @@ export default function App() {
 		["#BD2A2E", "#3B3936", "#B2BEBF", "#889C9B", "#486966"],
 	]
 	const randomPalette = palettes[Math.floor(Math.random() * palettes.length)]
-	console.log(randomPalette);
 
 	const [animData, setAnimData] = useState({
 		shapesAmount: "10",
@@ -29,6 +28,7 @@ export default function App() {
 			filled: false
 		},
 		velocity: "5",
+		palettes: palettes,
 		fillColors: randomPalette,
 		strokeColor: "fff"
 	})
