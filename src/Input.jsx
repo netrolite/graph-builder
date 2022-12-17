@@ -269,7 +269,7 @@ export default function Input({animData, setAnimData}) {
                     </div>
                     <div className="input-subgroup">
                         <button
-                            className="btn"
+                            className="button"
                             onClick={addColor}
                         >
                             + Add New
@@ -287,7 +287,7 @@ export default function Input({animData, setAnimData}) {
                 <Link to="/animation">
                     <button
                         type="submit"
-                        className="btn w-100"
+                        className="button w-100"
                     >
                         Start Animation
                     </button>
