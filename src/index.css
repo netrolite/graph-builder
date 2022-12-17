@@ -48,6 +48,14 @@ canvas {
     color: var(--button-text);
 }
 
+.bg-secondary {
+    background-color: var(--secondary);
+}
+
+.bg-tertiary {
+    background-color: var(--tertiary);
+}
+
 h1, h2, h3, h4, h5, h6, .heading {
     color: var(--heading);
 }

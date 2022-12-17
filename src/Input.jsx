@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom"
 
 export default function Input({animData, setAnimData}) {
@@ -29,10 +30,22 @@ export default function Input({animData, setAnimData}) {
     }
 
 
-    function changeColor(e) {
-        
+    function addColor() {
         setAnimData(prevState => {
+            // add "#000000" to the end of fillColors array
+            return {
+                ...prevState,
+                fillColors: [...prevState.fillColors, "#000000"]
+            }
+        })
+    }
+
+
+    function changeColor(e) {
+        setAnimData(prevState => {
+            // copy all previous colors
             let newFillColors = [...prevState.fillColors]
+            // modify a color
             newFillColors[e.target.id] = e.target.value;
 
             return {
@@ -253,6 +266,14 @@ export default function Input({animData, setAnimData}) {
                     <label className="form-label heading">Fill Colors</label>
                     <div className="input-color-list">
                         {fillColorsNode}
+                    </div>
+                    <div className="input-subgroup">
+                        <button
+                            className="btn"
+                            onClick={addColor}
+                        >
+                            + Add New
+                        </button>
                     </div>
                 </div>
 
