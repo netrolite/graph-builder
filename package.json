@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "bootstrap": "^5.2.3",
+    "react-icons": "^4.7.1",
     "react-router-dom": "^6.4.5"
   },
   "devDependencies": {

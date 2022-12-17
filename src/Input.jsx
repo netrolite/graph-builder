@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { BiTrash } from "react-icons/bi"
 import { Link } from "react-router-dom"
 
 export default function Input({animData, setAnimData}) {
@@ -41,6 +42,15 @@ export default function Input({animData, setAnimData}) {
     }
 
 
+    function deleteColor(id) {
+        setAnimData(prevState => {
+            const newFillColors = prevState.fillColors.map((item, index) => {
+                console.log(index);
+            })
+        })
+    }
+
+
     function changeColor(e) {
         setAnimData(prevState => {
             // copy all previous colors
@@ -70,8 +80,13 @@ export default function Input({animData, setAnimData}) {
                     onChange={changeColor}
                 />
 
-                <div className="color-hex">
+                <div className="color-hex-and-trash-icon w-100">
                     {item}
+                    <BiTrash
+                        title="Delete Color"
+                        className="icon" 
+                        onClick={() => deleteIcon(index)}
+                    />
                 </div>
             </div>
         )
@@ -264,15 +279,27 @@ export default function Input({animData, setAnimData}) {
                 {/* Colors */}
                 <div className="input-group">
                     <label className="form-label heading">Fill Colors</label>
-                    <div className="input-color-list">
-                        {fillColorsNode}
+                    <div>
+                        <div className="grid-2-cols">
+                            {fillColorsNode}
+                        </div>
                     </div>
-                    <div className="input-subgroup">
+
+                    {/* "Add New" and "Browse Palletes" buttons */}
+                    {/* Wrapping in a div to fix safari grid row height bug */}
+                    {/* Also adding "height: min-content;" in CSS */}
+                    <div className="input-subgroup grid-2-cols">
                         <button
-                            className="button"
+                            className="button w-100"
                             onClick={addColor}
                         >
                             + Add New
+                        </button>
+                        <button
+                            className="button w-100"
+                            onClick={addColor}
+                        >
+                            Browse Palletes
                         </button>
                     </div>
                 </div>

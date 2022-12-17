@@ -53,14 +53,6 @@ canvas {
     transition: 200ms;
 }
 
-.bg-secondary {
-    background-color: var(--secondary);
-}
-
-.bg-tertiary {
-    background-color: var(--tertiary);
-}
-
 h1, h2, h3, h4, h5, h6, .heading {
     color: var(--heading);
 }
@@ -93,14 +85,27 @@ h1, h2, h3, h4, h5, h6, .heading {
     margin-left: 0.5rem;
 }
 
-.input-color-list {
-    display: flex;
-    flex-wrap: wrap;
+.grid-2-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    height: min-content;
 }
 
 .input-color-wrapper {
-    width: 50%;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+}
+
+.color-hex-and-trash-icon {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 0.75rem;
+}
+
+.icon {
+    font-size: 1.25rem;
+    cursor: pointer;
 }
