@@ -30,6 +30,10 @@ export default function Input({animData, setAnimData}) {
         })
     }
 
+    function togglePalettesWindow() {
+
+    }
+
 
     function addColor() {
         setAnimData(prevState => {
@@ -44,9 +48,13 @@ export default function Input({animData, setAnimData}) {
 
     function deleteColor(id) {
         setAnimData(prevState => {
-            const newFillColors = prevState.fillColors.map((item, index) => {
-                console.log(index);
+            const newFillColors = prevState.fillColors.filter((i, index) => {
+                return id !== index;
             })
+            return {
+                ...prevState,
+                fillColors: newFillColors
+            }
         })
     }
 
@@ -85,7 +93,7 @@ export default function Input({animData, setAnimData}) {
                     <BiTrash
                         title="Delete Color"
                         className="icon" 
-                        onClick={() => deleteIcon(index)}
+                        onClick={() => deleteColor(index)}
                     />
                 </div>
             </div>
@@ -297,7 +305,7 @@ export default function Input({animData, setAnimData}) {
                         </button>
                         <button
                             className="button w-100"
-                            onClick={addColor}
+                            onClick={togglePalettesWindow}
                         >
                             Browse Palletes
                         </button>
