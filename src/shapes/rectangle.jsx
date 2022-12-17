@@ -1,7 +1,7 @@
 import Shape from "./shape";
 
 export default class Rectangle extends Shape {
-    constructor(width, height, maxWidth, cornerRadius, ...args) {
+    constructor(width, height, maxWidth, radius, ...args) {
         super(...args);
         this.x = Math.random() * (this.canvas.width - width);
         this.y = Math.random() * (this.canvas.height - height);
@@ -9,17 +9,33 @@ export default class Rectangle extends Shape {
         this.height = height;
         this.minWidth = width;
         this.maxWidth = maxWidth;
-        this.cornerRadius = cornerRadius;
+        this.radius = radius;
     }
 
     draw() {
+        // this.c.beginPath();
+        // this.c.fillStyle = this.fillStyle;
+        // this.c.strokeStyle = this.strokeStyle;
+        // this.c.lineWidth = this.lineWidth;
+        // this.c.roundRect(this.x, this.y, this.width, this.height, this.radius);
+        // this.c.stroke();
+        // this.c.fill();
+
         this.c.beginPath();
-        this.c.fillStyle = this.fillStyle;
+        this.c.moveTo(this.x + this.radius, this.y);
+        this.c.lineTo(this.x + this.width - this.radius, this.y);
+        this.c.quadraticCurveTo(this.x + this.width, this.y, this.x + this.width, this.y + this.radius);
+        this.c.lineTo(this.x + this.width, this.y + this.height - this.radius);
+        this.c.quadraticCurveTo(this.x + this.width, this.y + this.height, this.x + this.width - this.radius, this.y + this.height);
+        this.c.lineTo(this.x + this.radius, this.y + this.height);
+        this.c.quadraticCurveTo(this.x, this.y + this.height, this.x, this.y + this.height - this.radius);
+        this.c.lineTo(this.x, this.y + this.radius);
+        this.c.quadraticCurveTo(this.x, this.y, this.x + this.radius, this.y);
+        this.c.closePath();
+        this.c.lineWidth = this.lineWidth / 2;
         this.c.strokeStyle = this.strokeStyle;
-        this.c.lineWidth = this.lineWidth;
-        this.c.roundRect(this.x, this.y, this.width, this.height, this.cornerRadius);
-        this.c.stroke();
         this.c.fill();
+        this.c.stroke();
     }
     
     update() {

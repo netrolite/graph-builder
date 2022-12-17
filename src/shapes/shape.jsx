@@ -2,7 +2,7 @@ export default class Shape {
     constructor(expansionRange, colors, velocity, canvas, c, mousePos) {
         this.strokeStyle = "white";
         this.fillStyle = colors[Math.floor(Math.random() * colors.length)];
-        this.lineWidth = 3;
+        this.lineWidth = 2;
         this.expansionRange = expansionRange;
         this.canvas = canvas;
         this.c = c;

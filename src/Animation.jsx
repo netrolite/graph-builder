@@ -63,7 +63,7 @@ export default function Animation({animData}) {
 							rectWidth,
 							rectHeight,
 							rectWidth + 20, // maxWidth
-							[rectCornerRadius], // cornerRadius
+							rectCornerRadius, // cornerRadius
 							100, // expansionRange
 							fillColors,
 							velocity,
