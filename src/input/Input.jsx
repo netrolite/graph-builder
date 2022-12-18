@@ -13,6 +13,8 @@ import { useState } from "react";
 
 export default function Input() {
     const [showPalettesPopup, setShowPalettesPopup] = useState(false);
+    // resets body background-color when going back from animation to this page
+    document.body.style.backgroundColor = null;
 
     return (
         <main className="container p-4 main">
