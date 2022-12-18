@@ -226,10 +226,10 @@ export default function Input({animData, setAnimData}) {
     }
 
     return (
-        <div className="container py-4 main">
+        <div className="container p-4 main">
             <div className="popup">
                 <div className="bg-overlay"></div>
-                <div className="popup-window container">
+                <div className="popup-window p-4 container">
                     {palettes}
                 </div>
             </div>
@@ -320,19 +320,21 @@ export default function Input({animData, setAnimData}) {
                     {/* "Add New" and "Browse Palettes" buttons */}
                     {/* Wrapping in a div to fix safari grid row height bug */}
                     {/* Also adding "height: min-content;" in CSS */}
-                    <div className="input-subgroup grid-2-cols">
-                        <button
-                            className="button w-100"
-                            onClick={addColor}
-                        >
-                            + Add New
-                        </button>
-                        <button
-                            className="button w-100"
-                            onClick={togglePalettesWindow}
-                        >
-                            Browse Palettes
-                        </button>
+                    <div>
+                        <div className="input-subgroup grid-2-cols">
+                            <button
+                                className="button w-100"
+                                onClick={addColor}
+                            >
+                                + Add New
+                            </button>
+                            <button
+                                className="button w-100"
+                                onClick={togglePalettesWindow}
+                            >
+                                Browse Palettes
+                            </button>
+                        </div>
                     </div>
                 </div>
 
