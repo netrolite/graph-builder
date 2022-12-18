@@ -38,8 +38,8 @@ export default class Rectangle extends Shape {
             this.c.fillStyle = this.fillStyle;
             this.c.fill();
         }
-        this.c.lineWidth = this.lineWidth;
-        this.c.strokeStyle = this.strokeStyle;
+        this.c.lineWidth = this.lineWidth
+        this.c.strokeStyle = this.strokeStyle
         this.c.stroke();
     }
     
