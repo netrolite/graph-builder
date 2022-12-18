@@ -35,7 +35,7 @@ export default class Rectangle extends Shape {
         this.c.closePath();
 
         if (this.filled) {
-            this.c.fillStyle = this.fillStyle;
+            this.c.fillStyle = this.fillStyle
             this.c.fill();
         }
         // have to divide lineWidth by 2 because it's twice as large as it needs to be
