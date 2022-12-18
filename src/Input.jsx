@@ -347,7 +347,6 @@ export default function Input({animData, setAnimData}) {
             <div className="mt-4">
                 <Link to="/animation">
                     <button
-                        type="submit"
                         className="button w-100"
                     >
                         Start Animation
