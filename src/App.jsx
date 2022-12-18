@@ -31,8 +31,10 @@ export default function App() {
 		},
 		velocity: "5",
 		palettes: palettes,
+		strokeColor: "#000000",
 		fillColors: randomPalette,
-		strokeColor: "fff"
+		strokeColor: "#000000",
+		bgColor: "#ffffff"
 	})
 
 	return (
