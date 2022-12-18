@@ -22,12 +22,12 @@ export default function App() {
 				width: "60",
 				height: "40",
 				cornerRadius: "0",
-				filled: false
+				filled: true
 		},
 		circles: {
 			checked: true,
 			radius: "20",
-			filled: false
+			filled: true
 		},
 		velocity: "5",
 		palettes: palettes,

@@ -50,7 +50,6 @@ export default function Animation() {
 			const rectWidth = parseInt(rectangles.width);
 			const rectHeight = parseInt(rectangles.height);
 			const rectCornerRadius = parseInt(rectangles.cornerRadius);
-			console.log(bgColor)
 
 			// ["circles", "rectangles"]
 			let availableShapes = [];

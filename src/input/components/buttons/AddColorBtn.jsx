@@ -1,5 +1,6 @@
 export default function AddColorBtn({setAnimData}) {
-    function addColor() {
+    function addColor(e) {
+        e.preventDefault();
         setAnimData(prevState => {
             // add "#000000" to the end of fillColors array
             return {
@@ -12,7 +13,7 @@ export default function AddColorBtn({setAnimData}) {
     return (
         <button
             className="button button-secondary w-100"
-            onClick={addColor}
+            onClick={e => addColor(e)}
         >
             + Add New
         </button>
