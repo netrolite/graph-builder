@@ -1,6 +1,11 @@
+import { useContext } from "react"
+import { AnimDataContext, SetAnimDataContext } from "../../App"
 import { changeShapeProp } from "../functions"
 
-export default function ShapeTypes({animData, setAnimData}) {
+export default function ShapeTypes() {
+    const animData = useContext(AnimDataContext);
+    const setAnimData = useContext(SetAnimDataContext);
+
     return (
         <div className="input-group">
             <label className="form-label heading">Types of Shapes</label>
@@ -13,7 +18,7 @@ export default function ShapeTypes({animData, setAnimData}) {
                         id="rect-checked"
                         name="rectangles"
                         data-shape-prop="checked"
-                        onChange={e => changeShapeProp(e, true, setAnimData)}
+                        onChange={e => changeShapeProp(e, setAnimData, true)}
                         checked={animData.rectangles.checked}
                     />
                     <label htmlFor="rect-checked">Rectangles</label>
@@ -26,7 +31,7 @@ export default function ShapeTypes({animData, setAnimData}) {
                         id="circ-checked"
                         name="circles"
                         data-shape-prop="checked"
-                        onChange={e => changeShapeProp(e, true, setAnimData)}
+                        onChange={e => changeShapeProp(e, setAnimData, true)}
                         checked={animData.circles.checked}
                     />
                     <label htmlFor="circ-checked">Circles</label>

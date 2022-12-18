@@ -1,54 +1,34 @@
-import { BiTrash } from "react-icons/bi"
+import { useContext } from "react"
+import { AnimDataContext, SetAnimDataContext } from "../../App"
+import FillColorsInputs from "./FIllColorsInputs";
+import AddColor from "./buttons/AddColor";
+import BrowsePalettes from "./buttons/BrowsePalettes";
 
-export default function FillColors({animData, setAnimData}) {
-    function deleteColor(id) {
-        setAnimData(prevState => {
-            const newFillColors = prevState.fillColors.filter((i, index) => {
-                return id !== index;
-            })
-            return {
-                ...prevState,
-                fillColors: newFillColors
-            }
-        })
-    }
+export default function FillColors({setShowPalettesWindow}) {
+    const animData = useContext(AnimDataContext);
+    const setAnimData = useContext(SetAnimDataContext);
 
-
-    function changeColor(e) {
-        setAnimData(prevState => {
-            // copy all previous colors
-            let newFillColors = [...prevState.fillColors]
-            // modify a color
-            newFillColors[e.target.id] = e.target.value;
-
-            return {
-                ...prevState,
-                fillColors: newFillColors
-            }
-        })
-    }
-
-
-    return animData.fillColors.map((item, index) => {
-        return (
-            <div className="input-subgroup input-color-wrapper" key={index}>
-                <input
-                    type="color"
-                    className="form-control form-control-color"
-                    value={item}
-                    id={index}
-                    onChange={changeColor}
-                />
-
-                <div className="color-hex-and-trash-icon w-100">
-                    {item}
-                    <BiTrash
-                        title="Delete Color"
-                        className="icon" 
-                        onClick={() => deleteColor(index)}
+    return (
+        <div className="input-group">
+            <label className="form-label heading">Fill Colors</label>
+            <div>
+                <div className="grid-2-cols">
+                    <FillColorsInputs
+                        animData={animData}
+                        setAnimData={setAnimData}
                     />
                 </div>
             </div>
-        )
-    })
+
+            {/* "Add New" and "Browse Palettes" buttons */}
+            {/* Wrapping in a div to fix safari grid row height bug */}
+            {/* Also adding "height: min-content;" in CSS */}
+            <div>
+                <div className="input-subgroup grid-2-cols">
+                    <AddColor setAnimData={setAnimData} />
+                    <BrowsePalettes setShowPalettesWindow={setShowPalettesWindow} />
+                </div>
+            </div>
+        </div>
+    )
 }

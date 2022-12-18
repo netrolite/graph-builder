@@ -7,7 +7,8 @@ function changeProp(e, setAnimData) {
 }
 
 // changes rect width, rect height, circle radius...
-function changeShapeProp(e, isBoolean, setAnimData) {
+function changeShapeProp(e, setAnimData, isBoolean = false) {
+    console.log(isBoolean);
     // example:
     // e.target.name === "rectangles"
     // e.target.dataset.shapeProp === "height"

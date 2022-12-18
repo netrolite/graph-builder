@@ -1,6 +1,11 @@
+import { useContext } from "react"
+import { AnimDataContext, SetAnimDataContext } from "../../App"
 import { changeProp } from "../functions"
 
-export default function ShapesAmount({animData, setAnimData}) {
+export default function ShapesAmount() {
+    const animData = useContext(AnimDataContext);
+    const setAnimData = useContext(SetAnimDataContext);
+
     return (
         <div className="input-group">
             <div className="input-subgroup">
