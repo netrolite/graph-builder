@@ -38,8 +38,7 @@ export default class Rectangle extends Shape {
             this.c.fillStyle = this.fillStyle;
             this.c.fill();
         }
-        // have to divide lineWidth by 2 because it's twice as large as it needs to be
-        this.c.lineWidth = this.lineWidth / 2;
+        this.c.lineWidth = this.lineWidth;
         this.c.strokeStyle = this.strokeStyle;
         this.c.stroke();
     }

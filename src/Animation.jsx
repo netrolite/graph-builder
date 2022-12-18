@@ -6,7 +6,7 @@ import Circle from "./shapes/circle"
 
 export default function Animation() {
 	const animData = useContext(AnimDataContext);
-	const { velocity, circles, rectangles, shapesAmount, fillColors } = animData;
+	const { velocity, circles, rectangles, shapesAmount, fillColors, strokeColor, bgColor } = animData;
 	const canvasRef = useRef();
 
 	useEffect(() => {
@@ -25,6 +25,8 @@ export default function Animation() {
 	function draw() {
 		const canvas = canvasRef.current;
 		/** @type {CanvasRenderingContext2D} */ const c = canvas.getContext("2d");
+		document.body.style.backgroundColor = bgColor;
+		canvas.style.backgroundColor = bgColor;
 
 		let mousePos = {
 			x: undefined,
@@ -48,7 +50,7 @@ export default function Animation() {
 			const rectWidth = parseInt(rectangles.width);
 			const rectHeight = parseInt(rectangles.height);
 			const rectCornerRadius = parseInt(rectangles.cornerRadius);
-
+			console.log(bgColor)
 
 			// ["circles", "rectangles"]
 			let availableShapes = [];
@@ -56,8 +58,8 @@ export default function Animation() {
 			if (circles.checked) availableShapes.push("circle");
 
 			for (let i = 0; i < shapesAmount; i++) {
-				// new Cirlce(radius, maxRadius, expansionRange, filled, colors, velocity, canvas, c, mousePos);
-				// new Rectangle(width, height, maxWidth, cornerRadius, expansionRange, filled, colors, velocity, canvas, c, mousePos);
+				// new Cirlce(radius, maxRadius, expansionRange, filled, fillColors, strokeColor, velocity, canvas, c, mousePos);
+				// new Rectangle(width, height, maxWidth, cornerRadius, expansionRange, filled, fillColors, strokeColor, velocity, canvas, c, mousePos);
 				const newShape = availableShapes[Math.floor(Math.random() * availableShapes.length)]
 
 				if (newShape === "rectangle") {
@@ -70,6 +72,7 @@ export default function Animation() {
 							100, // expansionRange
 							rectangles.filled,
 							fillColors,
+							strokeColor,
 							intVelocity,
 							canvas,
 							c,
@@ -85,6 +88,7 @@ export default function Animation() {
 							100, // expansionRange
 							circles.filled,
 							fillColors,
+							strokeColor,
 							intVelocity,
 							canvas,
 							c,
