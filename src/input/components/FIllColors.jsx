@@ -1,10 +1,10 @@
 import { useContext } from "react"
 import { AnimDataContext, SetAnimDataContext } from "../../App"
 import FillColorsInputs from "./FIllColorsInputs";
-import AddColor from "./buttons/AddColor";
-import BrowsePalettes from "./buttons/BrowsePalettes";
+import AddColorBtn from "./buttons/AddColorBtn";
+import BrowsePalettesBtn from "./buttons/BrowsePalettesBtn";
 
-export default function FillColors({setShowPalettesWindow}) {
+export default function FillColors({setShowPalettesPopup}) {
     const animData = useContext(AnimDataContext);
     const setAnimData = useContext(SetAnimDataContext);
 
@@ -25,8 +25,8 @@ export default function FillColors({setShowPalettesWindow}) {
             {/* Also adding "height: min-content;" in CSS */}
             <div>
                 <div className="input-subgroup grid-2-cols">
-                    <AddColor setAnimData={setAnimData} />
-                    <BrowsePalettes setShowPalettesWindow={setShowPalettesWindow} />
+                    <AddColorBtn setAnimData={setAnimData} />
+                    <BrowsePalettesBtn setShowPalettesPopup={setShowPalettesPopup} />
                 </div>
             </div>
         </div>

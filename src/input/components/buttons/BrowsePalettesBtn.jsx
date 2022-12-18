@@ -1,6 +1,6 @@
-export default function BrowsePalettes({setShowPalettesWindow}) {
+export default function BrowsePalettesBtn({setShowPalettesPopup}) {
     function togglePalettesWindow() {
-
+        setShowPalettesPopup(prevState => !prevState);
     }
     
     return (

@@ -1,4 +1,4 @@
-export default function AddColor({setAnimData}) {
+export default function AddColorBtn({setAnimData}) {
     function addColor() {
         setAnimData(prevState => {
             // add "#000000" to the end of fillColors array

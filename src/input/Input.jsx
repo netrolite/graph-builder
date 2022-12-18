@@ -1,4 +1,5 @@
 import "./input.css"
+import BrowseColorsPopup from "./components/popups/BrowseColorsPopup";
 import ShapesAmount from "./components/ShapesAmount";
 import Velocity from "./components/Velocity";
 import ShapeTypes from "./components/ShapeTypes";
@@ -11,29 +12,22 @@ import { useState, useContext } from "react";
 import { AnimDataContext, SetAnimDataContext } from "../App";
 
 export default function Input() {
-    const [showPalettesWindow, setShowPalettesWindow] = useState(false);
+    const [showPalettesPopup, setShowPalettesPopup] = useState(false);
     const animData = useContext(AnimDataContext);
     const setAnimData = useContext(SetAnimDataContext);
 
     return (
         <div className="container p-4 main">
-            <div className="popup">
-                <div className="bg-overlay"></div>
-                <div className="popup-window p-4 container">
-                    <Palettes
-                        animData={animData}
-                        setAnimData={setAnimData}
-                    />
-                </div>
-            </div>
+            
 
             <h1 className="mb-4 fw-semibold">Animation</h1>
 
             <div className="inputs">
+                <BrowseColorsPopup showPalettesPopup={showPalettesPopup} />
                 <ShapesAmount />
                 <Velocity />
                 <ShapeTypes />
-                <FillColors setShowPalettesWindow={setShowPalettesWindow} />
+                <FillColors setShowPalettesPopup={setShowPalettesPopup} />
                 <RectSettings />
                 <CircSettings />
             </div>
