@@ -15,22 +15,22 @@ export default function Input() {
     const [showPalettesPopup, setShowPalettesPopup] = useState(false);
 
     return (
-        <div className="container p-4 main">
+        <main className="container p-4 main">
             <h1 className="mb-4 fw-semibold">Animation</h1>
 
-            <div className="inputs">
+            <form className="inputs">
                 <BrowseColorsPopup showPalettesPopup={showPalettesPopup} />
                 <ShapesAmount />
                 <Velocity />
-                <ShapeTypes />
                 <BgColor />
                 <StrokeColor />
                 <FillColors setShowPalettesPopup={setShowPalettesPopup} />
+                <ShapeTypes />
                 <RectSettings />
                 <CircSettings />
-            </div>
+            </form>
 
             <StartAnimBtn />
-        </div>
+        </main>
     )
 }

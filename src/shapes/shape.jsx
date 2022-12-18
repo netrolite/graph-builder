@@ -1,5 +1,5 @@
 export default class Shape {
-    constructor(expansionRange, colors, velocity, canvas, c, mousePos) {
+    constructor(expansionRange, filled, colors, velocity, canvas, c, mousePos) {
         this.strokeStyle = "white";
         this.fillStyle = colors[Math.floor(Math.random() * colors.length)];
         this.lineWidth = 2;
@@ -7,6 +7,7 @@ export default class Shape {
         this.canvas = canvas;
         this.c = c;
         this.mousePos = mousePos;
+        this.filled = filled;
         
         const randVx = Math.random() - 0.5;
         const randVy = Math.random() - 0.5;

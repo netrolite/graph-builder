@@ -12,12 +12,16 @@ export default class Circle extends Shape {
 
     draw() {
         this.c.beginPath();
-        this.c.fillStyle = this.fillStyle;
-        this.c.strokeStyle = this.strokeStyle;
-        this.c.lineWidth = this.lineWidth;
         this.c.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        this.c.closePath();
+        
+        if (this.filled) {
+            this.c.fillStyle = this.fillStyle;
+            this.c.fill();
+        }
+        this.c.lineWidth = this.lineWidth;
+        this.c.strokeStyle = this.strokeStyle;
         this.c.stroke();
-        this.c.fill();
     }
     
     update() {

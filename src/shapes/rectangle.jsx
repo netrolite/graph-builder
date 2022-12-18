@@ -13,6 +13,7 @@ export default class Rectangle extends Shape {
     }
 
     draw() {
+        // doesn't work in Firefox
         // this.c.beginPath();
         // this.c.fillStyle = this.fillStyle;
         // this.c.strokeStyle = this.strokeStyle;
@@ -32,9 +33,14 @@ export default class Rectangle extends Shape {
         this.c.lineTo(this.x, this.y + this.radius);
         this.c.quadraticCurveTo(this.x, this.y, this.x + this.radius, this.y);
         this.c.closePath();
+
+        if (this.filled) {
+            this.c.fillStyle = this.fillStyle;
+            this.c.fill();
+        }
+        // have to divide lineWidth by 2 because it's twice as large as it needs to be
         this.c.lineWidth = this.lineWidth / 2;
         this.c.strokeStyle = this.strokeStyle;
-        this.c.fill();
         this.c.stroke();
     }
     
