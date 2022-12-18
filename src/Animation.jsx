@@ -1,10 +1,12 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useContext } from "react"
+import { AnimDataContext } from "./App";
 import Rectangle from "./shapes/rectangle"
 import Circle from "./shapes/circle"
 
 
-export default function Animation({animData}) {
-	const { rectangles, circles, fillColors } = animData;
+export default function Animation() {
+	const animData = useContext(AnimDataContext);
+	const { velocity, circles, rectangles, shapesAmount, fillColors } = animData;
 	const canvasRef = useRef();
 
 	useEffect(() => {
@@ -41,7 +43,7 @@ export default function Animation({animData}) {
 	
 		
 		if (!shapes.length) {
-			const velocity = parseInt(animData.velocity)
+			const intVelocity = parseInt(velocity);
 			const circRadius = parseInt(circles.radius);
 			const rectWidth = parseInt(rectangles.width);
 			const rectHeight = parseInt(rectangles.height);
@@ -52,7 +54,7 @@ export default function Animation({animData}) {
 			if (rectangles.checked) availableShapes.push("rectangle");
 			if (circles.checked) availableShapes.push("circle");
 
-			for (let i = 0; i < animData.shapesAmount; i++) {
+			for (let i = 0; i < shapesAmount; i++) {
 				// new Cirlce(radius, maxRadius, expansionRange, colors, velocity, canvas, c, mousePos);
 				// new Rectangle(width, height, maxWidth, cornerRadius, expansionRange, colors, velocity, canvas, c, mousePos);
 				const newShape = availableShapes[Math.floor(Math.random() * availableShapes.length)]
@@ -66,7 +68,7 @@ export default function Animation({animData}) {
 							rectCornerRadius, // cornerRadius
 							100, // expansionRange
 							fillColors,
-							velocity,
+							intVelocity,
 							canvas,
 							c,
 							mousePos
@@ -80,7 +82,7 @@ export default function Animation({animData}) {
 							circRadius + 20, // maxRadius
 							100, // expansionRange
 							fillColors,
-							velocity,
+							intVelocity,
 							canvas,
 							c,
 							mousePos

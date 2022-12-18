@@ -1,8 +1,10 @@
-import { useState } from "react"
+import { useState, createContext } from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Input from "./Input"
+import Input from "./input/Input"
 import Animation from "./Animation"
 
+export const AnimDataContext = createContext();
+export const SetAnimDataContext = createContext();
 export default function App() {
 	const palettes = [
 		["#a1a2a6", "#024959", "#f2C12e", "#f2ae30", "#593e25"],
@@ -36,24 +38,25 @@ export default function App() {
 	return (
 		<>
 			<BrowserRouter>
-				<Routes>
-					<Route
-						path="/"
-						element={
-							<Input
-								animData={animData}
-								setAnimData={setAnimData}
-							/>
-						} />
-					<Route
-						path="/animation"
-						element={
-							<Animation
-								animData={animData}
-							/>
-						}
-					/>
-				</Routes>
+				<AnimDataContext.Provider value={animData}>
+					<SetAnimDataContext.Provider value={setAnimData}>						
+						<Routes>
+								<Route
+									path="/"
+									element={
+										<Input />
+									} 
+								/>
+
+								<Route
+									path="/animation"
+									element={
+										<Animation />
+									}
+								/>
+						</Routes>
+					</SetAnimDataContext.Provider>
+				</AnimDataContext.Provider>
 			</BrowserRouter>
 		</>
 	)
