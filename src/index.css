@@ -47,8 +47,8 @@ canvas {
 .button {
     background-color: var(--button);
     border: 0;
-    border-radius: 0.375rem;
-    padding: 0.375rem 0.725rem;
+    border-radius: 6px;
+    padding: 6px 12px;
     color: var(--button-text);
     transition: 200ms;
 }
@@ -56,6 +56,18 @@ canvas {
 .button:hover {
     background-color: var(--button-pressed);
     transition: 200ms;
+}
+
+.button-secondary {
+    background-color: transparent;
+    border: 2px solid var(--button);
+    color: var(--button);
+}
+
+.button-secondary:hover {
+    background-color: var(--button-pressed);
+    border: 2px solid var(--button-pressed);
+    color: var(--button-text);
 }
 
 h1, h2, h3, h4, h5, h6, .heading {
