@@ -17,47 +17,41 @@ export default function RectSettings() {
             {/* data attribute is for identifying the shape prop (width, height, radius...) */}
             <div className="input-subgroup">
                 <label htmlFor="rect-width" className="form-label">Width</label>
-                <div className="input-elem">
-                    <input
-                        className="form-control"
-                        type="number"
-                        id="rect-width"
-                        name="rectangles"
-                        data-shape-prop="width"
-                        onChange={e => changeShapeProp(e, setAnimData)}
-                        value={animData.rectangles.width}
-                    />
-                </div>
+                <input
+                    className="form-control"
+                    type="number"
+                    id="rect-width"
+                    name="rectangles"
+                    data-shape-prop="width"
+                    onChange={e => changeShapeProp(e, setAnimData)}
+                    value={animData.rectangles.width}
+                />
             </div>
 
             <div className="input-subgroup">
                 <label htmlFor="rect-height" className="form-label">Height</label>
-                <div className="input-elem">
-                    <input
-                        className="form-control"
-                        type="number"
-                        id="rect-height"
-                        name="rectangles"
-                        data-shape-prop="height"
-                        onChange={e => changeShapeProp(e, setAnimData)}
-                        value={animData.rectangles.height}
-                    />
-                </div>
+                <input
+                    className="form-control"
+                    type="number"
+                    id="rect-height"
+                    name="rectangles"
+                    data-shape-prop="height"
+                    onChange={e => changeShapeProp(e, setAnimData)}
+                    value={animData.rectangles.height}
+                />
             </div>
 
             <div className="input-subgroup">
                 <label htmlFor="rect-corner-radius" className="form-label">Corner Radius</label>
-                <div className="input-elem">
-                    <input
-                        className="form-control"
-                        type="number"
-                        id="rect-corner-radius"
-                        name="rectangles"
-                        data-shape-prop="cornerRadius"
-                        onChange={e => changeShapeProp(e, setAnimData)}
-                        value={animData.rectangles.cornerRadius}
-                    />
-                </div>
+                <input
+                    className="form-control"
+                    type="number"
+                    id="rect-corner-radius"
+                    name="rectangles"
+                    data-shape-prop="cornerRadius"
+                    onChange={e => changeShapeProp(e, setAnimData)}
+                    value={animData.rectangles.cornerRadius}
+                />
             </div>
 
             <div className="input-subgroup">

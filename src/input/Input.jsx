@@ -3,7 +3,7 @@ import BrowseColorsPopup from "./components/popups/BrowseColorsPopup";
 import ShapesAmount from "./components/ShapesAmount";
 import Velocity from "./components/Velocity";
 import ShapeTypes from "./components/ShapeTypes";
-import StrokeColor from "./components/StrokeColors";
+import StrokeColor from "./components/StrokeColor";
 import BgColor from "./components/BgColor";
 import FillColors from "./components/FIllColors";
 import StartAnimBtn from "./components/buttons/StartAnimBtn";

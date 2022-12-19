@@ -15,17 +15,15 @@ export default function CircSettings() {
 
             <div className="input-subgroup">
                 <label htmlFor="circ-radius" className="form-label">Radius</label>
-                <div className="input-elem">
-                    <input
-                        className="form-control"
-                        type="number"
-                        id="circ-radius"
-                        name="circles"
-                        data-shape-prop="radius"
-                        onChange={e => changeShapeProp(e, setAnimData)}
-                        value={animData.circles.radius}
-                    />
-                </div>
+                <input
+                    className="form-control"
+                    type="number"
+                    id="circ-radius"
+                    name="circles"
+                    data-shape-prop="radius"
+                    onChange={e => changeShapeProp(e, setAnimData)}
+                    value={animData.circles.radius}
+                />
             </div>
 
             <div className="input-subgroup">
