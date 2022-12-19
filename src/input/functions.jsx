@@ -22,9 +22,14 @@ function changeShapeProp(e, setAnimData, isBoolean = false) {
             }
         }   
     })
-}    
+}
+
+function intFromRange(min, max) {
+    return Math.random() * (max - min) + min;
+}
 
 export {
     changeProp,
-    changeShapeProp
+    changeShapeProp,
+    intFromRange
 }
