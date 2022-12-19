@@ -36,6 +36,16 @@ function changeShapeProp(e, setAnimData, isBoolean = false) {
     })
 }
 
+function toggleRandomValue(setAnimData, shape, shapeProp) {
+    setAnimData(prevState => ({
+        ...prevState,
+        [shape]: {
+            ...prevState[shape],
+            [shapeProp]: !prevState[shape][shapeProp]
+        }
+    }))
+}
+
 function intFromRangeArr(range) {
     const min = range[0];
     const max = range[1];
@@ -45,5 +55,6 @@ function intFromRangeArr(range) {
 export {
     changeProp,
     changeShapeProp,
-    intFromRangeArr
+    intFromRangeArr,
+    toggleRandomValue
 }

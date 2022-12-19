@@ -70,6 +70,12 @@ canvas {
     color: var(--button-text);
 }
 
+.button-small {
+    font-size: 0.9rem;
+    padding: 3px 6px;
+    border-radius: 4px;
+}
+
 h1, h2, h3, h4, h5, h6, .heading {
     color: var(--heading);
 }

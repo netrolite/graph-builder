@@ -1,6 +1,6 @@
-import { useContext } from "react"
+import { useState, useContext } from "react"
 import { AnimDataContext, SetAnimDataContext } from "../../App"
-import { changeShapeProp } from "../functions";
+import { changeShapeProp, toggleRandomValue } from "../functions";
 
 export default function RectSettings() {
     const animData = useContext(AnimDataContext);
@@ -27,6 +27,18 @@ export default function RectSettings() {
                     onChange={e => changeShapeProp(e, setAnimData)}
                     value={animData.rectangles.width}
                 />
+
+                <button
+                    type="button"
+                    className="button button-small mt-2"
+                    onClick={() => toggleRandomValue(setAnimData, "rectangles", "widthRand")}
+                >
+                    {
+                        animData.rectangles.widthRand
+                        ? "Use Static Value"
+                        : "Use Random Value"
+                    }
+                </button>
             </div>
 
             <div className="input-subgroup">
@@ -41,6 +53,17 @@ export default function RectSettings() {
                     onChange={e => changeShapeProp(e, setAnimData)}
                     value={animData.rectangles.height}
                 />
+                <button
+                    type="button"
+                    className="button button-small mt-2"
+                    onClick={() => toggleRandomValue(setAnimData, "rectangles", "heightRand")}
+                >
+                    {
+                        animData.rectangles.heightRand
+                        ? "Use Static Value"
+                        : "Use Random Value"
+                    }
+                </button>
             </div>
 
             <div className="input-subgroup">

@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { AnimDataContext, SetAnimDataContext } from "../../App"
-import { changeShapeProp } from "../functions";
+import { changeShapeProp, toggleRandomValue } from "../functions";
 
 export default function CircSettings() {
     const animData = useContext(AnimDataContext);
@@ -25,6 +25,17 @@ export default function CircSettings() {
                     onChange={e => changeShapeProp(e, setAnimData)}
                     value={animData.circles.radius}
                 />
+                <button
+                    type="button"
+                    className="button button-small mt-2"
+                    onClick={() => toggleRandomValue(setAnimData, "circles", "radiusRand")}
+                >
+                    {
+                        animData.circles.radiusRand
+                        ? "Use Static Value"
+                        : "Use Random Value"
+                    }
+                </button>
             </div>
 
             <div className="input-subgroup">
