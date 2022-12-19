@@ -14,7 +14,8 @@ export default function ShapesAmount() {
                     type="number"
                     min={1}
                     id="shapes-amount"
-                    name="shapesAmount"
+                    name="shapes-amount"
+                    data-prop="shapesAmount"
                     className="form-control"
                     value={animData.shapesAmount}
                     onChange={e => changeProp(e, setAnimData)}

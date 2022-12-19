@@ -3,6 +3,7 @@ import { BiTrash } from "react-icons/bi"
 export default function FillColorsInputs({animData, setAnimData}) {
     function deleteColor(id) {
         setAnimData(prevState => {
+            // filter out the color user wants to delete
             const newFillColors = prevState.fillColors.filter((i, index) => {
                 return id !== index;
             })

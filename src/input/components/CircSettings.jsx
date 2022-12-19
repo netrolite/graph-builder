@@ -19,8 +19,9 @@ export default function CircSettings() {
                     className="form-control"
                     type="number"
                     id="circ-radius"
-                    name="circles"
+                    name="circ-radius"
                     data-shape-prop="radius"
+                    data-shape="circles"
                     onChange={e => changeShapeProp(e, setAnimData)}
                     value={animData.circles.radius}
                 />
@@ -32,8 +33,9 @@ export default function CircSettings() {
                         className="form-check-input"
                         type="checkbox"
                         id="circ-filled"
-                        name="circles"
+                        name="circ-filled"
                         data-shape-prop="filled"
+                        data-shape="circles"
                         checked={animData.circles.filled}
                         onChange={e => changeShapeProp(e, setAnimData, true)}
                     />

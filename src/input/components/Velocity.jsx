@@ -15,6 +15,7 @@ export default function Velocity() {
                     min={1}
                     id="velocity"
                     name="velocity"
+                    data-prop="velocity"
                     className="form-control"
                     value={animData.velocity}
                     onChange={e => changeProp(e, setAnimData)}

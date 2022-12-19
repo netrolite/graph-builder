@@ -42,7 +42,6 @@ export default function App() {
 		fillColors: randomPalette,
 		bgColor: "#ffffff"
 	})
-	
 
 	return (
 		<>

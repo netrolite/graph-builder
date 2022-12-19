@@ -21,8 +21,9 @@ export default function RectSettings() {
                     className="form-control"
                     type="number"
                     id="rect-width"
-                    name="rectangles"
+                    name="rect-width"
                     data-shape-prop="width"
+                    data-shape="rectangles"
                     onChange={e => changeShapeProp(e, setAnimData)}
                     value={animData.rectangles.width}
                 />
@@ -34,8 +35,9 @@ export default function RectSettings() {
                     className="form-control"
                     type="number"
                     id="rect-height"
-                    name="rectangles"
+                    name="rect-height"
                     data-shape-prop="height"
+                    data-shape="rectangles"
                     onChange={e => changeShapeProp(e, setAnimData)}
                     value={animData.rectangles.height}
                 />
@@ -47,8 +49,9 @@ export default function RectSettings() {
                     className="form-control"
                     type="number"
                     id="rect-corner-radius"
-                    name="rectangles"
+                    name="rect-corner-radius"
                     data-shape-prop="cornerRadius"
+                    data-shape="rectangles"
                     onChange={e => changeShapeProp(e, setAnimData)}
                     value={animData.rectangles.cornerRadius}
                 />
@@ -60,8 +63,9 @@ export default function RectSettings() {
                         className="form-check-input"
                         type="checkbox"
                         id="rect-filled"
-                        name="rectangles"
+                        name="rect-filled"
                         data-shape-prop="filled"
+                        data-shape="rectangles"
                         checked={animData.rectangles.filled}
                         onChange={e => changeShapeProp(e, setAnimData, true)}
                     />

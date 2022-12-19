@@ -16,7 +16,8 @@ export default function BgColor() {
                         className="form-control form-control-color"
                         value={animData.bgColor}
                         id="bg-color"
-                        name="bgColor"
+                        name="bg-color"
+                        data-prop="bgColor"
                         onChange={e => changeProp(e, setAnimData)}
                     />
 
