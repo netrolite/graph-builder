@@ -19,29 +19,27 @@ export default function App() {
 		shapesAmount: "10",
 		rectangles: {
 				checked: true,
-				width: "60",
-				height: "40",
-				cornerRadius: "0",
+				width: 60,
+				height: 40,
+				cornerRadius: 0,
 				widthRand: true,
-				widthRandRange: ["10", "100"],
-				heightRand: false,
-				heightRandRange: ["20", "50"],
-				cornerRadiusRand: true,
-				cornerRadiusRandRange: ["0", "10"],
+				widthRandRange: [10, 100],
+				heightRand: true,
+				heightRandRange: [20, 50],
+				cornerRadius: 5,
 				filled: true
 		},
 		circles: {
 			checked: true,
-			radius: "20",
-			radiusRand: false,
-			radiusRandomRand: ["10", "30"],
+			radius: 20,
+			radiusRand: true,
+			radiusRandRange: [10, 30],
 			filled: true
 		},
-		velocity: "5",
+		velocity: 1,
 		palettes: palettes,
 		strokeColor: "#000000",
 		fillColors: randomPalette,
-		strokeColor: "#000000",
 		bgColor: "#ffffff"
 	})
 

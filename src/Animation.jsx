@@ -1,4 +1,5 @@
 import { useEffect, useRef, useContext } from "react"
+import { intFromRangeArr } from "./input/functions";
 import { AnimDataContext } from "./App";
 import Rectangle from "./shapes/rectangle"
 import Circle from "./shapes/circle"
@@ -8,6 +9,7 @@ export default function Animation() {
 	const animData = useContext(AnimDataContext);
 	const { velocity, circles, rectangles, shapesAmount, fillColors, strokeColor, bgColor } = animData;
 	const canvasRef = useRef();
+	console.log(rectangles);
 
 	useEffect(() => {
 		window.addEventListener("resize", resize);
@@ -17,7 +19,6 @@ export default function Animation() {
 			window.removeEventListener("resize", resize);
 		}
 	}, [])
-	
 
 	let shapes = [];
 	
@@ -45,11 +46,10 @@ export default function Animation() {
 	
 		
 		if (!shapes.length) {
-			const intVelocity = parseInt(velocity);
-			const circRadius = parseInt(circles.radius);
-			const rectWidth = parseInt(rectangles.width);
-			const rectHeight = parseInt(rectangles.height);
-			const rectCornerRadius = parseInt(rectangles.cornerRadius);
+			// values that can be random
+			let circRadius;
+			let rectWidth;
+			let rectHeight;
 
 			// ["circles", "rectangles"]
 			let availableShapes = [];
@@ -62,17 +62,23 @@ export default function Animation() {
 				const newShape = availableShapes[Math.floor(Math.random() * availableShapes.length)]
 
 				if (newShape === "rectangle") {
+					if (rectangles.widthRand) rectWidth = intFromRangeArr(rectangles.widthRandRange);
+					else rectWidth = rectangles.width;
+
+					if (rectangles.heightRand) rectHeight = intFromRangeArr(rectangles.heightRandRange);
+					else rectHeight = rectangles.height;
+
 					shapes.push(
 						new Rectangle(
 							rectWidth,
 							rectHeight,
 							rectWidth + 20, // maxWidth
-							rectCornerRadius, // cornerRadius
+							parseInt(rectangles.cornerRadius),
 							100, // expansionRange
 							rectangles.filled,
 							fillColors,
 							strokeColor,
-							intVelocity,
+							parseInt(velocity),
 							canvas,
 							c,
 							mousePos
@@ -80,6 +86,12 @@ export default function Animation() {
 					)
 				}
 				else if (newShape === "circle") {
+					if (circles.radiusRand) {
+						console.log(circles.radiusRandRange);
+						circRadius = intFromRangeArr(circles.radiusRandRange);
+					}
+					else circRadius = circles.radius
+
 					shapes.push(
 						new Circle(
 							circRadius,
@@ -88,7 +100,7 @@ export default function Animation() {
 							circles.filled,
 							fillColors,
 							strokeColor,
-							intVelocity,
+							parseInt(velocity),
 							canvas,
 							c,
 							mousePos

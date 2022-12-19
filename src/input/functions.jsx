@@ -24,12 +24,14 @@ function changeShapeProp(e, setAnimData, isBoolean = false) {
     })
 }
 
-function intFromRange(min, max) {
-    return Math.random() * (max - min) + min;
+function intFromRangeArr(range) {
+    const min = range[0];
+    const max = range[1];
+    return Math.ceil(Math.random() * (max - min) + min);
 }
 
 export {
     changeProp,
     changeShapeProp,
-    intFromRange
+    intFromRangeArr
 }
