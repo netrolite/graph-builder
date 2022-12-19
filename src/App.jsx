@@ -16,7 +16,7 @@ export default function App() {
 	const randomPalette = palettes[Math.floor(Math.random() * palettes.length)]
 
 	const [animData, setAnimData] = useState({
-		shapesAmount: "10",
+		shapesAmount: 10,
 		rectangles: {
 				checked: true,
 				width: 60,
@@ -42,6 +42,7 @@ export default function App() {
 		fillColors: randomPalette,
 		bgColor: "#ffffff"
 	})
+	
 
 	return (
 		<>

@@ -1,8 +1,13 @@
 // changes "Amount of Shapes", "Velocity"...
 function changeProp(e, setAnimData) {
+    let value = e.target.value;
+    if (e.target.type === "number") {
+        value = parseInt(e.target.value);
+    }
+
     setAnimData(prevState => ({
         ...prevState,
-        [e.target.name]: e.target.value
+        [e.target.name]: value
     }))
 }
 
@@ -12,13 +17,18 @@ function changeShapeProp(e, setAnimData, isBoolean = false) {
     // e.target.name === "rectangles"
     // e.target.dataset.shapeProp === "height"
     // if isBoolean, use "checked" attribute insead of "value" because value for checkboxes is always "on"
+    let value = e.target.value;
+    if (e.target.type === "number") {
+        value = parseInt(e.target.value);
+    }
+
     setAnimData(prevState => {
         const prop = e.target.dataset.shapeProp;
         return {
             ...prevState,
             [e.target.name]: {
                 ...prevState[e.target.name],
-                [prop]: isBoolean ? e.target.checked : e.target.value
+                [prop]: isBoolean ? e.target.checked : value
             }
         }   
     })
