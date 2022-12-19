@@ -23,18 +23,18 @@ export default function App() {
 				height: "40",
 				cornerRadius: "0",
 				widthRand: true,
-				widthRandRange: [10, 100],
+				widthRandRange: ["10", "100"],
 				heightRand: false,
-				heightRandRange: [20, 50],
+				heightRandRange: ["20", "50"],
 				cornerRadiusRand: true,
-				cornerRadiusRandRange: [0, 10],
+				cornerRadiusRandRange: ["0", "10"],
 				filled: true
 		},
 		circles: {
 			checked: true,
 			radius: "20",
 			radiusRand: false,
-			radiusRandomRand: [10, 30],
+			radiusRandomRand: ["10", "30"],
 			filled: true
 		},
 		velocity: "5",
