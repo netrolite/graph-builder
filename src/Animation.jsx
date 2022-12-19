@@ -62,7 +62,10 @@ export default function Animation() {
 				const newShape = availableShapes[Math.floor(Math.random() * availableShapes.length)]
 
 				if (newShape === "rectangle") {
-					if (rectangles.widthRand) rectWidth = intFromRangeArr(rectangles.widthRandRange);
+					// if user wants value to be random, get a random value from range
+					if (rectangles.widthRand) {
+						rectWidth = intFromRangeArr(rectangles.widthRandRange);
+					}
 					else rectWidth = rectangles.width;
 
 					if (rectangles.heightRand) rectHeight = intFromRangeArr(rectangles.heightRandRange);
@@ -73,12 +76,12 @@ export default function Animation() {
 							rectWidth,
 							rectHeight,
 							rectWidth + 20, // maxWidth
-							parseInt(rectangles.cornerRadius),
+							rectangles.cornerRadius,
 							100, // expansionRange
 							rectangles.filled,
 							fillColors,
 							strokeColor,
-							parseInt(velocity),
+							velocity,
 							canvas,
 							c,
 							mousePos
@@ -86,8 +89,8 @@ export default function Animation() {
 					)
 				}
 				else if (newShape === "circle") {
+					// if user wants value to be random, get a random value from range
 					if (circles.radiusRand) {
-						console.log(circles.radiusRandRange);
 						circRadius = intFromRangeArr(circles.radiusRandRange);
 					}
 					else circRadius = circles.radius
@@ -100,7 +103,7 @@ export default function Animation() {
 							circles.filled,
 							fillColors,
 							strokeColor,
-							parseInt(velocity),
+							velocity,
 							canvas,
 							c,
 							mousePos
