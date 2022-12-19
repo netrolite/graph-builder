@@ -15,16 +15,43 @@ export default function CircSettings() {
 
             <div className="input-subgroup">
                 <label htmlFor="circ-radius" className="form-label">Radius</label>
-                <input
-                    className="form-control"
-                    type="number"
-                    id="circ-radius"
-                    name="circ-radius"
-                    data-shape-prop="radius"
-                    data-shape="circles"
-                    onChange={e => changeShapeProp(e, setAnimData)}
-                    value={animData.circles.radius}
-                />
+                {
+                    animData.circles.radiusRand
+                    ? (
+                        <div className="grid-2-cols">
+
+                            <div className="d-flex">
+                                <div className="border border-primary m-auto">From</div>
+                                <input 
+                                    type="number"
+                                    className="form-control rounded-start-0"
+                                />
+                            </div>
+
+                            <div className="d-flex">
+                                <div className="border border-primary m-auto">To</div>
+                                <input 
+                                    type="number"
+                                    className="form-control rounded-start-0"
+                                />
+                            </div>
+
+                        </div>
+                    )
+                    : (
+                        <input
+                            className="form-control"
+                            type="number"
+                            id="circ-radius"
+                            name="circ-radius"
+                            data-shape-prop="radius"
+                            data-shape="circles"
+                            onChange={e => changeShapeProp(e, setAnimData)}
+                            value={animData.circles.radius}
+                        />
+                    )
+                }
+                
                 <button
                     type="button"
                     className="button button-small mt-2"
