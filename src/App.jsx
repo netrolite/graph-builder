@@ -21,7 +21,6 @@ export default function App() {
 				checked: true,
 				width: 60,
 				height: 40,
-				cornerRadius: 0,
 				widthRand: true,
 				widthRandRange: [10, 100],
 				heightRand: true,

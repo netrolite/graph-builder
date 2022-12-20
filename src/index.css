@@ -44,6 +44,10 @@ canvas {
     padding: 0
 }
 
+.bg-main {
+    background-color: var(--main);
+}
+
 .button {
     background-color: var(--button);
     border: 0;
