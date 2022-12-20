@@ -1,6 +1,6 @@
 import { useState, useContext } from "react"
 import { AnimDataContext, SetAnimDataContext } from "../../App"
-import { changeShapeProp, toggleRandomValue } from "../functions";
+import { changeShapeProp, toggleRandomValue, changeRange } from "../functions";
 
 export default function RectSettings() {
     const animData = useContext(AnimDataContext);
@@ -28,6 +28,7 @@ export default function RectSettings() {
                                             type="number"
                                             className="form-control rounded-start-0"
                                             value={animData.rectangles.widthRandRange[0]}
+                                            onChange={e => changeRange(e, setAnimData, "rectangles", "widthRandRange", 0)}
                                         />
                                     </div>
 

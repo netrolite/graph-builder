@@ -1,3 +1,5 @@
+import { SetAnimDataContext } from "../App";
+
 // changes "Amount of Shapes", "Velocity"...
 function changeProp(e, setAnimData) {
     const prop = e.target.dataset.prop
@@ -52,9 +54,29 @@ function intFromRangeArr(range) {
     return Math.ceil(Math.random() * (max - min) + min);
 }
 
+function changeRange(e, setAnimData, shape, shapeProp, rangeIndex) {
+    // rangeIndex must be either 0 (start) or 1 (end)
+
+    setAnimData(prevState => {
+        const value = parseInt(e.target.value);
+        // copies previous state of range array and replaces value at "rangeIndex"
+        let newRange = [...prevState[shape][shapeProp]];
+        newRange.splice(rangeIndex, 1, value);
+
+        return {
+            ...prevState,
+            [shape]: {
+                ...prevState[shape],
+                [shapeProp]: newRange
+            }
+        }
+    })
+}
+
 export {
     changeProp,
     changeShapeProp,
     intFromRangeArr,
-    toggleRandomValue
+    toggleRandomValue,
+    changeRange
 }

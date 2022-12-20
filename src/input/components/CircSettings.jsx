@@ -25,6 +25,7 @@ export default function CircSettings() {
                                     <input
                                         type="number"
                                         className="form-control rounded-start-0"
+                                        value={animData.circles.radiusRandRange[0]}
                                     />
                                 </div>
 
@@ -33,6 +34,7 @@ export default function CircSettings() {
                                     <input
                                         type="number"
                                         className="form-control rounded-start-0"
+                                        value={animData.circles.radiusRandRange[1]}
                                     />
                                 </div>
 
