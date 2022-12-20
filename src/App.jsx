@@ -23,7 +23,6 @@ export default function App() {
 				height: "40",
 				cornerRadius: "0",
 				widthRand: true,
-<<<<<<< Updated upstream
 				widthRandRange: ["10", "100"],
 				heightRand: false,
 				heightRandRange: ["20", "50"],
@@ -37,29 +36,6 @@ export default function App() {
 			radiusRand: false,
 			radiusRandomRand: ["10", "30"],
 			filled: true
-=======
-				widthRandRange: {
-					range: [50, 100],
-					default: [50, 100]
-				},
-				heightRand: true,
-				heightRandRange: {
-					range: [50, 100],
-					default: [50, 100]
-				}
-		},
-		circles: {
-			checked: true,
-			radius: 20,
-			filled: true,
-			// random values
-			// defaults must not be changed
-			radiusRand: true,
-			radiusRandRange: {
-				range: [20, 40],
-				default: [20, 40]
-			}
->>>>>>> Stashed changes
 		},
 		velocity: "5",
 		palettes: palettes,

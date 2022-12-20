@@ -1,14 +1,11 @@
 import { useEffect, useRef, useContext } from "react"
-import { intFromRangeArr } from "./input/functions";
-import { AnimDataContext, SetAnimDataContext } from "./App";
-import { useDefaultVals } from "./input/functions";
+import { AnimDataContext } from "./App";
 import Rectangle from "./shapes/rectangle"
 import Circle from "./shapes/circle"
 
 
 export default function Animation() {
 	const animData = useContext(AnimDataContext);
-	const setAnimData = useContext(SetAnimDataContext);
 	const { velocity, circles, rectangles, shapesAmount, fillColors, strokeColor, bgColor } = animData;
 	const canvasRef = useRef();
 
@@ -62,7 +59,7 @@ export default function Animation() {
 			for (let i = 0; i < shapesAmount; i++) {
 				// new Cirlce(radius, maxRadius, expansionRange, filled, fillColors, strokeColor, velocity, canvas, c, mousePos);
 				// new Rectangle(width, height, maxWidth, cornerRadius, expansionRange, filled, fillColors, strokeColor, velocity, canvas, c, mousePos);
-				const newShape = availableShapes[Math.floor(Math.random() * availableShapes.length)];
+				const newShape = availableShapes[Math.floor(Math.random() * availableShapes.length)]
 
 				if (newShape === "rectangle") {
 					shapes.push(
