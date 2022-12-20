@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { AnimDataContext, SetAnimDataContext } from "../../App"
-import { changeShapeProp, toggleRandomValue } from "../functions";
+import { changeShapeProp, toggleRandomValue, changeRange } from "../functions";
 
 export default function CircSettings() {
     const animData = useContext(AnimDataContext);
@@ -25,7 +25,9 @@ export default function CircSettings() {
                                     <input
                                         type="number"
                                         className="form-control rounded-start-0"
+                                        min="1"
                                         value={animData.circles.radiusRandRange[0]}
+                                        onChange={e => changeRange(e, setAnimData, "circles", "radiusRandRange", 0)}
                                     />
                                 </div>
 
@@ -34,7 +36,9 @@ export default function CircSettings() {
                                     <input
                                         type="number"
                                         className="form-control rounded-start-0"
+                                        min="1"
                                         value={animData.circles.radiusRandRange[1]}
+                                        onChange={e => changeRange(e, setAnimData, "circles", "radiusRandRange", 1)}
                                     />
                                 </div>
 

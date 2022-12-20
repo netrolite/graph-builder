@@ -58,16 +58,21 @@ function changeRange(e, setAnimData, shape, shapeProp, rangeIndex) {
     // rangeIndex must be either 0 (start) or 1 (end)
 
     setAnimData(prevState => {
-        const value = parseInt(e.target.value);
-        // copies previous state of range array and replaces value at "rangeIndex"
-        let newRange = [...prevState[shape][shapeProp]];
+        let value = parseInt(e.target.value);
+        
+        // copy previous state of range array
+        let newRange = [...prevState[shape][shapeProp].range];
+        // replace value at "rangeIndex"
         newRange.splice(rangeIndex, 1, value);
 
         return {
             ...prevState,
             [shape]: {
                 ...prevState[shape],
-                [shapeProp]: newRange
+                [shapeProp]: {
+                    ...prevState[shape][shapeProp],
+                    range: newRange
+                }
             }
         }
     })

@@ -21,19 +21,32 @@ export default function App() {
 				checked: true,
 				width: 60,
 				height: 40,
-				widthRand: true,
-				widthRandRange: [10, 100],
-				heightRand: true,
-				heightRandRange: [20, 50],
 				cornerRadius: 5,
-				filled: true
+				filled: true,
+				// random values
+				// defaults must not be changed
+				widthRand: true,
+				widthRandRange: {
+					range: [50, 100],
+					defaultRange: [50, 100]
+				},
+				heightRand: true,
+				heightRandRange: {
+					range: [50, 100],
+					defaultRange: [50, 100]
+				}
 		},
 		circles: {
 			checked: true,
 			radius: 20,
+			filled: true,
+			// random values
+			// defaults must not be changed
 			radiusRand: true,
-			radiusRandRange: [10, 30],
-			filled: true
+			radiusRandRange: {
+				range: [20, 40],
+				defaultRange: [20, 40]
+			}
 		},
 		velocity: 1,
 		palettes: palettes,

@@ -27,6 +27,7 @@ export default function RectSettings() {
                                         <input
                                             type="number"
                                             className="form-control rounded-start-0"
+                                            min="1"
                                             value={animData.rectangles.widthRandRange[0]}
                                             onChange={e => changeRange(e, setAnimData, "rectangles", "widthRandRange", 0)}
                                         />
@@ -37,7 +38,9 @@ export default function RectSettings() {
                                         <input
                                             type="number"
                                             className="form-control rounded-start-0"
+                                            min="1"
                                             value={animData.rectangles.widthRandRange[1]}
+                                            onChange={e => changeRange(e, setAnimData, "rectangles", "widthRandRange", 1)}
                                         />
                                     </div>
 
@@ -82,7 +85,9 @@ export default function RectSettings() {
                                     <input
                                         type="number"
                                         className="form-control rounded-start-0"
-                                        value={animData.rectangles.heightRandRange[0]}
+                                        min="1"
+                                        value={animData.rectangles.heightRandRange.range[0]}
+                                        onChange={e => changeRange(e, setAnimData, "rectangles", "heightRandRange", 0)}
                                     />
                                 </div>
 
@@ -91,7 +96,9 @@ export default function RectSettings() {
                                     <input
                                         type="number"
                                         className="form-control rounded-start-0"
+                                        min="1"
                                         value={animData.rectangles.heightRandRange[1]}
+                                        onChange={e => changeRange(e, setAnimData, "rectangles", "heightRandRange", 1)}
                                     />
                                 </div>
 
