@@ -9,7 +9,7 @@ export default function Animation() {
 	const animData = useContext(AnimDataContext);
 	const { velocity, circles, rectangles, shapesAmount, fillColors, strokeColor, bgColor } = animData;
 	const canvasRef = useRef();
-	console.log(rectangles);
+	console.log(animData);
 
 	useEffect(() => {
 		window.addEventListener("resize", resize);
@@ -64,11 +64,13 @@ export default function Animation() {
 				if (newShape === "rectangle") {
 					// if user wants value to be random, get a random value from range
 					if (rectangles.widthRand) {
-						rectWidth = intFromRangeArr(rectangles.widthRandRange);
+						rectWidth = intFromRangeArr(rectangles.widthRandRange.range);
 					}
 					else rectWidth = rectangles.width;
 
-					if (rectangles.heightRand) rectHeight = intFromRangeArr(rectangles.heightRandRange);
+					if (rectangles.heightRand) {
+						rectHeight = intFromRangeArr(rectangles.heightRandRange.range);
+					}
 					else rectHeight = rectangles.height;
 
 					shapes.push(
@@ -91,7 +93,7 @@ export default function Animation() {
 				else if (newShape === "circle") {
 					// if user wants value to be random, get a random value from range
 					if (circles.radiusRand) {
-						circRadius = intFromRangeArr(circles.radiusRandRange);
+						circRadius = intFromRangeArr(circles.radiusRandRange.range);
 					}
 					else circRadius = circles.radius
 

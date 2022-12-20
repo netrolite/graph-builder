@@ -19,45 +19,45 @@ export default function RectSettings() {
                 <label htmlFor="rect-width" className="form-label">Width</label>
                 {
                         animData.rectangles.widthRand
-                            ? (
-                                <div className="grid-2-cols">
+                        ? (
+                            <div className="grid-2-cols">
 
-                                    <div className="d-flex">
-                                        <div className="rounded-start bg-main text-dark d-flex align-items-center px-2 py-1">From</div>
-                                        <input
-                                            type="number"
-                                            className="form-control rounded-start-0"
-                                            min="1"
-                                            value={animData.rectangles.widthRandRange.range[0]}
-                                            onChange={e => changeRange(e, setAnimData, "rectangles", "widthRandRange", 0)}
-                                        />
-                                    </div>
-
-                                    <div className="d-flex">
-                                        <div className="rounded-start bg-main text-dark d-flex align-items-center px-2 py-1">To</div>
-                                        <input
-                                            type="number"
-                                            className="form-control rounded-start-0"
-                                            min="1"
-                                            value={animData.rectangles.widthRandRange.range[1]}
-                                            onChange={e => changeRange(e, setAnimData, "rectangles", "widthRandRange", 1)}
-                                        />
-                                    </div>
-
+                                <div className="d-flex">
+                                    <div className="rounded-start bg-main text-dark d-flex align-items-center px-2 py-1">From</div>
+                                    <input
+                                        type="number"
+                                        className="form-control rounded-start-0"
+                                        min="1"
+                                        value={animData.rectangles.widthRandRange.range[0]}
+                                        onChange={e => changeRange(e, setAnimData, "rectangles", "widthRandRange", 0)}
+                                    />
                                 </div>
-                            )
-                            : (
-                                <input
-                                    className="form-control"
-                                    type="number"
-                                    id="rect-width"
-                                    name="rect-width"
-                                    data-shape-prop="width"
-                                    data-shape="rectangles"
-                                    onChange={e => changeShapeProp(e, setAnimData)}
-                                    value={animData.rectangles.width}
-                                />
-                            )
+
+                                <div className="d-flex">
+                                    <div className="rounded-start bg-main text-dark d-flex align-items-center px-2 py-1">To</div>
+                                    <input
+                                        type="number"
+                                        className="form-control rounded-start-0"
+                                        min="1"
+                                        value={animData.rectangles.widthRandRange.range[1]}
+                                        onChange={e => changeRange(e, setAnimData, "rectangles", "widthRandRange", 1)}
+                                    />
+                                </div>
+
+                            </div>
+                        )
+                        : (
+                            <input
+                                className="form-control"
+                                type="number"
+                                id="rect-width"
+                                name="rect-width"
+                                data-shape-prop="width"
+                                data-shape="rectangles"
+                                onChange={e => changeShapeProp(e, setAnimData)}
+                                value={animData.rectangles.width}
+                            />
+                        )
                 }
 
                 <button
@@ -77,44 +77,44 @@ export default function RectSettings() {
                 <label htmlFor="rect-height" className="form-label">Height</label>
                 {
                     animData.rectangles.heightRand
-                        ? (
-                            <div className="grid-2-cols">
-                                <div className="d-flex">
-                                    <div className="rounded-start bg-main text-dark d-flex align-items-center px-2 py-1">From</div>
-                                    <input
-                                        type="number"
-                                        className="form-control rounded-start-0"
-                                        min="1"
-                                        value={animData.rectangles.heightRandRange.range[0]}
-                                        onChange={e => changeRange(e, setAnimData, "rectangles", "heightRandRange", 0)}
-                                    />
-                                </div>
-
-                                <div className="d-flex">
-                                    <div className="rounded-start bg-main text-dark d-flex align-items-center px-2 py-1">To</div>
-                                    <input
-                                        type="number"
-                                        className="form-control rounded-start-0"
-                                        min="1"
-                                        value={animData.rectangles.heightRandRange.range[1]}
-                                        onChange={e => changeRange(e, setAnimData, "rectangles", "heightRandRange", 1)}
-                                    />
-                                </div>
-
+                    ? (
+                        <div className="grid-2-cols">
+                            <div className="d-flex">
+                                <div className="rounded-start bg-main text-dark d-flex align-items-center px-2 py-1">From</div>
+                                <input
+                                    type="number"
+                                    className="form-control rounded-start-0"
+                                    min="1"
+                                    value={animData.rectangles.heightRandRange.range[0]}
+                                    onChange={e => changeRange(e, setAnimData, "rectangles", "heightRandRange", 0)}
+                                />
                             </div>
-                        )
-                        : (
-                            <input
-                                className="form-control"
-                                type="number"
-                                id="rect-height"
-                                name="rect-height"
-                                data-shape-prop="height"
-                                data-shape="rectangles"
-                                onChange={e => changeShapeProp(e, setAnimData)}
-                                value={animData.rectangles.height}
-                            />
-                        )
+
+                            <div className="d-flex">
+                                <div className="rounded-start bg-main text-dark d-flex align-items-center px-2 py-1">To</div>
+                                <input
+                                    type="number"
+                                    className="form-control rounded-start-0"
+                                    min="1"
+                                    value={animData.rectangles.heightRandRange.range[1]}
+                                    onChange={e => changeRange(e, setAnimData, "rectangles", "heightRandRange", 1)}
+                                />
+                            </div>
+
+                        </div>
+                    )
+                    : (
+                        <input
+                            className="form-control"
+                            type="number"
+                            id="rect-height"
+                            name="rect-height"
+                            data-shape-prop="height"
+                            data-shape="rectangles"
+                            onChange={e => changeShapeProp(e, setAnimData)}
+                            value={animData.rectangles.height}
+                        />
+                    )
                 }
 
                 <button

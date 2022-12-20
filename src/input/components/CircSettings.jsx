@@ -17,45 +17,45 @@ export default function CircSettings() {
                 <label htmlFor="circ-radius" className="form-label">Radius</label>
                 {
                     animData.circles.radiusRand
-                        ? (
-                            <div className="grid-2-cols">
+                    ? (
+                        <div className="grid-2-cols">
 
-                                <div className="d-flex">
-                                    <div className="rounded-start bg-main text-dark d-flex align-items-center px-2 py-1">From</div>
-                                    <input
-                                        type="number"
-                                        className="form-control rounded-start-0"
-                                        min="1"
-                                        value={animData.circles.radiusRandRange.range[0]}
-                                        onChange={e => changeRange(e, setAnimData, "circles", "radiusRandRange", 0)}
-                                    />
-                                </div>
-
-                                <div className="d-flex">
-                                    <div className="rounded-start bg-main text-dark d-flex align-items-center px-2 py-1">To</div>
-                                    <input
-                                        type="number"
-                                        className="form-control rounded-start-0"
-                                        min="1"
-                                        value={animData.circles.radiusRandRange.range[1]}
-                                        onChange={e => changeRange(e, setAnimData, "circles", "radiusRandRange", 1)}
-                                    />
-                                </div>
-
+                            <div className="d-flex">
+                                <div className="rounded-start bg-main text-dark d-flex align-items-center px-2 py-1">From</div>
+                                <input
+                                    type="number"
+                                    className="form-control rounded-start-0"
+                                    min="1"
+                                    value={animData.circles.radiusRandRange.range[0]}
+                                    onChange={e => changeRange(e, setAnimData, "circles", "radiusRandRange", 0)}
+                                />
                             </div>
-                        )
-                        : (
-                            <input
-                                className="form-control"
-                                type="number"
-                                id="circ-radius"
-                                name="circ-radius"
-                                data-shape-prop="radius"
-                                data-shape="circles"
-                                onChange={e => changeShapeProp(e, setAnimData)}
-                                value={animData.circles.radius}
-                            />
-                        )
+
+                            <div className="d-flex">
+                                <div className="rounded-start bg-main text-dark d-flex align-items-center px-2 py-1">To</div>
+                                <input
+                                    type="number"
+                                    className="form-control rounded-start-0"
+                                    min="1"
+                                    value={animData.circles.radiusRandRange.range[1]}
+                                    onChange={e => changeRange(e, setAnimData, "circles", "radiusRandRange", 1)}
+                                />
+                            </div>
+
+                        </div>
+                    )
+                    : (
+                        <input
+                            className="form-control"
+                            type="number"
+                            id="circ-radius"
+                            name="circ-radius"
+                            data-shape-prop="radius"
+                            data-shape="circles"
+                            onChange={e => changeShapeProp(e, setAnimData)}
+                            value={animData.circles.radius}
+                        />
+                    )
                 }
 
                 <button
