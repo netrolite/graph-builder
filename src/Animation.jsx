@@ -1,13 +1,17 @@
 import { useEffect, useRef, useContext } from "react"
-import { AnimDataContext } from "./App";
+import { intFromRangeArr } from "./input/functions";
+import { AnimDataContext, SetAnimDataContext } from "./App";
+import { useDefaultVals } from "./input/functions";
 import Rectangle from "./shapes/rectangle"
 import Circle from "./shapes/circle"
 
 
 export default function Animation() {
 	const animData = useContext(AnimDataContext);
+	const setAnimData = useContext(SetAnimDataContext);
 	const { velocity, circles, rectangles, shapesAmount, fillColors, strokeColor, bgColor } = animData;
 	const canvasRef = useRef();
+	console.log(animData);
 
 	useEffect(() => {
 		window.addEventListener("resize", resize);
@@ -17,7 +21,6 @@ export default function Animation() {
 			window.removeEventListener("resize", resize);
 		}
 	}, [])
-	
 
 	let shapes = [];
 	
@@ -45,11 +48,10 @@ export default function Animation() {
 	
 		
 		if (!shapes.length) {
-			const intVelocity = parseInt(velocity);
-			const circRadius = parseInt(circles.radius);
-			const rectWidth = parseInt(rectangles.width);
-			const rectHeight = parseInt(rectangles.height);
-			const rectCornerRadius = parseInt(rectangles.cornerRadius);
+			// values that can be random
+			let circRadius;
+			let rectWidth;
+			let rectHeight;
 
 			// ["circles", "rectangles"]
 			let availableShapes = [];
@@ -59,20 +61,31 @@ export default function Animation() {
 			for (let i = 0; i < shapesAmount; i++) {
 				// new Cirlce(radius, maxRadius, expansionRange, filled, fillColors, strokeColor, velocity, canvas, c, mousePos);
 				// new Rectangle(width, height, maxWidth, cornerRadius, expansionRange, filled, fillColors, strokeColor, velocity, canvas, c, mousePos);
-				const newShape = availableShapes[Math.floor(Math.random() * availableShapes.length)]
+				const newShape = availableShapes[Math.floor(Math.random() * availableShapes.length)];
 
 				if (newShape === "rectangle") {
+					// if user wants value to be random, get a random value from range
+					if (rectangles.widthRand) {
+						rectWidth = intFromRangeArr(rectangles.widthRandRange.range);
+					}
+					else rectWidth = rectangles.width;
+
+					if (rectangles.heightRand) {
+						rectHeight = intFromRangeArr(rectangles.heightRandRange.range);
+					}
+					else rectHeight = rectangles.height;
+
 					shapes.push(
 						new Rectangle(
 							rectWidth,
 							rectHeight,
 							rectWidth + 20, // maxWidth
-							rectCornerRadius, // cornerRadius
+							rectangles.cornerRadius,
 							100, // expansionRange
 							rectangles.filled,
 							fillColors,
 							strokeColor,
-							intVelocity,
+							velocity,
 							canvas,
 							c,
 							mousePos
@@ -80,6 +93,12 @@ export default function Animation() {
 					)
 				}
 				else if (newShape === "circle") {
+					// if user wants value to be random, get a random value from range
+					if (circles.radiusRand) {
+						circRadius = intFromRangeArr(circles.radiusRandRange.range);
+					}
+					else circRadius = circles.radius
+
 					shapes.push(
 						new Circle(
 							circRadius,
@@ -88,7 +107,7 @@ export default function Animation() {
 							circles.filled,
 							fillColors,
 							strokeColor,
-							intVelocity,
+							velocity,
 							canvas,
 							c,
 							mousePos

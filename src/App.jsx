@@ -16,32 +16,42 @@ export default function App() {
 	const randomPalette = palettes[Math.floor(Math.random() * palettes.length)]
 
 	const [animData, setAnimData] = useState({
-		shapesAmount: "10",
+		shapesAmount: 10,
 		rectangles: {
 				checked: true,
-				width: "60",
-				height: "40",
-				cornerRadius: "0",
+				width: 60,
+				height: 40,
+				cornerRadius: 5,
+				filled: true,
+				// random values
+				// defaults must not be changed
 				widthRand: true,
-				widthRandRange: ["10", "100"],
-				heightRand: false,
-				heightRandRange: ["20", "50"],
-				cornerRadiusRand: true,
-				cornerRadiusRandRange: ["0", "10"],
-				filled: true
+				widthRandRange: {
+					range: [50, 100],
+					default: [50, 100]
+				},
+				heightRand: true,
+				heightRandRange: {
+					range: [50, 100],
+					default: [50, 100]
+				}
 		},
 		circles: {
 			checked: true,
-			radius: "20",
-			radiusRand: false,
-			radiusRandomRand: ["10", "30"],
-			filled: true
+			radius: 20,
+			filled: true,
+			// random values
+			// defaults must not be changed
+			radiusRand: true,
+			radiusRandRange: {
+				range: [20, 40],
+				default: [20, 40]
+			}
 		},
-		velocity: "5",
+		velocity: 1,
 		palettes: palettes,
 		strokeColor: "#000000",
 		fillColors: randomPalette,
-		strokeColor: "#000000",
 		bgColor: "#ffffff"
 	})
 

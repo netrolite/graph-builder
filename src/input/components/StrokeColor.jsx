@@ -16,7 +16,8 @@ export default function StrokeColor() {
                         className="form-control form-control-color"
                         value={animData.strokeColor}
                         id="stroke-color"
-                        name="strokeColor"
+                        name="stroke-color"
+                        data-prop="strokeColor"
                         onChange={e => changeProp(e, setAnimData)}
                     />
 

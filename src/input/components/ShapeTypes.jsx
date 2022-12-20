@@ -16,7 +16,8 @@ export default function ShapeTypes() {
                         className="form-check-input"
                         type="checkbox"
                         id="rect-checked"
-                        name="rectangles"
+                        name="rect-checked"
+                        data-shape="rectangles"
                         data-shape-prop="checked"
                         onChange={e => changeShapeProp(e, setAnimData, true)}
                         checked={animData.rectangles.checked}
@@ -29,7 +30,8 @@ export default function ShapeTypes() {
                         className="form-check-input"
                         type="checkbox"
                         id="circ-checked"
-                        name="circles"
+                        name="circ-checked"
+                        data-shape="circles"
                         data-shape-prop="checked"
                         onChange={e => changeShapeProp(e, setAnimData, true)}
                         checked={animData.circles.checked}

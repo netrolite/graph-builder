@@ -91,3 +91,19 @@
     height: 30px;
     border-radius: 0.25rem;
 }
+
+.inputs-random {
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-random {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.rounded-start-0 {
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important; 
+}

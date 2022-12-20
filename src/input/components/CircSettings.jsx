@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { AnimDataContext, SetAnimDataContext } from "../../App"
-import { changeShapeProp } from "../functions";
+import { changeShapeProp, toggleRandomValue, changeRange } from "../functions";
 
 export default function CircSettings() {
     const animData = useContext(AnimDataContext);
@@ -15,17 +15,60 @@ export default function CircSettings() {
 
             <div className="input-subgroup">
                 <label htmlFor="circ-radius" className="form-label">Radius</label>
-                <div className="input-elem">
-                    <input
-                        className="form-control"
-                        type="number"
-                        id="circ-radius"
-                        name="circles"
-                        data-shape-prop="radius"
-                        onChange={e => changeShapeProp(e, setAnimData)}
-                        value={animData.circles.radius}
-                    />
-                </div>
+                {
+                    animData.circles.radiusRand
+                    ? (
+                        <div className="grid-2-cols">
+
+                            <div className="d-flex">
+                                <div className="rounded-start bg-main text-dark d-flex align-items-center px-2 py-1">From</div>
+                                <input
+                                    type="number"
+                                    className="form-control rounded-start-0"
+                                    min="1"
+                                    value={animData.circles.radiusRandRange.range[0]}
+                                    onChange={e => changeRange(e, setAnimData, "circles", "radiusRandRange", 0)}
+                                />
+                            </div>
+
+                            <div className="d-flex">
+                                <div className="rounded-start bg-main text-dark d-flex align-items-center px-2 py-1">To</div>
+                                <input
+                                    type="number"
+                                    className="form-control rounded-start-0"
+                                    min="1"
+                                    value={animData.circles.radiusRandRange.range[1]}
+                                    onChange={e => changeRange(e, setAnimData, "circles", "radiusRandRange", 1)}
+                                />
+                            </div>
+
+                        </div>
+                    )
+                    : (
+                        <input
+                            className="form-control"
+                            type="number"
+                            id="circ-radius"
+                            name="circ-radius"
+                            data-shape-prop="radius"
+                            data-shape="circles"
+                            onChange={e => changeShapeProp(e, setAnimData)}
+                            value={animData.circles.radius}
+                        />
+                    )
+                }
+
+                <button
+                    type="button"
+                    className="button button-small mt-2"
+                    onClick={() => toggleRandomValue(setAnimData, "circles", "radiusRand")}
+                >
+                    {
+                        animData.circles.radiusRand
+                        ? "Use Static Value"
+                        : "Use Random Value"
+                    }
+                </button>
             </div>
 
             <div className="input-subgroup">
@@ -34,8 +77,9 @@ export default function CircSettings() {
                         className="form-check-input"
                         type="checkbox"
                         id="circ-filled"
-                        name="circles"
+                        name="circ-filled"
                         data-shape-prop="filled"
+                        data-shape="circles"
                         checked={animData.circles.filled}
                         onChange={e => changeShapeProp(e, setAnimData, true)}
                     />
