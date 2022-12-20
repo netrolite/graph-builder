@@ -28,7 +28,7 @@ export default function RectSettings() {
                                             type="number"
                                             className="form-control rounded-start-0"
                                             min="1"
-                                            value={animData.rectangles.widthRandRange[0]}
+                                            value={animData.rectangles.widthRandRange.range[0]}
                                             onChange={e => changeRange(e, setAnimData, "rectangles", "widthRandRange", 0)}
                                         />
                                     </div>
@@ -39,7 +39,7 @@ export default function RectSettings() {
                                             type="number"
                                             className="form-control rounded-start-0"
                                             min="1"
-                                            value={animData.rectangles.widthRandRange[1]}
+                                            value={animData.rectangles.widthRandRange.range[1]}
                                             onChange={e => changeRange(e, setAnimData, "rectangles", "widthRandRange", 1)}
                                         />
                                     </div>
@@ -79,7 +79,6 @@ export default function RectSettings() {
                     animData.rectangles.heightRand
                         ? (
                             <div className="grid-2-cols">
-
                                 <div className="d-flex">
                                     <div className="rounded-start bg-main text-dark d-flex align-items-center px-2 py-1">From</div>
                                     <input
@@ -97,7 +96,7 @@ export default function RectSettings() {
                                         type="number"
                                         className="form-control rounded-start-0"
                                         min="1"
-                                        value={animData.rectangles.heightRandRange[1]}
+                                        value={animData.rectangles.heightRandRange.range[1]}
                                         onChange={e => changeRange(e, setAnimData, "rectangles", "heightRandRange", 1)}
                                     />
                                 </div>

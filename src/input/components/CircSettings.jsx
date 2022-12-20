@@ -26,7 +26,7 @@ export default function CircSettings() {
                                         type="number"
                                         className="form-control rounded-start-0"
                                         min="1"
-                                        value={animData.circles.radiusRandRange[0]}
+                                        value={animData.circles.radiusRandRange.range[0]}
                                         onChange={e => changeRange(e, setAnimData, "circles", "radiusRandRange", 0)}
                                     />
                                 </div>
@@ -37,7 +37,7 @@ export default function CircSettings() {
                                         type="number"
                                         className="form-control rounded-start-0"
                                         min="1"
-                                        value={animData.circles.radiusRandRange[1]}
+                                        value={animData.circles.radiusRandRange.range[1]}
                                         onChange={e => changeRange(e, setAnimData, "circles", "radiusRandRange", 1)}
                                     />
                                 </div>

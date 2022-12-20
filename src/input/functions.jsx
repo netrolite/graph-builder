@@ -56,10 +56,11 @@ function intFromRangeArr(range) {
 
 function changeRange(e, setAnimData, shape, shapeProp, rangeIndex) {
     // rangeIndex must be either 0 (start) or 1 (end)
-
     setAnimData(prevState => {
         let value = parseInt(e.target.value);
-        
+        // react needs value to be casted to a string if it's typeof NaN
+        if (isNaN(value)) value = "";
+
         // copy previous state of range array
         let newRange = [...prevState[shape][shapeProp].range];
         // replace value at "rangeIndex"
