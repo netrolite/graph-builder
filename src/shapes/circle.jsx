@@ -2,7 +2,6 @@ import Shape from "./shape";
 
 export default class Circle extends Shape {
     constructor(radius, maxRadius, ...args) {
-        console.log(radius, maxRadius);
         super(...args);
         this.x = Math.random() * (this.canvas.width - radius * 2) + radius;
         this.y = Math.random() * (this.canvas.height - radius * 2) + radius;

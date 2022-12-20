@@ -9,9 +9,12 @@ import FillColors from "./components/FIllColors";
 import StartAnimBtn from "./components/buttons/StartAnimBtn";
 import RectSettings from "./components/RectSettings";
 import CircSettings from "./components/CircSettings";
-import { useState } from "react";
+import { checkValuesProvided } from "./functions";
+import { useContext, useState } from "react";
+import { SetAnimDataContext } from "../App";
 
 export default function Input() {
+    const setAnimData = useContext(SetAnimDataContext);
     const [showPalettesPopup, setShowPalettesPopup] = useState(false);
     // resets body background-color when going back from animation to this page
     document.body.style.backgroundColor = null;

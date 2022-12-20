@@ -1,12 +1,14 @@
 import { useEffect, useRef, useContext } from "react"
 import { intFromRangeArr } from "./input/functions";
-import { AnimDataContext } from "./App";
+import { AnimDataContext, SetAnimDataContext } from "./App";
+import { useDefaultVals } from "./input/functions";
 import Rectangle from "./shapes/rectangle"
 import Circle from "./shapes/circle"
 
 
 export default function Animation() {
 	const animData = useContext(AnimDataContext);
+	const setAnimData = useContext(SetAnimDataContext);
 	const { velocity, circles, rectangles, shapesAmount, fillColors, strokeColor, bgColor } = animData;
 	const canvasRef = useRef();
 	console.log(animData);

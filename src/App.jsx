@@ -28,12 +28,12 @@ export default function App() {
 				widthRand: true,
 				widthRandRange: {
 					range: [50, 100],
-					defaultRange: [50, 100]
+					default: [50, 100]
 				},
 				heightRand: true,
 				heightRandRange: {
 					range: [50, 100],
-					defaultRange: [50, 100]
+					default: [50, 100]
 				}
 		},
 		circles: {
@@ -45,7 +45,7 @@ export default function App() {
 			radiusRand: true,
 			radiusRandRange: {
 				range: [20, 40],
-				defaultRange: [20, 40]
+				default: [20, 40]
 			}
 		},
 		velocity: 1,

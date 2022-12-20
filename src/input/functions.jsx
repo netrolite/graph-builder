@@ -1,5 +1,3 @@
-import { SetAnimDataContext } from "../App";
-
 // changes "Amount of Shapes", "Velocity"...
 function changeProp(e, setAnimData) {
     const prop = e.target.dataset.prop
@@ -79,10 +77,45 @@ function changeRange(e, setAnimData, shape, shapeProp, rangeIndex) {
     })
 }
 
+function useDefaultVals(setAnimData, shape, prop) {
+    setAnimData(prevState => {
+        // if value is not provided (empty string), replace it with a default
+        // animData.rectangles.widthRandRange.range.forEach
+        const newRange = prevState[shape][prop].range.map((item, index) => {
+            if (typeof item === "string") {
+                console.log(item);
+                const defaultVal = prevState[shape][prop].default[index];
+                item = defaultVal;
+            }
+            return item;
+        })
+        
+        return {
+            ...prevState,
+            [shape]: {
+                ...prevState[shape],
+                [prop]: {
+                    ...prevState[shape][prop],
+                    range: newRange
+                }
+            }
+        }
+    })
+}
+
+function checkValuesProvided(setAnimData) {
+    // if a value is not provided (empty string), replace it with a default value
+    useDefaultVals(setAnimData, "rectangles", "widthRandRange");
+    useDefaultVals(setAnimData, "rectangles", "heightRandRange");
+    useDefaultVals(setAnimData, "circles", "radiusRandRange");
+}
+
 export {
     changeProp,
     changeShapeProp,
     intFromRangeArr,
     toggleRandomValue,
-    changeRange
+    changeRange,
+    useDefaultVals,
+    checkValuesProvided
 }
