@@ -59,7 +59,7 @@ export default function Animation() {
 			for (let i = 0; i < shapesAmount; i++) {
 				// new Cirlce(radius, maxRadius, expansionRange, filled, fillColors, strokeColor, velocity, canvas, c, mousePos);
 				// new Rectangle(width, height, maxWidth, cornerRadius, expansionRange, filled, fillColors, strokeColor, velocity, canvas, c, mousePos);
-				const newShape = availableShapes[Math.floor(Math.random() * availableShapes.length)]
+				const newShape = availableShapes[Math.floor(Math.random() * availableShapes.length)];
 
 				if (newShape === "rectangle") {
 					// if user wants value to be random, get a random value from range
