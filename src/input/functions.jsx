@@ -60,7 +60,7 @@ function changeRange(e, setAnimData, shape, shapeProp, rangeIndex) {
         if (isNaN(value)) value = "";
 
         // copy previous state of range array
-        let newRange = [...prevState[shape][shapeProp].range];
+        let newRange = [...prevState[shape][shapeProp]];
         // replace value at "rangeIndex"
         newRange.splice(rangeIndex, 1, value);
 
@@ -68,10 +68,7 @@ function changeRange(e, setAnimData, shape, shapeProp, rangeIndex) {
             ...prevState,
             [shape]: {
                 ...prevState[shape],
-                [shapeProp]: {
-                    ...prevState[shape][shapeProp],
-                    range: newRange
-                }
+                [shapeProp]: newRange
             }
         }
     })

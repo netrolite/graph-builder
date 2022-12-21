@@ -28,7 +28,7 @@ export default function RectSettings() {
                                         type="number"
                                         className="form-control rounded-start-0"
                                         min="1"
-                                        value={animData.rectangles.widthRandRange.range[0]}
+                                        value={animData.rectangles.widthRandRange}
                                         onChange={e => changeRange(e, setAnimData, "rectangles", "widthRandRange", 0)}
                                     />
                                 </div>
@@ -39,7 +39,7 @@ export default function RectSettings() {
                                         type="number"
                                         className="form-control rounded-start-0"
                                         min="1"
-                                        value={animData.rectangles.widthRandRange.range[1]}
+                                        value={animData.rectangles.widthRandRange}
                                         onChange={e => changeRange(e, setAnimData, "rectangles", "widthRandRange", 1)}
                                     />
                                 </div>
@@ -85,7 +85,7 @@ export default function RectSettings() {
                                     type="number"
                                     className="form-control rounded-start-0"
                                     min="1"
-                                    value={animData.rectangles.heightRandRange.range[0]}
+                                    value={animData.rectangles.heightRandRange}
                                     onChange={e => changeRange(e, setAnimData, "rectangles", "heightRandRange", 0)}
                                 />
                             </div>
@@ -96,7 +96,7 @@ export default function RectSettings() {
                                     type="number"
                                     className="form-control rounded-start-0"
                                     min="1"
-                                    value={animData.rectangles.heightRandRange.range[1]}
+                                    value={animData.rectangles.heightRandRange}
                                     onChange={e => changeRange(e, setAnimData, "rectangles", "heightRandRange", 1)}
                                 />
                             </div>

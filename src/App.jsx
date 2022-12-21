@@ -23,18 +23,10 @@ export default function App() {
 				height: 40,
 				cornerRadius: 5,
 				filled: true,
-				// random values
-				// defaults must not be changed
 				widthRand: true,
-				widthRandRange: {
-					range: [50, 100],
-					default: [50, 100]
-				},
+				widthRandRange: [50, 100],
 				heightRand: true,
-				heightRandRange: {
-					range: [50, 100],
-					default: [50, 100]
-				}
+				heightRandRange: [50, 100],
 		},
 		circles: {
 			checked: true,
@@ -43,10 +35,7 @@ export default function App() {
 			// random values
 			// defaults must not be changed
 			radiusRand: true,
-			radiusRandRange: {
-				range: [20, 40],
-				default: [20, 40]
-			}
+			radiusRandRange: [20, 40]
 		},
 		velocity: 1,
 		palettes: palettes,
