@@ -36,6 +36,7 @@ function changeShapeProp(e, setAnimData, isBoolean = false) {
     })
 }
 
+// toggles "widthRand", "heightRand", "radiusRand"...
 function toggleRandomValue(setAnimData, shape, shapeProp) {
     setAnimData(prevState => ({
         ...prevState,
@@ -52,10 +53,12 @@ function intFromRangeArr(range) {
     return Math.ceil(Math.random() * (max - min) + min);
 }
 
+// changes ranges for values like width, height that look like [30, 50]
 function changeRange(e, setAnimData, shape, shapeProp, rangeIndex) {
     // rangeIndex must be either 0 (start) or 1 (end)
     setAnimData(prevState => {
         let value = parseInt(e.target.value);
+        console.log(value);
         // react needs value to be casted to a string if it's typeof NaN
         if (isNaN(value)) value = "";
 
@@ -73,6 +76,7 @@ function changeRange(e, setAnimData, shape, shapeProp, rangeIndex) {
         }
     })
 }
+
 
 function useDefaultVals(setAnimData, shape, prop) {
     setAnimData(prevState => {
