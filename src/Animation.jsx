@@ -1,7 +1,6 @@
 import { useEffect, useRef, useContext } from "react"
 import { intFromRangeArr } from "./input/functions";
 import { AnimDataContext, SetAnimDataContext } from "./App";
-import { useDefaultVals } from "./input/functions";
 import Rectangle from "./shapes/rectangle"
 import Circle from "./shapes/circle"
 
@@ -66,15 +65,14 @@ export default function Animation() {
 				if (newShape === "rectangle") {
 					// if user wants value to be random, get a random value from range
 					if (rectangles.widthRand) {
-						rectWidth = intFromRangeArr(rectangles.widthRandRange.range);
+						rectWidth = intFromRangeArr(rectangles.widthRandRange);
 					}
 					else rectWidth = rectangles.width;
 
 					if (rectangles.heightRand) {
-						rectHeight = intFromRangeArr(rectangles.heightRandRange.range);
+						rectHeight = intFromRangeArr(rectangles.heightRandRange);
 					}
 					else rectHeight = rectangles.height;
-
 					shapes.push(
 						new Rectangle(
 							rectWidth,
@@ -95,7 +93,7 @@ export default function Animation() {
 				else if (newShape === "circle") {
 					// if user wants value to be random, get a random value from range
 					if (circles.radiusRand) {
-						circRadius = intFromRangeArr(circles.radiusRandRange.range);
+						circRadius = intFromRangeArr(circles.radiusRandRange);
 					}
 					else circRadius = circles.radius
 

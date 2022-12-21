@@ -1,21 +1,20 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { SetAnimDataContext } from "../../../App";
-import { checkValuesProvided } from "../../functions";
+import { AnimDataContext, SetShowNotAllValsPopup } from "../../../App";
+import { checkAllValsProvided } from "../../functions";
 
 export default function StartAnimBtn() {
-    const setAnimData = useContext(SetAnimDataContext);
+    const animData = useContext(AnimDataContext);
+    const setShowNotAllValsPopup = useContext(SetShowNotAllValsPopup);
 
     return (
         <div className="mt-4">
-            <Link to="/animation">
-                <button
-                    className="button w-100"
-                    onClick={() => checkValuesProvided(setAnimData)}
-                >
-                    Start Animation
-                </button>
-            </Link>
+            <button
+                className="button w-100"
+                onClick={() => checkAllValsProvided(animData, setShowNotAllValsPopup)}
+            >
+                Start Animation
+            </button>
         </div>
     )
 }

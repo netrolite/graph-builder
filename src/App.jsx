@@ -5,6 +5,8 @@ import Animation from "./Animation"
 
 export const AnimDataContext = createContext();
 export const SetAnimDataContext = createContext();
+export const SetShowNotAllValsPopup = createContext();
+
 export default function App() {
 	const palettes = [
 		["#a1a2a6", "#024959", "#f2C12e", "#f2ae30", "#593e25"],
@@ -15,6 +17,7 @@ export default function App() {
 	]
 	const randomPalette = palettes[Math.floor(Math.random() * palettes.length)]
 
+	const [showNotAllValsPopup, setShowNotAllValsPopup] = useState(false);
 	const [animData, setAnimData] = useState({
 		shapesAmount: 10,
 		rectangles: {
@@ -48,22 +51,24 @@ export default function App() {
 		<>
 			<BrowserRouter>
 				<AnimDataContext.Provider value={animData}>
-					<SetAnimDataContext.Provider value={setAnimData}>						
-						<Routes>
-								<Route
-									path="/"
-									element={
-										<Input />
-									} 
-								/>
+					<SetAnimDataContext.Provider value={setAnimData}>
+						<SetShowNotAllValsPopup.Provider value={setShowNotAllValsPopup}>
+							<Routes>
+									<Route
+										path="/"
+										element={
+											<Input />
+										} 
+									/>
 
-								<Route
-									path="/animation"
-									element={
-										<Animation />
-									}
-								/>
-						</Routes>
+									<Route
+										path="/animation"
+										element={
+											<Animation />
+										}
+									/>
+							</Routes>
+						</SetShowNotAllValsPopup.Provider>
 					</SetAnimDataContext.Provider>
 				</AnimDataContext.Provider>
 			</BrowserRouter>

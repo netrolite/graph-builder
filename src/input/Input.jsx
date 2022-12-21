@@ -9,7 +9,6 @@ import FillColors from "./components/FIllColors";
 import StartAnimBtn from "./components/buttons/StartAnimBtn";
 import RectSettings from "./components/RectSettings";
 import CircSettings from "./components/CircSettings";
-import { checkValuesProvided } from "./functions";
 import { useContext, useState } from "react";
 import { SetAnimDataContext } from "../App";
 

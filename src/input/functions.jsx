@@ -1,10 +1,7 @@
 // changes "Amount of Shapes", "Velocity"...
 function changeProp(e, setAnimData) {
     const prop = e.target.dataset.prop
-    let value = e.target.value;
-    if (e.target.type === "number") {
-        value = parseInt(e.target.value);
-    }
+    const value = replaceNaN(e.target.value);
     
     setAnimData(prevState => ({
         ...prevState,
@@ -20,10 +17,7 @@ function changeShapeProp(e, setAnimData, isBoolean = false) {
     // if isBoolean, use "checked" attribute insead of "value" because value for checkboxes is always "on"
     const shape = e.target.dataset.shape;
     const prop = e.target.dataset.shapeProp;
-    let value = e.target.value;
-    if (e.target.type === "number") {
-        value = parseInt(e.target.value);
-    }
+    const value = replaceNaN(e.target.value);
 
     setAnimData(prevState => {
         return {
@@ -53,14 +47,19 @@ function intFromRangeArr(range) {
     return Math.ceil(Math.random() * (max - min) + min);
 }
 
+// if typeof NaN, replace with an empty string
+function replaceNaN(value) {
+    // react needs value to be casted to a string if it's typeof NaN
+    const parsed = parseInt(value);
+    if (isNaN(parsed)) return "";
+    return parsed;
+}
+
 // changes ranges for values like width, height that look like [30, 50]
 function changeRange(e, setAnimData, shape, shapeProp, rangeIndex) {
     // rangeIndex must be either 0 (start) or 1 (end)
     setAnimData(prevState => {
-        let value = parseInt(e.target.value);
-        console.log(value);
-        // react needs value to be casted to a string if it's typeof NaN
-        if (isNaN(value)) value = "";
+        const value = replaceNaN(e.target.value);
 
         // copy previous state of range array
         let newRange = [...prevState[shape][shapeProp]];
@@ -78,37 +77,35 @@ function changeRange(e, setAnimData, shape, shapeProp, rangeIndex) {
 }
 
 
-function useDefaultVals(setAnimData, shape, prop) {
-    setAnimData(prevState => {
-        // if value is not provided (empty string), replace it with a default
-        // animData.rectangles.widthRandRange.range.forEach
-        const newRange = prevState[shape][prop].range.map((item, index) => {
-            if (typeof item === "string") {
-                console.log(item);
-                const defaultVal = prevState[shape][prop].default[index];
-                item = defaultVal;
-            }
-            return item;
-        })
-        
-        return {
-            ...prevState,
-            [shape]: {
-                ...prevState[shape],
-                [prop]: {
-                    ...prevState[shape][prop],
-                    range: newRange
+function checkAllValsProvided(animData, setShowNotAllValsPopup) {
+        // if every value is provided (not an empty string)
+        let allValuesArr = [];
+        function getAllValues(elem) {
+            for (const prop in elem) {
+                if (typeof elem[prop] === "object") {
+                    getAllValues(elem[prop]);
+                }
+                else {
+                    allValuesArr.push(elem[prop]);
                 }
             }
         }
-    })
-}
+        getAllValues(animData);
+        console.log(allValuesArr);
 
-function checkValuesProvided(setAnimData) {
-    // if a value is not provided (empty string), replace it with a default value
-    useDefaultVals(setAnimData, "rectangles", "widthRandRange");
-    useDefaultVals(setAnimData, "rectangles", "heightRandRange");
-    useDefaultVals(setAnimData, "circles", "radiusRandRange");
+        const allProvided = allValuesArr.every(item => item !== "");
+        console.log(allProvided);
+        
+        // if any of the values isn't provided, activate popup and close after 1500 ms
+        if (!allProvided) {
+            setShowNotAllValsPopup(true);
+            setTimeout(() => {
+                setShowNotAllValsPopup(false);
+            }, 1500);
+        }
+        else {
+
+        }
 }
 
 export {
@@ -117,6 +114,5 @@ export {
     intFromRangeArr,
     toggleRandomValue,
     changeRange,
-    useDefaultVals,
-    checkValuesProvided
+    checkAllValsProvided
 }
