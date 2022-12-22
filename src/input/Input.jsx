@@ -1,5 +1,5 @@
-import "./input.css"
 import BrowseColorsPopup from "./components/popups/BrowseColorsPopup";
+import Alert from "./components/popups/Alert"
 import ShapesAmount from "./components/ShapesAmount";
 import Velocity from "./components/Velocity";
 import ShapeTypes from "./components/ShapeTypes";
@@ -15,6 +15,7 @@ import { SetAnimDataContext } from "../App";
 export default function Input() {
     const setAnimData = useContext(SetAnimDataContext);
     const [showPalettesPopup, setShowPalettesPopup] = useState(false);
+    const [showNotAllDataProvidedAlert, setShowNotAllDataProvidedAlert] = useState(false);
     // resets body background-color when going back from animation to this page
     document.body.style.backgroundColor = null;
 
@@ -24,6 +25,7 @@ export default function Input() {
 
             <form className="inputs">
                 <BrowseColorsPopup showPalettesPopup={showPalettesPopup} />
+                <Alert active={showNotAllDataProvidedAlert} content="You can't leave any input fields blank!" />
                 <ShapesAmount />
                 <Velocity />
                 <BgColor />
