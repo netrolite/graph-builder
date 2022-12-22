@@ -18,7 +18,7 @@ export default function BgColor() {
                         id="bg-color"
                         name="bg-color"
                         data-prop="bgColor"
-                        onChange={e => changeProp(e, setAnimData)}
+                        onChange={e => changeProp(e, setAnimData, true)}
                     />
 
                     {animData.bgColor}

@@ -18,7 +18,7 @@ export default function StrokeColor() {
                         id="stroke-color"
                         name="stroke-color"
                         data-prop="strokeColor"
-                        onChange={e => changeProp(e, setAnimData)}
+                        onChange={e => changeProp(e, setAnimData, true)}
                     />
 
                     {animData.strokeColor}

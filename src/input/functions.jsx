@@ -1,7 +1,20 @@
 // changes "Amount of Shapes", "Velocity"...
-function changeProp(e, setAnimData) {
-    const prop = e.target.dataset.prop
-    const value = e.target.value;
+function changeProp(e, setAnimData, isColor = false) {
+    const prop = e.target.dataset.prop;
+    let value;
+    if (isColor) value = e.target.value;
+    else value = replaceNaN(e.target.value);
+
+    setAnimData(prevState => ({
+        ...prevState,
+        [prop]: value
+    }))
+}
+
+// changes gravity, collisions...
+function changePropBool(e, setAnimData) {
+    const prop = e.target.dataset.prop;
+    const value = e.target.checked;
 
     setAnimData(prevState => ({
         ...prevState,
@@ -77,34 +90,11 @@ function changeRange(e, setAnimData, shape, shapeProp, rangeIndex) {
 }
 
 
-// check if all values from all inputs visible on screen are provided (not an empty string)
-function checkAllValsProvided(setShowNotAllValsAlert) {
-        const inputsNodes = document.querySelectorAll("input");
-        const inputs = Array.from(inputsNodes);
-        // inputs type checkbox don't have a value so I'm excluding them
-        const inputsExceptCheckboxes = inputs.filter(input => input.type !== "checkbox");
-
-        const allProvided = inputsExceptCheckboxes.every(input => (
-            input.value !== ""
-        ))
-
-        // if any of the values aren't provided, activate alert and close after 1s
-        if (!allProvided) {
-            setShowNotAllValsAlert(true);
-            setTimeout(() => {
-                setShowNotAllValsAlert(false);
-            }, 1500);
-        }
-        else {
-            location.href = "/animation"
-        }
-}
-
 export {
     changeProp,
+    changePropBool,
     changeShapeProp,
     intFromRangeArr,
     toggleRandomValue,
-    changeRange,
-    checkAllValsProvided
+    changeRange
 }
