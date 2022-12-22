@@ -1,7 +1,6 @@
 import BrowseColorsPopup from "./components/popups/BrowseColorsPopup";
 import Alert from "./components/popups/Alert"
-import ShapesAmount from "./components/ShapesAmount";
-import Velocity from "./components/Velocity";
+import Physics from "./components/Physics";
 import ShapeTypes from "./components/ShapeTypes";
 import StrokeColor from "./components/StrokeColor";
 import BgColor from "./components/BgColor";
@@ -23,8 +22,7 @@ export default function Input() {
             <form className="inputs">
                 <BrowseColorsPopup showPalettesPopup={showPalettesPopup} />
                 <Alert content="You can't leave any input fields blank!" />
-                <ShapesAmount />
-                <Velocity />
+                <Physics />
                 <BgColor />
                 <StrokeColor />
                 <FillColors setShowPalettesPopup={setShowPalettesPopup} />

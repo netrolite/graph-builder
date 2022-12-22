@@ -49,6 +49,7 @@ export default function App() {
 		bgColor: "#ffffff"
 	})
 
+
 	return (
 		<>
 			<BrowserRouter>
