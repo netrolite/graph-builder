@@ -87,9 +87,8 @@ function checkAllValsProvided(setShowNotAllValsAlert) {
         const allProvided = inputsExceptCheckboxes.every(input => (
             input.value !== ""
         ))
-        console.log(allProvided);
 
-        // if any of the values isn't provided, activate alert and close after 1s
+        // if any of the values aren't provided, activate alert and close after 1s
         if (!allProvided) {
             setShowNotAllValsAlert(true);
             setTimeout(() => {
