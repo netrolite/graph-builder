@@ -18,7 +18,12 @@ export default function App() {
 	]
 	const randomPalette = palettes[Math.floor(Math.random() * palettes.length)]
 	const [showNotAllValsAlert, setShowNotAllValsAlert] = useState(false);
-	const [animData, setAnimData] = useState({
+	const localStorageAnimData = JSON.parse(localStorage.getItem("animData"));
+	const [animData, setAnimData] = useState(
+		localStorageAnimData || defaultAnimData
+	)
+
+	const defaultAnimData = {
 		shapesAmount: 10,
 		rectangles: {
 				checked: true,
@@ -35,8 +40,6 @@ export default function App() {
 			checked: true,
 			radius: 20,
 			filled: true,
-			// random values
-			// defaults must not be changed
 			radiusRand: true,
 			radiusRandRange: [20, 40]
 		},
@@ -45,7 +48,10 @@ export default function App() {
 		strokeColor: "#000000",
 		fillColors: randomPalette,
 		bgColor: "#ffffff"
-	})
+	}
+
+	console.log("set item");
+	localStorage.setItem("animData", JSON.stringify(animData));
 
 	return (
 		<>
