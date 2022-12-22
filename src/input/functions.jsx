@@ -1,8 +1,8 @@
 // changes "Amount of Shapes", "Velocity"...
 function changeProp(e, setAnimData) {
     const prop = e.target.dataset.prop
-    const value = replaceNaN(e.target.value);
-    
+    const value = e.target.value;
+
     setAnimData(prevState => ({
         ...prevState,
         [prop]: value
