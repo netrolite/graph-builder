@@ -10,12 +10,11 @@ import StartAnimBtn from "./components/buttons/StartAnimBtn";
 import RectSettings from "./components/RectSettings";
 import CircSettings from "./components/CircSettings";
 import { useContext, useState } from "react";
-import { SetAnimDataContext } from "../App";
+import { SetAnimDataContext, SetShowNotAllValsAlertContext, ShowNotAllValsAlertContext } from "../App";
 
 export default function Input() {
     const setAnimData = useContext(SetAnimDataContext);
     const [showPalettesPopup, setShowPalettesPopup] = useState(false);
-    const [showNotAllDataProvidedAlert, setShowNotAllDataProvidedAlert] = useState(false);
     // resets body background-color when going back from animation to this page
     document.body.style.backgroundColor = null;
 
@@ -25,7 +24,7 @@ export default function Input() {
 
             <form className="inputs">
                 <BrowseColorsPopup showPalettesPopup={showPalettesPopup} />
-                <Alert active={showNotAllDataProvidedAlert} content="You can't leave any input fields blank!" />
+                <Alert content="You can't leave any input fields blank!" />
                 <ShapesAmount />
                 <Velocity />
                 <BgColor />

@@ -5,7 +5,8 @@ import Animation from "./Animation"
 
 export const AnimDataContext = createContext();
 export const SetAnimDataContext = createContext();
-export const SetShowNotAllValsPopup = createContext();
+export const SetShowNotAllValsAlertContext = createContext();
+export const ShowNotAllValsAlertContext = createContext();
 
 export default function App() {
 	const palettes = [
@@ -16,8 +17,7 @@ export default function App() {
 		["#BD2A2E", "#3B3936", "#B2BEBF", "#889C9B", "#486966"],
 	]
 	const randomPalette = palettes[Math.floor(Math.random() * palettes.length)]
-
-	const [showNotAllValsPopup, setShowNotAllValsPopup] = useState(false);
+	const [showNotAllValsAlert, setShowNotAllValsAlert] = useState(false);
 	const [animData, setAnimData] = useState({
 		shapesAmount: 10,
 		rectangles: {
@@ -51,25 +51,27 @@ export default function App() {
 		<>
 			<BrowserRouter>
 				<AnimDataContext.Provider value={animData}>
-					<SetAnimDataContext.Provider value={setAnimData}>
-						<SetShowNotAllValsPopup.Provider value={setShowNotAllValsPopup}>
-							<Routes>
-									<Route
-										path="/"
-										element={
-											<Input />
-										} 
-									/>
+				<SetAnimDataContext.Provider value={setAnimData}>
+				<SetShowNotAllValsAlertContext.Provider value={setShowNotAllValsAlert}>
+				<ShowNotAllValsAlertContext.Provider value={showNotAllValsAlert}>
+					<Routes>
+						<Route
+							path="/"
+							element={
+								<Input />
+							} 
+						/>
 
-									<Route
-										path="/animation"
-										element={
-											<Animation />
-										}
-									/>
-							</Routes>
-						</SetShowNotAllValsPopup.Provider>
-					</SetAnimDataContext.Provider>
+						<Route
+							path="/animation"
+							element={
+								<Animation />
+							}
+						/>
+					</Routes>
+				</ShowNotAllValsAlertContext.Provider>
+				</SetShowNotAllValsAlertContext.Provider>						
+				</SetAnimDataContext.Provider>
 				</AnimDataContext.Provider>
 			</BrowserRouter>
 		</>

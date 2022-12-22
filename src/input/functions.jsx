@@ -77,34 +77,27 @@ function changeRange(e, setAnimData, shape, shapeProp, rangeIndex) {
 }
 
 
-function checkAllValsProvided(animData, setShowNotAllValsPopup) {
-        // if every value is provided (not an empty string)
-        let allValuesArr = [];
-        function getAllValues(elem) {
-            for (const prop in elem) {
-                if (typeof elem[prop] === "object") {
-                    getAllValues(elem[prop]);
-                }
-                else {
-                    allValuesArr.push(elem[prop]);
-                }
-            }
-        }
-        getAllValues(animData);
-        console.log(allValuesArr);
+// check if all values from all inputs visible on screen are provided (not an empty string)
+function checkAllValsProvided(setShowNotAllValsAlert) {
+        const inputsNodes = document.querySelectorAll("input");
+        const inputs = Array.from(inputsNodes);
+        // inputs type checkbox don't have a value so I'm excluding them
+        const inputsExceptCheckboxes = inputs.filter(input => input.type !== "checkbox");
 
-        const allProvided = allValuesArr.every(item => item !== "");
+        const allProvided = inputsExceptCheckboxes.every(input => (
+            input.value !== ""
+        ))
         console.log(allProvided);
-        
-        // if any of the values isn't provided, activate popup and close after 1500 ms
+
+        // if any of the values isn't provided, activate alert and close after 1s
         if (!allProvided) {
-            setShowNotAllValsPopup(true);
+            setShowNotAllValsAlert(true);
             setTimeout(() => {
-                setShowNotAllValsPopup(false);
+                setShowNotAllValsAlert(false);
             }, 1500);
         }
         else {
-
+            location.href = "/animation"
         }
 }
 
