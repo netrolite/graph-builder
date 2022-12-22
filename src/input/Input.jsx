@@ -1,7 +1,6 @@
 import BrowseColorsPopup from "./components/popups/BrowseColorsPopup";
 import Alert from "./components/popups/Alert"
-import ShapesAmount from "./components/ShapesAmount";
-import Velocity from "./components/Velocity";
+import Physics from "./components/Physics";
 import ShapeTypes from "./components/ShapeTypes";
 import StrokeColor from "./components/StrokeColor";
 import BgColor from "./components/BgColor";
@@ -9,11 +8,9 @@ import FillColors from "./components/FIllColors";
 import StartAnimBtn from "./components/buttons/StartAnimBtn";
 import RectSettings from "./components/RectSettings";
 import CircSettings from "./components/CircSettings";
-import { useContext, useState } from "react";
-import { SetAnimDataContext, SetShowNotAllValsAlertContext, ShowNotAllValsAlertContext } from "../App";
+import { useState } from "react";
 
 export default function Input() {
-    const setAnimData = useContext(SetAnimDataContext);
     const [showPalettesPopup, setShowPalettesPopup] = useState(false);
     // resets body background-color when going back from animation to this page
     document.body.style.backgroundColor = null;
@@ -25,8 +22,7 @@ export default function Input() {
             <form className="inputs">
                 <BrowseColorsPopup showPalettesPopup={showPalettesPopup} />
                 <Alert content="You can't leave any input fields blank!" />
-                <ShapesAmount />
-                <Velocity />
+                <Physics />
                 <BgColor />
                 <StrokeColor />
                 <FillColors setShowPalettesPopup={setShowPalettesPopup} />

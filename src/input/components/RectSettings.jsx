@@ -23,7 +23,7 @@ export default function RectSettings() {
                             <div className="grid-2-cols">
 
                                 <div className="d-flex">
-                                    <div className="rounded-start bg-main text-dark d-flex align-items-center px-2 py-1">From</div>
+                                    <div className="input-prefix">From</div>
                                     <input
                                         type="number"
                                         className="form-control rounded-start-0"
@@ -34,7 +34,7 @@ export default function RectSettings() {
                                 </div>
 
                                 <div className="d-flex">
-                                    <div className="rounded-start bg-main text-dark d-flex align-items-center px-2 py-1">To</div>
+                                    <div className="input-prefix">To</div>
                                     <input
                                         type="number"
                                         className="form-control rounded-start-0"
@@ -80,7 +80,7 @@ export default function RectSettings() {
                     ? (
                         <div className="grid-2-cols">
                             <div className="d-flex">
-                                <div className="rounded-start bg-main text-dark d-flex align-items-center px-2 py-1">From</div>
+                                <div className="input-prefix">From</div>
                                 <input
                                     type="number"
                                     className="form-control rounded-start-0"
@@ -91,7 +91,7 @@ export default function RectSettings() {
                             </div>
 
                             <div className="d-flex">
-                                <div className="rounded-start bg-main text-dark d-flex align-items-center px-2 py-1">To</div>
+                                <div className="input-prefix">To</div>
                                 <input
                                     type="number"
                                     className="form-control rounded-start-0"

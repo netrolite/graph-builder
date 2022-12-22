@@ -16,14 +16,11 @@ export default function App() {
 		["#FF4858", "#1B7F79", "#00CCC0", "#72F2EB", "#747F7F"],
 		["#BD2A2E", "#3B3936", "#B2BEBF", "#889C9B", "#486966"],
 	]
-	const randomPalette = palettes[Math.floor(Math.random() * palettes.length)]
-	const [showNotAllValsAlert, setShowNotAllValsAlert] = useState(false);
-	const localStorageAnimData = JSON.parse(localStorage.getItem("animData"));
-	const [animData, setAnimData] = useState(
-		localStorageAnimData || defaultAnimData
-	)
+	const randomPalette = palettes[Math.floor(Math.random() * palettes.length)];
 
 	const defaultAnimData = {
+		gravity: false,
+		collisions: false,
 		shapesAmount: 10,
 		rectangles: {
 				checked: true,
@@ -49,9 +46,17 @@ export default function App() {
 		fillColors: randomPalette,
 		bgColor: "#ffffff"
 	}
+	const localStorageAnimData = JSON.parse(localStorage.getItem("animData"));
+	const [animData, setAnimData] = useState(
+		localStorageAnimData || defaultAnimData
+	)
+	
+	// show alert that some input fields are blank
+	const [showNotAllValsAlert, setShowNotAllValsAlert] = useState(false);
 
-	console.log("set item");
+
 	localStorage.setItem("animData", JSON.stringify(animData));
+
 
 	return (
 		<>

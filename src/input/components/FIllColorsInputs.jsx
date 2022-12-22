@@ -1,6 +1,11 @@
+import { useContext } from "react";
+import { AnimDataContext, SetAnimDataContext } from "../../App";
 import { BiTrash } from "react-icons/bi"
 
-export default function FillColorsInputs({animData, setAnimData}) {
+export default function FillColorsInputs() {
+    const animData = useContext(AnimDataContext);
+    const setAnimData = useContext(SetAnimDataContext);
+
     function deleteColor(id) {
         setAnimData(prevState => {
             // filter out the color user wants to delete
