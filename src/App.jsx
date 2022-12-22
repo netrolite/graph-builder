@@ -19,6 +19,8 @@ export default function App() {
 	const randomPalette = palettes[Math.floor(Math.random() * palettes.length)]
 	const [showNotAllValsAlert, setShowNotAllValsAlert] = useState(false);
 	const [animData, setAnimData] = useState({
+		gravity: false,
+		collisions: false,
 		shapesAmount: 10,
 		rectangles: {
 				checked: true,
