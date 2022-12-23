@@ -7,7 +7,7 @@ import Circle from "./shapes/circle"
 
 export default function Animation() {
 	const animData = JSON.parse(localStorage.getItem("animData"));
-	const { velocity, gravity, collisions, circles, rectangles, shapesAmount, fillColors, strokeColor, bgColor } = animData;
+	const { velocity, gravity, friction, collisions, circles, rectangles, shapesAmount, fillColors, strokeColor, bgColor } = animData;
 	const canvasRef = useRef();
 	console.log(animData);
 
@@ -82,7 +82,7 @@ export default function Animation() {
 							strokeColor,
 							velocity,
 							gravity,
-							1.3,
+							friction,
 							collisions,
 							canvas,
 							c,
@@ -105,7 +105,7 @@ export default function Animation() {
 							strokeColor,
 							velocity,
 							gravity,
-							1.3,
+							friction,
 							collisions,
 							canvas,
 							c,

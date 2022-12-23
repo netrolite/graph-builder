@@ -64,6 +64,26 @@ export default function Physics() {
                     <label htmlFor="collisions">Collisions</label>
                 </div>
             </div>
+
+            {
+                animData.gravity
+                && (
+                    <div className="input-subgroup">
+                        <label htmlFor="friction" className="form-label">Friction</label>
+                        <input
+                            type="number"
+                            step="0.1"
+                            min={1.1}
+                            id="friction"
+                            name="friction"
+                            data-prop="friction"
+                            className="form-control"
+                            value={animData.friction}
+                            onChange={e => changeProp(e, setAnimData)}
+                        />
+                    </div>
+                )
+            }
         </div>
     )
 }

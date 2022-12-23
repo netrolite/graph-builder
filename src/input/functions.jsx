@@ -62,10 +62,14 @@ function intFromRangeArr(range) {
 
 // if typeof NaN, replace with an empty string
 function replaceNaN(value) {
+    // using parseFloat because it works just like parseInt but also for floats
+    const parsedFloat = parseFloat(value);
+    
     // react needs value to be casted to a string if it's typeof NaN
-    const parsed = parseInt(value);
-    if (isNaN(parsed)) return "";
-    return parsed;
+    if (isNaN(parsedFloat)) {
+        return "";
+    }
+    return parsedFloat;
 }
 
 // changes ranges for values like width, height that look like [30, 50]

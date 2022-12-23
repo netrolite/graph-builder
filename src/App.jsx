@@ -5,8 +5,13 @@ import Animation from "./Animation"
 
 export const AnimDataContext = createContext();
 export const SetAnimDataContext = createContext();
+
 export const SetShowNotAllValsAlertContext = createContext();
 export const ShowNotAllValsAlertContext = createContext();
+
+export const ShowInvalidValsAlertContext = createContext();
+export const SetShowInvalidValsAlertContext = createContext();
+export const SetInvalidValsAlertContent = createContext();
 
 export default function App() {
 	const palettes = [
@@ -20,6 +25,7 @@ export default function App() {
 
 	const defaultAnimData = {
 		gravity: false,
+		friction: 1.2,
 		collisions: false,
 		shapesAmount: 10,
 		rectangles: {
@@ -53,6 +59,9 @@ export default function App() {
 	
 	// show alert that some input fields are blank
 	const [showNotAllValsAlert, setShowNotAllValsAlert] = useState(false);
+	const [showInvalidValsAlert, setShowInvalidValsAlert] = useState(false);
+	// would look like: "Invalid friction!" or "Invalid rectangle width!"
+	const [invalidValsAlertContent, setInvalidValsAlertContent] = useState("");
 
 
 	localStorage.setItem("animData", JSON.stringify(animData));
@@ -65,6 +74,8 @@ export default function App() {
 				<SetAnimDataContext.Provider value={setAnimData}>
 				<SetShowNotAllValsAlertContext.Provider value={setShowNotAllValsAlert}>
 				<ShowNotAllValsAlertContext.Provider value={showNotAllValsAlert}>
+				<ShowInvalidValsAlertContext.Provider value={showInvalidValsAlert}>
+				<SetShowInvalidValsAlertContext.Provider value={setShowInvalidValsAlert}>
 					<Routes>
 						<Route
 							path="/"
@@ -80,6 +91,8 @@ export default function App() {
 							}
 						/>
 					</Routes>
+				</SetShowInvalidValsAlertContext.Provider>
+				</ShowInvalidValsAlertContext.Provider>
 				</ShowNotAllValsAlertContext.Provider>
 				</SetShowNotAllValsAlertContext.Provider>						
 				</SetAnimDataContext.Provider>
