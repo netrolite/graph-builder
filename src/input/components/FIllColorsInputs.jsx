@@ -1,10 +1,11 @@
 import { useContext } from "react";
-import { AnimDataContext, SetAnimDataContext } from "../../App";
+import { AnimDataContext } from "../../App";
 import { BiTrash } from "react-icons/bi"
 
 export default function FillColorsInputs() {
-    const animData = useContext(AnimDataContext);
-    const setAnimData = useContext(SetAnimDataContext);
+    const animDataContext = useContext(AnimDataContext);
+    const animData = animDataContext.animData;
+    const setAnimData = animDataContext.setAnimData;
 
     function deleteColor(id) {
         setAnimData(prevState => {

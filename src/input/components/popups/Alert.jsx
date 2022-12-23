@@ -1,8 +1,9 @@
 import { useContext } from "react";
-import { ShowNotAllValsAlertContext, SetShowNotAllValsAlertContext } from "../../../App"
+import { ShowNotAllValsAlertContext } from "../../../App"
 
 export default function Alert({content}) {
-    const showNotAllValsAlert = useContext(ShowNotAllValsAlertContext);
+    const showNotAllValsAlertContext = useContext(ShowNotAllValsAlertContext);
+    const showNotAllValsAlert = showNotAllValsAlertContext.showNotAllValsAlert;
 
     return (
         <div className={

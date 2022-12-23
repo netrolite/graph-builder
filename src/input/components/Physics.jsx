@@ -1,10 +1,11 @@
 import { useContext } from "react";
-import { AnimDataContext, SetAnimDataContext } from "../../App";
+import { AnimDataContext } from "../../App";
 import { changeProp, changePropBool } from "../functions";
 
 export default function Physics() {
-    const animData = useContext(AnimDataContext);
-    const setAnimData = useContext(SetAnimDataContext);
+    const animDataContext = useContext(AnimDataContext);
+    const animData = animDataContext.animData;
+    const setAnimData = animDataContext.setAnimData;
 
     return (
         <div className="input-group">

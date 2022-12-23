@@ -70,12 +70,15 @@ export default function App() {
 	return (
 		<>
 			<BrowserRouter>
-				<AnimDataContext.Provider value={animData}>
-				<SetAnimDataContext.Provider value={setAnimData}>
-				<SetShowNotAllValsAlertContext.Provider value={setShowNotAllValsAlert}>
-				<ShowNotAllValsAlertContext.Provider value={showNotAllValsAlert}>
-				<ShowInvalidValsAlertContext.Provider value={showInvalidValsAlert}>
-				<SetShowInvalidValsAlertContext.Provider value={setShowInvalidValsAlert}>
+				<AnimDataContext.Provider value={{
+					animData, setAnimData
+				}}>
+				<ShowNotAllValsAlertContext.Provider value={{
+					showNotAllValsAlert, setShowNotAllValsAlert
+				}}>
+				<ShowInvalidValsAlertContext.Provider value={{
+					showInvalidValsAlert, setShowInvalidValsAlert, invalidValsAlertContent, setInvalidValsAlertContent
+				}}>
 					<Routes>
 						<Route
 							path="/"
@@ -91,11 +94,8 @@ export default function App() {
 							}
 						/>
 					</Routes>
-				</SetShowInvalidValsAlertContext.Provider>
 				</ShowInvalidValsAlertContext.Provider>
 				</ShowNotAllValsAlertContext.Provider>
-				</SetShowNotAllValsAlertContext.Provider>						
-				</SetAnimDataContext.Provider>
 				</AnimDataContext.Provider>
 			</BrowserRouter>
 		</>

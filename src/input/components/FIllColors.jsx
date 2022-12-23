@@ -1,12 +1,13 @@
 import { useContext } from "react"
-import { AnimDataContext, SetAnimDataContext } from "../../App"
+import { AnimDataContext } from "../../App"
 import FillColorsInputs from "./FIllColorsInputs";
 import AddColorBtn from "./buttons/AddColorBtn";
 import BrowsePalettesBtn from "./buttons/BrowsePalettesBtn";
 
 export default function FillColors({setShowPalettesPopup}) {
-    const animData = useContext(AnimDataContext);
-    const setAnimData = useContext(SetAnimDataContext);
+    const animDataContext = useContext(AnimDataContext);
+    const animData = animDataContext.animData;
+    const setAnimData = animDataContext.setAnimData;
 
     return (
         <div className="input-group">
