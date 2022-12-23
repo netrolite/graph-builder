@@ -30,7 +30,7 @@ export default function Physics() {
                     type="number"
                     min={1}
                     id="shapes-amount"
-                    name="shapes-amount"
+                    name="amount of shapes"
                     data-prop="shapesAmount"
                     className="form-control"
                     value={animData.shapesAmount}

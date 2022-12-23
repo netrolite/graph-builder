@@ -1,6 +1,5 @@
 import { useEffect, useRef, useContext } from "react"
 import { intFromRangeArr } from "./input/functions";
-import { AnimDataContext, SetAnimDataContext } from "./App";
 import Rectangle from "./shapes/rectangle"
 import Circle from "./shapes/circle"
 

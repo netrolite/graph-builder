@@ -26,6 +26,8 @@ export default function CircSettings() {
                                 <input
                                     type="number"
                                     className="form-control rounded-start-0"
+                                    id="circ-radius"
+                                    name="circle radius"
                                     min="1"
                                     value={animData.circles.radiusRandRange[0]}
                                     onChange={e => changeRange(e, setAnimData, "circles", "radiusRandRange", 0)}
@@ -37,6 +39,8 @@ export default function CircSettings() {
                                 <input
                                     type="number"
                                     className="form-control rounded-start-0"
+                                    id="circ-radius"
+                                    name="circle radius"
                                     min="1"
                                     value={animData.circles.radiusRandRange[1]}
                                     onChange={e => changeRange(e, setAnimData, "circles", "radiusRandRange", 1)}
@@ -49,8 +53,9 @@ export default function CircSettings() {
                         <input
                             className="form-control"
                             type="number"
+                            min="1"
                             id="circ-radius"
-                            name="circ-radius"
+                            name="circle radius"
                             data-shape-prop="radius"
                             data-shape="circles"
                             onChange={e => changeShapeProp(e, setAnimData)}
@@ -78,7 +83,7 @@ export default function CircSettings() {
                         className="form-check-input"
                         type="checkbox"
                         id="circ-filled"
-                        name="circ-filled"
+                        name="circle filled"
                         data-shape-prop="filled"
                         data-shape="circles"
                         checked={animData.circles.filled}

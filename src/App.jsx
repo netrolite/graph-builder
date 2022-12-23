@@ -4,14 +4,7 @@ import Input from "./input/Input"
 import Animation from "./Animation"
 
 export const AnimDataContext = createContext();
-export const SetAnimDataContext = createContext();
-
-export const SetShowNotAllValsAlertContext = createContext();
-export const ShowNotAllValsAlertContext = createContext();
-
-export const ShowInvalidValsAlertContext = createContext();
-export const SetShowInvalidValsAlertContext = createContext();
-export const SetInvalidValsAlertContent = createContext();
+export const AlertContext = createContext();
 
 export default function App() {
 	const palettes = [
@@ -53,16 +46,14 @@ export default function App() {
 		bgColor: "#ffffff"
 	}
 	const localStorageAnimData = JSON.parse(localStorage.getItem("animData"));
+	// Use animData from localStorage. If it doesn't exist, use default
 	const [animData, setAnimData] = useState(
 		localStorageAnimData || defaultAnimData
 	)
 	
-	// show alert that some input fields are blank
-	const [showNotAllValsAlert, setShowNotAllValsAlert] = useState(false);
-	const [showInvalidValsAlert, setShowInvalidValsAlert] = useState(false);
-	// would look like: "Invalid friction!" or "Invalid rectangle width!"
-	const [invalidValsAlertContent, setInvalidValsAlertContent] = useState("");
-
+	// red alert that slides down
+	const [showAlert, setShowAlert] = useState(false);
+	const [alertContent, setAlertContent] = useState("");
 
 	localStorage.setItem("animData", JSON.stringify(animData));
 
@@ -73,11 +64,8 @@ export default function App() {
 				<AnimDataContext.Provider value={{
 					animData, setAnimData
 				}}>
-				<ShowNotAllValsAlertContext.Provider value={{
-					showNotAllValsAlert, setShowNotAllValsAlert
-				}}>
-				<ShowInvalidValsAlertContext.Provider value={{
-					showInvalidValsAlert, setShowInvalidValsAlert, invalidValsAlertContent, setInvalidValsAlertContent
+				<AlertContext.Provider value={{
+					showAlert, setShowAlert, alertContent, setAlertContent
 				}}>
 					<Routes>
 						<Route
@@ -94,8 +82,7 @@ export default function App() {
 							}
 						/>
 					</Routes>
-				</ShowInvalidValsAlertContext.Provider>
-				</ShowNotAllValsAlertContext.Provider>
+				</AlertContext.Provider>
 				</AnimDataContext.Provider>
 			</BrowserRouter>
 		</>
