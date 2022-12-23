@@ -42,39 +42,45 @@ export default class Rectangle extends Shape {
     }
     
     update() {
-        // grow if cursor is within 100px range from the rectangle's center
-        if (
-            this.diff(this.mousePos.x, this.x + this.width / 2) <= this.expansionRange
-            && this.diff(this.mousePos.y, this.y + this.height / 2) <= this.expansionRange
-            && this.width <= this.maxWidth
-        ) {
-            this.x -= 1;
-            this.y -= 1;
-            this.width += 2;
-            this.height += 2;
-        }
-        else if (this.width > this.minWidth) {
-            this.x += 1;
-            this.y += 1;
-            this.width -= 2;
-            this.height -= 2;
-        }
-
-
         // reverse rectangles's direction if it's outside of canvas dimensions
         // positive velocity turns to negative and vice versa
-        if (this.x < 0) {
-            this.vx = this.positiveVx;
+        if (this.gravity) {
+            // if hit left or right wall
+            if (
+                this.x + this.vx < 0
+                || this.x + this.width + this.vx > this.canvas.width
+            ) {
+                this.vx /= -this.friction;
+                this.vy /= this.friction;
+            }
+            // if hit ceiling or floor
+            else if (
+                this.y + this.vy < 0
+                || this.y + this.vy > this.canvas.height - this.height
+            ) {
+                this.vy /= -this.friction;
+                this.vx /= this.friction;
+            }
+            else {
+                this.vy += this.gravity;
+            }
         }
-        else if (this.x > this.canvas.width - this.width) {
-            this.vx = this.negativeVx;
-        }
-
-        if (this.y < 0) {
-            this.vy = this.positiveVy;
-        }
-        else if (this.y > this.canvas.height - this.height) {
-            this.vy = this.negativeVy;
+        // use simplified algorithm if gravity is off
+        else {
+            // if hit left or right wall
+            if (
+                this.x + this.vx < 0
+                || this.x + this.vx > this.canvas.width - this.width
+            ) {
+                this.vx = -this.vx;
+            }
+            // if hit ceiling or floor
+            else if (
+                this.y + this.vy < 0
+                || this.y + this.vy > this.canvas.height - this.height
+            ) {
+                this.vy = -this.vy;
+            }
         }
 
         this.x += this.vx;

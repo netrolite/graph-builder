@@ -82,7 +82,7 @@ export default function Animation() {
 							strokeColor,
 							velocity,
 							gravity,
-							// insert friction here
+							1.3,
 							collisions,
 							canvas,
 							c,
