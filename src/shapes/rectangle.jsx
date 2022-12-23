@@ -1,14 +1,12 @@
 import Shape from "./shape";
 
 export default class Rectangle extends Shape {
-    constructor(width, height, maxWidth, radius, ...args) {
+    constructor(width, height, radius, ...args) {
         super(...args);
         this.x = Math.random() * (this.canvas.width - width);
         this.y = Math.random() * (this.canvas.height - height);
         this.width = width;
         this.height = height;
-        this.minWidth = width;
-        this.maxWidth = maxWidth;
         this.radius = radius;
     }
 

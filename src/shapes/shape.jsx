@@ -1,15 +1,14 @@
 export default class Shape {
-    constructor(expansionRange, filled, fillColors, strokeColor, velocity, gravity, collisions, canvas, c, mousePos) {
+    constructor(filled, fillColors, strokeColor, velocity, gravity, friction, collisions, canvas, c, mousePos) {
         this.strokeStyle = strokeColor;
         this.fillStyle = fillColors[Math.floor(Math.random() * fillColors.length)];
         this.lineWidth = 2;
-        this.expansionRange = expansionRange;
         this.canvas = canvas;
         this.c = c;
         this.mousePos = mousePos;
         this.filled = filled;
         this.collisions = collisions;
-        this.friction = 1.1;
+        this.friction = friction;
         if (gravity) this.gravity = 0.1;
         else this.gravity = 0;
         
@@ -28,10 +27,6 @@ export default class Shape {
             this.vx = randVx >= 0 ? randVx * velocity + velocity : randVx * velocity - velocity;
             this.vy = randVy * velocity;
         }
-        this.positiveVx = Math.abs(this.vx);
-        this.positiveVy = Math.abs(this.vy);
-        this.negativeVx = -Math.abs(this.vx);
-        this.negativeVy = -Math.abs(this.vy);
     }
 
     diff(mousePos, shapePos) {
