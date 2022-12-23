@@ -7,7 +7,7 @@ import Circle from "./shapes/circle"
 
 export default function Animation() {
 	const animData = JSON.parse(localStorage.getItem("animData"));
-	const { velocity, circles, rectangles, shapesAmount, fillColors, strokeColor, bgColor } = animData;
+	const { velocity, gravity, collisions, circles, rectangles, shapesAmount, fillColors, strokeColor, bgColor } = animData;
 	const canvasRef = useRef();
 	console.log(animData);
 
@@ -57,8 +57,8 @@ export default function Animation() {
 			if (circles.checked) availableShapes.push("circle");
 
 			for (let i = 0; i < shapesAmount; i++) {
-				// new Cirlce(radius, maxRadius, expansionRange, filled, fillColors, strokeColor, velocity, canvas, c, mousePos);
-				// new Rectangle(width, height, maxWidth, cornerRadius, expansionRange, filled, fillColors, strokeColor, velocity, canvas, c, mousePos);
+				// new Cirlce(radius, maxRadius, expansionRange, filled, fillColors, strokeColor, velocity, gravity, collisions, canvas, c, mousePos);
+				// new Rectangle(width, height, maxWidth, cornerRadius, expansionRange, filled, fillColors, strokeColor, velocity, gravity, collisions, canvas, c, mousePos);
 				const newShape = availableShapes[Math.floor(Math.random() * availableShapes.length)];
 
 				if (newShape === "rectangle") {
@@ -83,6 +83,8 @@ export default function Animation() {
 							fillColors,
 							strokeColor,
 							velocity,
+							gravity,
+							collisions,
 							canvas,
 							c,
 							mousePos
@@ -105,6 +107,8 @@ export default function Animation() {
 							fillColors,
 							strokeColor,
 							velocity,
+							gravity,
+							collisions,
 							canvas,
 							c,
 							mousePos

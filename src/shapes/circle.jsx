@@ -23,8 +23,21 @@ export default class Circle extends Shape {
         this.c.strokeStyle = this.strokeStyle;
         this.c.stroke();
     }
+
+    // sets all velocities
+    setVelocities() {
+        this.positiveVx = Math.abs(this.vx);
+        this.positiveVy = Math.abs(this.vy);
+        this.negativeVx = -Math.abs(this.vx);
+        this.negativeVy = -Math.abs(this.vy);
+    }
+
     
     update() {
+        const prevVx = this.vx;
+        const prevVy = this.vy;
+        let hitFloor = false;
+
         // grow if cursor is within 100px range from the circles's center
         if (
             this.diff(this.mousePos.x, this.x) <= this.expansionRange
@@ -39,22 +52,30 @@ export default class Circle extends Shape {
 
         // reverse circles's direction if it's outside of canvas dimensions
         // positive velocity turns to negative and vice versa
+        // if hit left wall
         if (this.x < this.radius) {
-            this.vx = this.initPositiveVx;
+            this.vx = this.positiveVx / this.friction;
         }
+        // if hit right wall
         else if (this.x > this.canvas.width - this.radius) {
-            this.vx = this.initNegativeVx;
+            this.vx = this.negativeVx / this.friction;
         }
 
+        // if hit ceiling
         if (this.y < this.radius) {
-            this.vy = this.initPositiveVy;
+            this.vy = this.positiveVy / this.friction;
         }
+        // if hit floor
         else if (this.y > this.canvas.height - this.radius) {
-            this.vy = this.initNegativeVy;
+            this.vy = this.negativeVy / this.friction;
+            hitFloor = true;
         }
 
-        this.x += this.vx;
-        this.y += this.vy;
+        // if is not hitting the floor, increase gravity
+        if (!hitFloor) this.vy += this.gravity;
+        this.x += prevVx;
+        this.y += prevVy;
+        this.setVelocities();
         this.draw();
     }
 }

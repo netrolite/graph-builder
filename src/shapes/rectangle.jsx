@@ -66,17 +66,17 @@ export default class Rectangle extends Shape {
         // reverse rectangles's direction if it's outside of canvas dimensions
         // positive velocity turns to negative and vice versa
         if (this.x < 0) {
-            this.vx = this.initPositiveVx;
+            this.vx = this.positiveVx;
         }
         else if (this.x > this.canvas.width - this.width) {
-            this.vx = this.initNegativeVx;
+            this.vx = this.negativeVx;
         }
 
         if (this.y < 0) {
-            this.vy = this.initPositiveVy;
+            this.vy = this.positiveVy;
         }
         else if (this.y > this.canvas.height - this.height) {
-            this.vy = this.initNegativeVy;
+            this.vy = this.negativeVy;
         }
 
         this.x += this.vx;
