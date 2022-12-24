@@ -14,7 +14,7 @@ export default class Rectangle extends Shape {
         if (this.c.roundRect) {
             this.c.beginPath();
             this.c.roundRect(this.x, this.y, this.width, this.height, this.radius);
-            this.c.clostPath();
+            this.c.closePath();
         }
         // roundRect is unavailable in Firefox and probably some versions of IE
         else {
