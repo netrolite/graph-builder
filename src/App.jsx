@@ -18,7 +18,7 @@ export default function App() {
 
 	const defaultAnimData = {
 		gravity: false,
-		friction: 1.2,
+		friction: 1.1,
 		collisions: false,
 		shapesAmount: 10,
 		rectangles: {
@@ -45,10 +45,22 @@ export default function App() {
 		fillColors: randomPalette,
 		bgColor: "#ffffff"
 	}
+	
+	// animData stored (or not) in localStorage
 	const localStorageAnimData = JSON.parse(localStorage.getItem("animData"));
-	// Use animData from localStorage. If it doesn't exist, use default
+	// lengths of animData from localStorage and from inside the code
+	let animDataLocalLen = null;
+	let defaultAnimDataLen = Object.keys(defaultAnimData).length;
+
+	// if animData from localStorage exists, set animDataLocalLen to its length
+	if (localStorageAnimData) {
+		animDataLocalLen = Object.keys(localStorageAnimData).length;
+	}
+
+	// if defaultAnimData and animData from localStorage have same lengths, use animData from localStorage. Otherwise, use the default one
+	// this prevents users who have already visited the page from having undefinded values in newly added input fields
 	const [animData, setAnimData] = useState(
-		localStorageAnimData || defaultAnimData
+		animDataLocalLen === defaultAnimDataLen ? localStorageAnimData : defaultAnimData
 	)
 	
 	// red alert that slides down
