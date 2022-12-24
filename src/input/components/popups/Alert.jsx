@@ -1,16 +1,18 @@
 import { useContext } from "react";
-import { ShowNotAllValsAlertContext, SetShowNotAllValsAlertContext } from "../../../App"
+import { AlertContext } from "../../../App"
 
-export default function Alert({content}) {
-    const showNotAllValsAlert = useContext(ShowNotAllValsAlertContext);
+export default function Alert() {
+    const alertContext = useContext(AlertContext);
+    const showAlert = alertContext.showAlert;
+    const alertContent = alertContext.alertContent;
 
     return (
         <div className={
             "alert alert-danger rounded-0 fs-5 bs-override-alert" 
-            + (showNotAllValsAlert ? " active" : "")
+            + (showAlert ? " active" : "")
         }
         >
-            {content}
+            {alertContent}
         </div>
     )
 }

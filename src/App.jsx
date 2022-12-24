@@ -4,9 +4,7 @@ import Input from "./input/Input"
 import Animation from "./Animation"
 
 export const AnimDataContext = createContext();
-export const SetAnimDataContext = createContext();
-export const SetShowNotAllValsAlertContext = createContext();
-export const ShowNotAllValsAlertContext = createContext();
+export const AlertContext = createContext();
 
 export default function App() {
 	const palettes = [
@@ -20,6 +18,7 @@ export default function App() {
 
 	const defaultAnimData = {
 		gravity: false,
+		friction: 1.2,
 		collisions: false,
 		shapesAmount: 10,
 		rectangles: {
@@ -47,13 +46,14 @@ export default function App() {
 		bgColor: "#ffffff"
 	}
 	const localStorageAnimData = JSON.parse(localStorage.getItem("animData"));
+	// Use animData from localStorage. If it doesn't exist, use default
 	const [animData, setAnimData] = useState(
 		localStorageAnimData || defaultAnimData
 	)
 	
-	// show alert that some input fields are blank
-	const [showNotAllValsAlert, setShowNotAllValsAlert] = useState(false);
-
+	// red alert that slides down
+	const [showAlert, setShowAlert] = useState(false);
+	const [alertContent, setAlertContent] = useState("");
 
 	localStorage.setItem("animData", JSON.stringify(animData));
 
@@ -61,10 +61,12 @@ export default function App() {
 	return (
 		<>
 			<BrowserRouter>
-				<AnimDataContext.Provider value={animData}>
-				<SetAnimDataContext.Provider value={setAnimData}>
-				<SetShowNotAllValsAlertContext.Provider value={setShowNotAllValsAlert}>
-				<ShowNotAllValsAlertContext.Provider value={showNotAllValsAlert}>
+				<AnimDataContext.Provider value={{
+					animData, setAnimData
+				}}>
+				<AlertContext.Provider value={{
+					showAlert, setShowAlert, alertContent, setAlertContent
+				}}>
 					<Routes>
 						<Route
 							path="/"
@@ -80,9 +82,7 @@ export default function App() {
 							}
 						/>
 					</Routes>
-				</ShowNotAllValsAlertContext.Provider>
-				</SetShowNotAllValsAlertContext.Provider>						
-				</SetAnimDataContext.Provider>
+				</AlertContext.Provider>
 				</AnimDataContext.Provider>
 			</BrowserRouter>
 		</>

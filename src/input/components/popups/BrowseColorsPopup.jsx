@@ -1,10 +1,11 @@
 import { useContext } from "react"
-import { AnimDataContext, SetAnimDataContext } from "../../../App";
+import { AnimDataContext } from "../../../App";
 import Palettes from "../Palettes"
 
 export default function BrowseColorsPopup({showPalettesPopup}) {
-    const animData = useContext(AnimDataContext);
-    const setAnimData = useContext(SetAnimDataContext);
+    const animDataContext = useContext(AnimDataContext);
+    const animData = animDataContext.animData;
+    const setAnimData = animDataContext.setAnimData;
 
     return (
         <div className={"popup" + (showPalettesPopup ? " active" : "")}>

@@ -1,13 +1,12 @@
 import { useEffect, useRef, useContext } from "react"
 import { intFromRangeArr } from "./input/functions";
-import { AnimDataContext, SetAnimDataContext } from "./App";
 import Rectangle from "./shapes/rectangle"
 import Circle from "./shapes/circle"
 
 
 export default function Animation() {
 	const animData = JSON.parse(localStorage.getItem("animData"));
-	const { velocity, circles, rectangles, shapesAmount, fillColors, strokeColor, bgColor } = animData;
+	const { velocity, gravity, friction, collisions, circles, rectangles, shapesAmount, fillColors, strokeColor, bgColor } = animData;
 	const canvasRef = useRef();
 	console.log(animData);
 
@@ -57,8 +56,8 @@ export default function Animation() {
 			if (circles.checked) availableShapes.push("circle");
 
 			for (let i = 0; i < shapesAmount; i++) {
-				// new Cirlce(radius, maxRadius, expansionRange, filled, fillColors, strokeColor, velocity, canvas, c, mousePos);
-				// new Rectangle(width, height, maxWidth, cornerRadius, expansionRange, filled, fillColors, strokeColor, velocity, canvas, c, mousePos);
+				// new Cirlce(radius, filled, fillColors, strokeColor, velocity, gravity, friction, collisions, canvas, c, mousePos);
+				// new Rectangle(width, height, cornerRadius, filled, fillColors, strokeColor, velocity, gravity, friction, collisions, canvas, c, mousePos);
 				const newShape = availableShapes[Math.floor(Math.random() * availableShapes.length)];
 
 				if (newShape === "rectangle") {
@@ -76,13 +75,14 @@ export default function Animation() {
 						new Rectangle(
 							rectWidth,
 							rectHeight,
-							rectWidth + 20, // maxWidth
 							rectangles.cornerRadius,
-							100, // expansionRange
 							rectangles.filled,
 							fillColors,
 							strokeColor,
 							velocity,
+							gravity,
+							friction,
+							collisions,
 							canvas,
 							c,
 							mousePos
@@ -99,12 +99,13 @@ export default function Animation() {
 					shapes.push(
 						new Circle(
 							circRadius,
-							circRadius + 20, // maxRadius
-							100, // expansionRange
 							circles.filled,
 							fillColors,
 							strokeColor,
 							velocity,
+							gravity,
+							friction,
+							collisions,
 							canvas,
 							c,
 							mousePos

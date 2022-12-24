@@ -1,10 +1,11 @@
 import { useState, useContext } from "react"
-import { AnimDataContext, SetAnimDataContext } from "../../App"
+import { AnimDataContext } from "../../App"
 import { changeShapeProp, toggleRandomValue, changeRange } from "../functions";
 
 export default function RectSettings() {
-    const animData = useContext(AnimDataContext);
-    const setAnimData = useContext(SetAnimDataContext);
+    const animDataContext = useContext(AnimDataContext);
+    const animData = animDataContext.animData;
+    const setAnimData = animDataContext.setAnimData;
     
     // if rectangles checkbox is unchecked
     if (!animData.rectangles.checked) return null;
@@ -27,6 +28,8 @@ export default function RectSettings() {
                                     <input
                                         type="number"
                                         className="form-control rounded-start-0"
+                                        id="rect-width"
+                                        name="rectangle width"
                                         min="1"
                                         value={animData.rectangles.widthRandRange[0]}
                                         onChange={e => changeRange(e, setAnimData, "rectangles", "widthRandRange", 0)}
@@ -38,6 +41,8 @@ export default function RectSettings() {
                                     <input
                                         type="number"
                                         className="form-control rounded-start-0"
+                                        id="rect-width"
+                                        name="rectangle width"
                                         min="1"
                                         value={animData.rectangles.widthRandRange[1]}
                                         onChange={e => changeRange(e, setAnimData, "rectangles", "widthRandRange", 1)}
@@ -50,8 +55,9 @@ export default function RectSettings() {
                             <input
                                 className="form-control"
                                 type="number"
+                                min="1"
                                 id="rect-width"
-                                name="rect-width"
+                                name="rectangle width"
                                 data-shape-prop="width"
                                 data-shape="rectangles"
                                 onChange={e => changeShapeProp(e, setAnimData)}
@@ -84,6 +90,8 @@ export default function RectSettings() {
                                 <input
                                     type="number"
                                     className="form-control rounded-start-0"
+                                    id="rect-height"
+                                    name="rectangle height"
                                     min="1"
                                     value={animData.rectangles.heightRandRange[0]}
                                     onChange={e => changeRange(e, setAnimData, "rectangles", "heightRandRange", 0)}
@@ -95,6 +103,8 @@ export default function RectSettings() {
                                 <input
                                     type="number"
                                     className="form-control rounded-start-0"
+                                    id="rect-height"
+                                    name="rectangle height"
                                     min="1"
                                     value={animData.rectangles.heightRandRange[1]}
                                     onChange={e => changeRange(e, setAnimData, "rectangles", "heightRandRange", 1)}
@@ -107,8 +117,9 @@ export default function RectSettings() {
                         <input
                             className="form-control"
                             type="number"
+                            min="1"
                             id="rect-height"
-                            name="rect-height"
+                            name="rectangle height"
                             data-shape-prop="height"
                             data-shape="rectangles"
                             onChange={e => changeShapeProp(e, setAnimData)}
@@ -135,8 +146,9 @@ export default function RectSettings() {
                 <input
                     className="form-control"
                     type="number"
+                    min="0"
                     id="rect-corner-radius"
-                    name="rect-corner-radius"
+                    name="rectangle corner radius"
                     data-shape-prop="cornerRadius"
                     data-shape="rectangles"
                     onChange={e => changeShapeProp(e, setAnimData)}
@@ -150,7 +162,7 @@ export default function RectSettings() {
                         className="form-check-input"
                         type="checkbox"
                         id="rect-filled"
-                        name="rect-filled"
+                        name="rectangle filled"
                         data-shape-prop="filled"
                         data-shape="rectangles"
                         checked={animData.rectangles.filled}

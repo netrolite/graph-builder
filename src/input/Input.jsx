@@ -22,6 +22,7 @@ export default function Input() {
             <form className="inputs">
                 <BrowseColorsPopup showPalettesPopup={showPalettesPopup} />
                 <Alert content="You can't leave any input fields blank!" />
+                <Alert content="You can't leave any input fields blank!" />
                 <Physics />
                 <BgColor />
                 <StrokeColor />
