@@ -1,7 +1,7 @@
 import { useEffect, useRef, useContext } from "react"
 import { intFromRangeArr } from "./input/functions";
-import Rectangle from "./shapes/rectangle"
-import Circle from "./shapes/circle"
+import Rectangle from "./input/shapes/rectangle"
+import Circle from "./input/shapes/circle"
 
 
 export default function Animation() {

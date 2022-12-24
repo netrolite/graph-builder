@@ -1,7 +1,7 @@
 import { useState, createContext } from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Input from "./input/Input"
-import Animation from "./Animation"
+import Input from "./routes/input/Input"
+import Animation from "./routes/Animation"
 
 export const AnimDataContext = createContext();
 export const AlertContext = createContext();

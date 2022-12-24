@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { AnimDataContext } from "../../App"
+import { AnimDataContext } from "../../../App"
 import { changeShapeProp } from "../functions"
 
 export default function ShapeTypes() {

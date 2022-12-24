@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AnimDataContext } from "../../App";
+import { AnimDataContext } from "../../../App";
 import { BiTrash } from "react-icons/bi"
 
 export default function FillColorsInputs() {

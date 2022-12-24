@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { AnimDataContext } from "../../App"
+import { AnimDataContext } from "../../../App"
 import FillColorsInputs from "./FIllColorsInputs";
 import AddColorBtn from "./buttons/AddColorBtn";
 import BrowsePalettesBtn from "./buttons/BrowsePalettesBtn";
