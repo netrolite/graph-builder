@@ -71,17 +71,23 @@ export default function Physics() {
                 && (
                     <div className="input-subgroup">
                         <label htmlFor="friction" className="form-label">Friction</label>
-                        <input
-                            type="number"
-                            step="0.1"
-                            min={1.1}
-                            id="friction"
-                            name="friction"
-                            data-prop="friction"
-                            className="form-control"
-                            value={animData.friction}
-                            onChange={e => changeProp(e, setAnimData)}
-                        />
+                        <div className="d-flex align-items-center">
+                            <div className="range-value">
+                                {animData.friction}
+                            </div>
+                            <input
+                                type="range"
+                                step="0.01"
+                                min="1.1"
+                                max="4"
+                                id="friction"
+                                name="friction"
+                                data-prop="friction"
+                                className="form-range"
+                                value={animData.friction}
+                                onChange={e => changeProp(e, setAnimData)}
+                            />
+                        </div>
                     </div>
                 )
             }
