@@ -69,26 +69,49 @@ export default function Physics() {
             {
                 animData.gravity
                 && (
-                    <div className="input-subgroup">
-                        <label htmlFor="friction" className="form-label">Friction</label>
-                        <div className="d-flex align-items-center">
-                            <div className="range-value">
-                                {animData.friction}
+                    <>
+                        <div className="input-subgroup">
+                            <label htmlFor="gravitational-force" className="form-label">Gravitational force</label>
+                            <div className="d-flex align-items-center">
+                                <div className="range-value">
+                                    {animData.gravForce}
+                                </div>
+                                <input
+                                    type="range"
+                                    step="0.1"
+                                    min="1"
+                                    max="10"
+                                    id="gravitational-force"
+                                    name="gravitational force"
+                                    data-prop="gravForce"
+                                    className="form-range"
+                                    value={animData.gravForce}
+                                    onChange={e => changeProp(e, setAnimData)}
+                                />
                             </div>
-                            <input
-                                type="range"
-                                step="0.01"
-                                min="1.1"
-                                max="4"
-                                id="friction"
-                                name="friction"
-                                data-prop="friction"
-                                className="form-range"
-                                value={animData.friction}
-                                onChange={e => changeProp(e, setAnimData)}
-                            />
                         </div>
-                    </div>
+
+                        <div className="input-subgroup">
+                            <label htmlFor="friction" className="form-label">Friction</label>
+                            <div className="d-flex align-items-center">
+                                <div className="range-value">
+                                    {animData.friction}
+                                </div>
+                                <input
+                                    type="range"
+                                    step="0.1"
+                                    min="1.1"
+                                    max="4"
+                                    id="friction"
+                                    name="friction"
+                                    data-prop="friction"
+                                    className="form-range"
+                                    value={animData.friction}
+                                    onChange={e => changeProp(e, setAnimData)}
+                                />
+                            </div>
+                        </div>
+                    </>
                 )
             }
         </div>

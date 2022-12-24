@@ -35,7 +35,6 @@ export default function StartAnimBtn() {
         
         // if any of the values aren't provided or are invalid, activate alert and close after 1s
         if (!allProvided) {
-
             setAlertContent("You can't leave any input fields empty!");
             setShowAlert(true);
             setTimeout(() => {

@@ -18,6 +18,7 @@ export default function App() {
 
 	const defaultAnimData = {
 		gravity: false,
+		gravForce: 1,
 		friction: 1.1,
 		collisions: false,
 		shapesAmount: 10,

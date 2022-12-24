@@ -1,5 +1,5 @@
 export default class Shape {
-    constructor(filled, fillColors, strokeColor, velocity, gravity, friction, collisions, canvas, c, mousePos) {
+    constructor(filled, fillColors, strokeColor, velocity, gravity, gravForce, friction, collisions, canvas, c, mousePos) {
         this.strokeStyle = strokeColor;
         this.fillStyle = fillColors[Math.floor(Math.random() * fillColors.length)];
         this.lineWidth = 2;
@@ -9,8 +9,8 @@ export default class Shape {
         this.filled = filled;
         this.collisions = collisions;
         this.friction = friction;
-        if (gravity) this.gravity = 0.1;
-        else this.gravity = 0;
+        if (gravity) this.gravity = gravForce;
+        else this.gravity = false;
         
         const randVx = Math.random() - 0.5;
         const randVy = Math.random() - 0.5;

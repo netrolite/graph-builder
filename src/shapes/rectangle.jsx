@@ -62,7 +62,7 @@ export default class Rectangle extends Shape {
                 this.vx /= this.friction;
             }
             else {
-                this.vy += this.gravity;
+                this.vy += this.gravity / 20;
             }
         }
         // use simplified algorithm if gravity is off
