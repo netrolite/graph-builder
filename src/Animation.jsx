@@ -7,11 +7,19 @@ import Circle from "./shapes/circle"
 export default function Animation() {
 	const animData = JSON.parse(localStorage.getItem("animData"));
 	const { velocity, gravity, friction, collisions, circles, rectangles, shapesAmount, fillColors, strokeColor, bgColor } = animData;
+	
 	const canvasRef = useRef();
+	let canvas;
+	/** @type {CanvasRenderingContext2D} */ let c;
+
 	console.log(animData);
 
 	useEffect(() => {
 		window.addEventListener("resize", resize);
+
+		canvas = canvasRef.current;
+		c = canvas.getContext("2d");
+
 		resize();
 		draw();
 		return () => {
@@ -23,8 +31,6 @@ export default function Animation() {
 	
 
 	function draw() {
-		const canvas = canvasRef.current;
-		/** @type {CanvasRenderingContext2D} */ const c = canvas.getContext("2d");
 		document.body.style.backgroundColor = bgColor;
 		canvas.style.backgroundColor = bgColor;
 
@@ -129,8 +135,9 @@ export default function Animation() {
 	}
 
 	return (
+
 		<main className="container-fluid p-0">
-			<canvas ref={canvasRef} />
+			<canvas ref={canvasRef}>Sorry, your browser isn't supported</canvas>
 		</main>
 	)
 }

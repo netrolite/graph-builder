@@ -11,26 +11,26 @@ export default class Rectangle extends Shape {
     }
 
     draw() {
-        // doesn't work in Firefox
-        // this.c.beginPath();
-        // this.c.fillStyle = this.fillStyle;
-        // this.c.strokeStyle = this.strokeStyle;
-        // this.c.lineWidth = this.lineWidth;
-        // this.c.roundRect(this.x, this.y, this.width, this.height, this.radius);
-        // this.c.stroke();
-        // this.c.fill();
+        if (this.c.roundRect) {
+            this.c.beginPath();
+            this.c.roundRect(this.x, this.y, this.width, this.height, this.radius);
+            this.c.clostPath();
+        }
+        // roundRect is unavailable in Firefox and probably some versions of IE
+        else {
+            this.c.beginPath();
+            this.c.moveTo(this.x + this.radius, this.y);
+            this.c.lineTo(this.x + this.width - this.radius, this.y);
+            this.c.quadraticCurveTo(this.x + this.width, this.y, this.x + this.width, this.y + this.radius);
+            this.c.lineTo(this.x + this.width, this.y + this.height - this.radius);
+            this.c.quadraticCurveTo(this.x + this.width, this.y + this.height, this.x + this.width - this.radius, this.y + this.height);
+            this.c.lineTo(this.x + this.radius, this.y + this.height);
+            this.c.quadraticCurveTo(this.x, this.y + this.height, this.x, this.y + this.height - this.radius);
+            this.c.lineTo(this.x, this.y + this.radius);
+            this.c.quadraticCurveTo(this.x, this.y, this.x + this.radius, this.y);
+            this.c.closePath();
+        }
 
-        this.c.beginPath();
-        this.c.moveTo(this.x + this.radius, this.y);
-        this.c.lineTo(this.x + this.width - this.radius, this.y);
-        this.c.quadraticCurveTo(this.x + this.width, this.y, this.x + this.width, this.y + this.radius);
-        this.c.lineTo(this.x + this.width, this.y + this.height - this.radius);
-        this.c.quadraticCurveTo(this.x + this.width, this.y + this.height, this.x + this.width - this.radius, this.y + this.height);
-        this.c.lineTo(this.x + this.radius, this.y + this.height);
-        this.c.quadraticCurveTo(this.x, this.y + this.height, this.x, this.y + this.height - this.radius);
-        this.c.lineTo(this.x, this.y + this.radius);
-        this.c.quadraticCurveTo(this.x, this.y, this.x + this.radius, this.y);
-        this.c.closePath();
 
         if (this.filled) {
             this.c.fillStyle = this.fillStyle
