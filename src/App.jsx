@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom"
 import Input from "./routes/input/Input"
 import Animation from "./routes/Animation"
 import SelectMode from "./routes/SelectMode"
+import Graphs from "./routes/graphs/Graphs"
 
 export const AnimDataContext = createContext();
 export const AlertContext = createContext();
@@ -88,15 +89,20 @@ export default function App() {
 							}
 						/>
 
+						<Route 
+							path="/graphs"
+							element={<Graphs />}
+						/>
+
 						<Route
-							path="/animInput"
+							path="/animation/input"
 							element={
 								<Input />
 							} 
 						/>
 
 						<Route
-							path="/animation"
+							path="/animation/animation"
 							element={
 								<Animation />
 							}

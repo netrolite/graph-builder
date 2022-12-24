@@ -50,7 +50,7 @@ export default function StartAnimBtn() {
             }, 3000);
         }
         else {
-            navigate("/animation");
+            navigate("/animation/animation");
         }
     }
 
