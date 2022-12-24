@@ -1,7 +1,8 @@
 import { useState, createContext } from "react"
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom"
 import Input from "./routes/input/Input"
 import Animation from "./routes/Animation"
+import SelectMode from "./routes/SelectMode"
 
 export const AnimDataContext = createContext();
 export const AlertContext = createContext();
@@ -70,7 +71,6 @@ export default function App() {
 
 	localStorage.setItem("animData", JSON.stringify(animData));
 
-
 	return (
 		<>
 			<BrowserRouter>
@@ -83,6 +83,13 @@ export default function App() {
 					<Routes>
 						<Route
 							path="/"
+							element={
+								<SelectMode />
+							}
+						/>
+
+						<Route
+							path="/animInput"
 							element={
 								<Input />
 							} 
