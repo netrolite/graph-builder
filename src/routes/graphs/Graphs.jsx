@@ -40,20 +40,40 @@ export default function Graphs() {
         const endY = canvas.height / 2;
 
         // middle points of the right and left imaginary (gray) lines
-        const leftLineMiddleX = startX + diff(startX, mouse.x) / 2;
-        const leftLineMiddleY = mouse.y + diff(startY, mouse.y) / 2;
-        const rightLineMiddleX = mouse.x + diff(endX, mouse.x) / 2;
-        const rightLineMiddleY = mouse.y + diff(endY, mouse.y) / 2;
+        let leftLineMidX;
+        let leftLineMidY;
+        let rightLineMidX;
+        let rightLineMidY;
 
-        // console.log(`
-        //     startX: ${startX}
-        //     controlX: ${mouse.x}
-        //     middleX: ${leftLineMiddleX}
+        // X MIDDLE POINTS
+        // if cursor is to the left from start point
+        if (mouse.x < startX) {
+            leftLineMidX = mouse.x + diff(mouse.x, startX) / 2;
+        }
+        else {
+            leftLineMidX = startX + diff(startX, mouse.x) / 2;
+        }
 
-        //     startY: ${startY}
-        //     controlY: ${mouse.y}
-        //     middleY: ${leftLineMiddleY}
-        // `);
+        // if cursor is to the right from end point
+        if (mouse.x > endX) {
+            rightLineMidX = endX + diff(endX, mouse.x) / 2;
+        }
+        else {
+            rightLineMidX = mouse.x + diff(mouse.x, endX) / 2;
+        }
+
+        
+        // Y MIDDLE POINTS
+        // if cursor is above the start and end points
+        if (mouse.y > startY) {
+            leftLineMidY = startY + diff(startY, mouse.y) / 2;
+            rightLineMidY = startY + diff(startY, mouse.y) / 2;  
+        } 
+        else {
+            leftLineMidY = mouse.y + diff(startY, mouse.y) / 2;
+            rightLineMidY = mouse.y + diff(startY, mouse.y) / 2;
+        }
+
         
         // lines
         c.beginPath();
@@ -65,9 +85,8 @@ export default function Graphs() {
         c.lineTo(endX, endY);
 
         // middle line from left to right
-        console.log(leftLineMiddleX, leftLineMiddleY)
-        c.moveTo(leftLineMiddleX, leftLineMiddleY);
-        c.lineTo(rightLineMiddleX, rightLineMiddleY);
+        c.moveTo(leftLineMidX, leftLineMidY);
+        c.lineTo(rightLineMidX, rightLineMidY);
         c.stroke();
 
 
