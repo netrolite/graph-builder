@@ -19,13 +19,21 @@ export default function Graphs() {
         resize();
         draw();
 
+        // resize and draw canvas on window resize
         window.addEventListener("resize", () => {
             resize();
             draw();
         })
 
+        // for computers
         window.addEventListener("mousemove", e => {
             setMousePos(e);
+            draw();
+        })
+
+        // for mobile devices
+        window.addEventListener("touchmove", e => {
+            setTouchPos(e);
             draw();
         })
     }, [])
@@ -126,6 +134,13 @@ export default function Graphs() {
         mouse = {
             x: e.clientX,
             y: e.clientY
+        }
+    }
+
+    function setTouchPos(e) {
+        mouse = {
+            x: e.touches[0].clientX,
+            y: e.touches[0].clientY
         }
     }
 
