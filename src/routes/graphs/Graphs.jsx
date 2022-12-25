@@ -62,13 +62,13 @@ export default function Graphs() {
             rightLineMidX = mouse.x + diff(mouse.x, endX) / 2;
         }
 
-        
+
         // Y MIDDLE POINTS
         // if cursor is above the start and end points
         if (mouse.y > startY) {
             leftLineMidY = startY + diff(startY, mouse.y) / 2;
-            rightLineMidY = startY + diff(startY, mouse.y) / 2;  
-        } 
+            rightLineMidY = startY + diff(startY, mouse.y) / 2;
+        }
         else {
             leftLineMidY = mouse.y + diff(startY, mouse.y) / 2;
             rightLineMidY = mouse.y + diff(startY, mouse.y) / 2;
@@ -133,7 +133,7 @@ export default function Graphs() {
     }
 
     return (
-        <main className="container-fluid p-0">
+        <main className="container-fluid overflow-hidden p-0">
 			<canvas ref={canvasRef}>Sorry, your browser isn't supported</canvas>
 		</main>
     )
