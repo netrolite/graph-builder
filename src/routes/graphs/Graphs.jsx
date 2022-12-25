@@ -1,6 +1,8 @@
 import { useEffect, useRef } from "react";
 
 export default function Graphs() {
+    document.body.style.overflow = "hidden";
+
     const canvasRef = useRef();
     let canvas;
     /** @type {CanvasRenderingContext2D} */ let c;
@@ -133,7 +135,7 @@ export default function Graphs() {
     }
 
     return (
-        <main className="container-fluid overflow-hidden p-0">
+        <main className="container-fluid p-0">
 			<canvas ref={canvasRef}>Sorry, your browser isn't supported</canvas>
 		</main>
     )

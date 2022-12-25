@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom"
 
 export default function SelectMode() {
+    document.body.style.overflow = "visible";
+
     return (
         <div className="container main d-flex align-items-center justify-content-center flex-column">
             <h1>Select Mode</h1>
