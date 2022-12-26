@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AnimDataContext } from "../../App";
+import { AnimDataContext } from "../../../App";
 import { changeProp, changePropBool } from "../functions";
 
 export default function Physics() {
@@ -50,19 +50,6 @@ export default function Physics() {
                         checked={animData.gravity}
                     />
                     <label htmlFor="gravity">Gravity</label>
-                </div>
-
-                <div className="checkbox-group">
-                    <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id="collisions"
-                        name="collisions"
-                        data-prop="collisions"
-                        onChange={e => changePropBool(e, setAnimData, true)}
-                        checked={animData.collisions}
-                    />
-                    <label htmlFor="collisions">Collisions</label>
                 </div>
             </div>
 

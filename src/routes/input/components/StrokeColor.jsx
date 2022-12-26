@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { AnimDataContext } from "../../App";
+import { AnimDataContext } from "../../../App";
 import { changeProp } from "../functions";
 
-export default function BgColor() {
+export default function StrokeColor() {
     const animDataContext = useContext(AnimDataContext);
     const animData = animDataContext.animData;
     const setAnimData = animDataContext.setAnimData;
@@ -10,19 +10,19 @@ export default function BgColor() {
     return (
         <div className="input-group">
             <div className="input-subgroup">
-                <label htmlFor="bg-color" className="form-label heading">Background Color</label>
+                <label htmlFor="stroke-color" className="form-label heading">Stroke Color</label>
                 <div className="input-color-wrapper">
                     <input 
                         type="color"
                         className="form-control form-control-color"
-                        value={animData.bgColor}
-                        id="bg-color"
-                        name="bg-color"
-                        data-prop="bgColor"
+                        value={animData.strokeColor}
+                        id="stroke-color"
+                        name="stroke-color"
+                        data-prop="strokeColor"
                         onChange={e => changeProp(e, setAnimData, true)}
                     />
 
-                    {animData.bgColor}
+                    {animData.strokeColor}
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { AnimDataContext } from "../../../App";
+import { AnimDataContext } from "../../../../App";
 import Palettes from "../Palettes"
 
 export default function BrowseColorsPopup({showPalettesPopup}) {

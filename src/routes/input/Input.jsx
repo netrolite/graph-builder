@@ -4,7 +4,7 @@ import Physics from "./components/Physics";
 import ShapeTypes from "./components/ShapeTypes";
 import StrokeColor from "./components/StrokeColor";
 import BgColor from "./components/BgColor";
-import FillColors from "./components/FIllColors";
+import FillColors from "./components/FillColors";
 import StartAnimBtn from "./components/buttons/StartAnimBtn";
 import RectSettings from "./components/RectSettings";
 import CircSettings from "./components/CircSettings";

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { AlertContext } from "../../../App";
+import { AlertContext } from "../../../../App"
 
 export default function StartAnimBtn() {
     const navigate = useNavigate();
@@ -50,7 +50,7 @@ export default function StartAnimBtn() {
             }, 3000);
         }
         else {
-            navigate("/animation");
+            navigate("/animation/animation");
         }
     }
 

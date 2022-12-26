@@ -1,5 +1,5 @@
 import { useState, useContext } from "react"
-import { AnimDataContext } from "../../App"
+import { AnimDataContext } from "../../../App"
 import { changeShapeProp, toggleRandomValue, changeRange } from "../functions";
 
 export default function RectSettings() {
